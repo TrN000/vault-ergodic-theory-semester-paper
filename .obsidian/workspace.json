@@ -49,7 +49,19 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Unitary Representations and Direct Integral.md",
+                "file": "motivating example.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "e59d81afce76e7ae",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "General Paper Plan.md",
                 "mode": "source",
                 "source": false
               }
@@ -205,7 +217,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "quotient",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -230,13 +242,11 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "da3931425c0228bf",
@@ -252,7 +262,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Unitary Representations and Direct Integral.md",
+                "file": "motivating example.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -269,7 +279,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Unitary Representations and Direct Integral.md",
+                "file": "motivating example.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -292,7 +302,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Unitary Representations and Direct Integral.md"
+                "file": "motivating example.md"
               }
             }
           }
@@ -314,41 +324,41 @@
   },
   "active": "39a6111f26e5721d",
   "lastOpenFiles": [
+    "Pasted image 20231228233154.png",
+    "motivating example.md",
+    "General Paper Plan.md",
+    "Iwasawa Decomposition.md",
+    "References as bibtex.md",
+    "Pasted image 20231027161837.png",
+    "Pasted image 20231118180504.png",
+    "Pasted image 20231118190004.png",
+    "Pasted image 20231211194629.png",
+    "Pasted image 20231226223810.png",
+    "Pasted image 20231226223840.png",
+    "Lattices.md",
+    "Unitary Representations and Direct Integral.md",
+    "the SL(2, R) part of the proof.md",
     "test.pdf",
     "test.aux",
     "test.log",
     "test.tex",
-    "the SL(2, R) part of the proof.md",
-    "Unitary Representations and Direct Integral.md",
     "Recommended Literature.md",
     "Matrix Coefficients.md",
-    "References as bibtex.md",
     "create images for.md",
     "check.md",
     "unoriginal.md",
     "setup from Kerr Li.md",
-    "motivating example.md",
-    "General Paper Plan.md",
     "The proof for a general G.md",
     "The SL(n, R) part of the proof.md",
     "Labardini-Fragoso's Lectures.md",
     "Added value of Paper.md",
     "ergodic.md",
-    "Lattices.md",
     "Historic Timeline.md",
     "special linear group.md",
     "Untitled 1.md",
     "Operator topologies.md",
     "Peter-Weyl Theorem.md",
     "Borel.md",
-    "Orbit Space.md",
-    "temp.md",
-    "Pasted image 20231228233154.png",
-    "Pasted image 20231226223840.png",
-    "Pasted image 20231226223810.png",
-    "Pasted image 20231211194629.png",
-    "Pasted image 20231118190004.png",
-    "Pasted image 20231118180504.png",
-    "Pasted image 20231027161837.png"
+    "Orbit Space.md"
   ]
 }

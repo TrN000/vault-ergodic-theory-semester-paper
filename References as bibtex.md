@@ -72,3 +72,19 @@ dixmier: as transitive reference:
   publisher={Gauthier-Villars}
 }
 ```
+
+miyake: for proof of SO2 Stab of i
+
+```
+@book{Miyake1989,
+  title = {Modular Forms},
+  ISBN = {9783540295938},
+  ISSN = {2196-9922},
+  url = {http://dx.doi.org/10.1007/3-540-29593-3},
+  DOI = {10.1007/3-540-29593-3},
+  journal = {Springer Monographs in Mathematics},
+  publisher = {Springer Berlin Heidelberg},
+  author = {Miyake,  Toshitsune},
+  year = {1989}
+}
+```

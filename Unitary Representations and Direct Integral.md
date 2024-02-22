@@ -1,5 +1,5 @@
 what do we need actually?
-We have to take a detour into unitary representations and define the direct integral to make statements about certain subgroups. These lead to a theorem (Zimmer 2.2.5) about vanishing matrix coefficients, which we will use to proove the central theorem in question.
+We have to take a detour into unitary representations and define the direct integral to make statements about certain subgroups. These lead to a theorem (Zimmer 2.2.5) about vanishing matrix coefficients, which we will use to prove the central theorem in question.
 
 # The Direct Integral
 Suppose we have a measure space $M$, and for each $x \in M$ a Hilbert space $\mathscr{H}_x$ such that $x \mapsto \mathscr{H}_x$ is piecewise constant, that is, we have a disjoint decomposition of $M$ into $\cup_{i=1}^{\infty} M_i$ such that for $x,y \in M_i$, $\mathscr{H}_x = \mathscr{H}_y$.
@@ -18,11 +18,10 @@ This allows us to define the relevant representation
 
 ## Theorem
 (2.3.5 Proposition Mackey 3)
-Suppose $\mathbb{R}^n \subset G$ is a normal subgroup and $\pi$ is a unitary representation of $G$. Write $\pi | \mathbb{R}^n \cong \pi_{(\mu, \mathcal{H}_{\lambda})}$  for some $(\mu, \mathcal{H}_{\lambda})$  by 2.3.3. Then
+Suppose $\mathbb{R}^n \subset G$ is a normal subgroup and $\pi$ is a unitary representation of $G$. Write $\pi | \mathbb{R}^n \cong \pi_{(\mu, \mathscr{H}_{\lambda})}$  for some $(\mu, \mathscr{H}_{\lambda})$  by 2.3.3. Then
 - $\mu$ is quasi-invariant under the action of $G$ on $\hat{\mathbb{R}}^n$.
-- If $E \subset \mathbb{R}^n$ is measurable, let $\mathcal{H}_E \centercolon= L^2(E, \mu, \{\mathcal{H}_{\lambda}\})$ . Then $\pi(g)\mathcal{H}_E = \mathcal{H}_{g \cdot E}$
-- If $\pi$ is irreducible, then $\mu$ is ergodic and $dim\mathcal{H}_{\lambda}$ is constant on a $\mu$-conull set.
-
+- If $E \subset \mathbb{R}^n$ is measurable, let $\mathscr{H}_E \centercolon= L^2(E, \mu, \{\mathscr{H}_{\lambda}\})$ . Then $\pi(g)\mathscr{H}_E = \mathscr{H}_{g \cdot E}$
+- If $\pi$ is irreducible, then $\mu$ is ergodic and $dim\mathscr{H}_{\lambda}$ is constant on a $\mu$-conull set.
 ### proof
 [[todo]]
 

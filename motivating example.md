@@ -1,5 +1,30 @@
 [[todo]]:upper half plane, möbius transforms, give reference to misc things. and figure out what the actual example is. figure out what the theorem tries to answer.
 
+
+I get the first map now. The action, let's name it for now, $\alpha : SL(2, \mathbb{R}) \curvearrowright \mathbb{H} \rightarrow \mathbb{H}$, wich acts by fractional linear transform.
+## Lemma
+1. $K:= SO(2, \mathbb{R})$ is the stabilizer of $i \in \mathbb{H}$.
+2. therefore, $G/K \cong AN$ with $KAN \cong G$ being the Iwasawa decomp.
+
+### proof
+1. from \cite{Miyake1989}(Theorem 1.1.3) map to Klein disk; use Schwarz lemma; map back.
+
+How does the second map work?
+Using the same fractional linear transform but we take a real value instead of a complex one.
+It is easy to visualize as  a regular matrix product with $\pmatrix{x \\ 1}$ and projecting it to the projective line.
+$$
+\pmatrix{a & b \\ c & d}\pmatrix{x \\ 1} =
+\pmatrix{ax + b \\ cx + d} \quad \rightarrow \quad
+\pmatrix{\frac{ax + b}{cx + d} \\ 1}
+$$
+[[create images for]]: the one I've already made for this on the other pc.
+
+next we care about the behavior of a lattice $\Gamma \subset G$.
+
+## where we want to go
+We want to show that the action of $\Gamma$ on $\bar{\mathbb{R}}$ is ergodic
+
+## from book
 [[unoriginal]](Zimmer p.4)
 To see why ergodicity is relevant, and in fact to say a word about what it is, let us consider a classical example.
 Let $G = SL(2, \mathbb{R})$, and let $X$ be the upper half plane, $X= \{z \in \mathbb{C} | lm(z) > 0\}$.

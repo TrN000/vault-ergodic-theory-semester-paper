@@ -19,6 +19,8 @@ will need to put some parts of measure theory in here, but not sure what is dida
 
 copy from Kerr and Li, mostly
 [[setup from Kerr Li]]
+
+Need the [[Iwasawa Decomposition]] here somewhere.
 ## heavy handed section about direct integral
 idk wtf I'm gonna do for that but I'll figure it out. (oh me, of high hopes.)
 [[Unitary Representations and Direct Integral]]
