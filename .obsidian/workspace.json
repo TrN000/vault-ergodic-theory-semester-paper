@@ -13,19 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "References as bibtex.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "167dd511a90b1015",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Matrix Coefficients.md",
+                "file": "setup from Kerr Li.md",
                 "mode": "source",
                 "source": false
               }
@@ -44,12 +32,48 @@
             }
           },
           {
-            "id": "39a6111f26e5721d",
+            "id": "dbd52a18fe8d586d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Moore's Ergodicity Theorem.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "9083a9687636241d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Connection between Matrix Coefficients and Ergodicity.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "b40d8f7afd961927",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "motivating example.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "7b79b149c2f9f919",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "target.md",
                 "mode": "source",
                 "source": false
               }
@@ -104,30 +128,6 @@
             }
           },
           {
-            "id": "684b7c9587930ded",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "General Paper Plan.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "531aa45ddee65688",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "motivating example.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "bda2a9d1b8d3c1de",
             "type": "leaf",
             "state": {
@@ -152,43 +152,18 @@
             }
           },
           {
-            "id": "9eaa81ba6d7b7f70",
+            "id": "18262871a1565520",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "unoriginal.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "8cc4525a35026f68",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "check.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "6c517c6d215418c9",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "create images for.md",
+                "file": "notes to Iozzi.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -217,7 +192,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "quotient",
+                "query": "quasi-in",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -242,7 +217,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -262,7 +238,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "motivating example.md",
+                "file": "setup from Kerr Li.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -279,7 +255,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "motivating example.md",
+                "file": "setup from Kerr Li.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -302,7 +278,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "motivating example.md"
+                "file": "setup from Kerr Li.md"
               }
             }
           }
@@ -322,13 +298,39 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "39a6111f26e5721d",
+  "active": "14aa450f5914b050",
   "lastOpenFiles": [
-    "Pasted image 20231228233154.png",
+    "Recommended Literature.md",
+    "Moore's Ergodicity Theorem.md",
+    "Connection between Matrix Coefficients and Ergodicity.md",
+    "setup from Kerr Li.md",
     "motivating example.md",
-    "General Paper Plan.md",
-    "Iwasawa Decomposition.md",
+    "Unitary Representations and Direct Integral.md",
     "References as bibtex.md",
+    "The proof for a general G.md",
+    "The SL(n, R) part of the proof.md",
+    "the SL(2, R) part of the proof.md",
+    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients-final.synctex.gz",
+    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients-final.synctex(busy)",
+    "General Paper Plan.md",
+    "target.md",
+    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients.log",
+    "The Theorem.md",
+    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients-final.pdf",
+    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients-final.aux",
+    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients-final.log",
+    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients-final.tex",
+    "Makefile~",
+    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients.pdf",
+    "target.tex",
+    "Untitled 2.md",
+    "notes to Iozzi.md",
+    "Matrix Coefficients.md",
+    "unoriginal.md",
+    "check.md",
+    "create images for.md",
+    "Pasted image 20231228233154.png",
+    "Iwasawa Decomposition.md",
     "Pasted image 20231027161837.png",
     "Pasted image 20231118180504.png",
     "Pasted image 20231118190004.png",
@@ -336,29 +338,9 @@
     "Pasted image 20231226223810.png",
     "Pasted image 20231226223840.png",
     "Lattices.md",
-    "Unitary Representations and Direct Integral.md",
-    "the SL(2, R) part of the proof.md",
-    "test.pdf",
-    "test.aux",
-    "test.log",
-    "test.tex",
-    "Recommended Literature.md",
-    "Matrix Coefficients.md",
-    "create images for.md",
-    "check.md",
-    "unoriginal.md",
-    "setup from Kerr Li.md",
-    "The proof for a general G.md",
-    "The SL(n, R) part of the proof.md",
     "Labardini-Fragoso's Lectures.md",
     "Added value of Paper.md",
     "ergodic.md",
-    "Historic Timeline.md",
-    "special linear group.md",
-    "Untitled 1.md",
-    "Operator topologies.md",
-    "Peter-Weyl Theorem.md",
-    "Borel.md",
-    "Orbit Space.md"
+    "Historic Timeline.md"
   ]
 }

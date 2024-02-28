@@ -9,10 +9,14 @@
 - why we care
 - how we're gonna go about it
 
+
+[[Moore's Ergodicity Theorem]] somewhere in here
+
 ## initial example
 [[motivating example]]
 action of SL2 on both the upper half plane and $\hat{R}$.
 put pictures.
+
 # setup
 what we have in our environment: Hilbert Spaces, which representations, etc.
 will need to put some parts of measure theory in here, but not sure what is didactically good. at some point it won't matter, just that it's in there.

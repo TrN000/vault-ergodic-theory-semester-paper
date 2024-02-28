@@ -1,4 +1,33 @@
 
+Moore
+```
+@article{ffddf94c-a235-3841-8c56-14688b67690a,
+ ISSN = {00029327, 10806377},
+ URL = {http://www.jstor.org/stable/2373052},
+ author = {Calvin C. Moore},
+ journal = {American Journal of Mathematics},
+ number = {1},
+ pages = {154--178},
+ publisher = {Johns Hopkins University Press},
+ title = {Ergodicity of Flows on Homogeneous Spaces},
+ urldate = {2024-02-27},
+ volume = {88},
+ year = {1966}
+}
+```
+Zimmer (Trivially).
+```
+@book{Zimmer1984,
+  title = {Ergodic Theory and Semisimple Groups},
+  ISBN = {9781468494884},
+  url = {http://dx.doi.org/10.1007/978-1-4684-9488-4},
+  DOI = {10.1007/978-1-4684-9488-4},
+  publisher = {Birkh\"{a}user Boston},
+  author = {Zimmer,  Robert J.},
+  year = {1984}
+}
+```
+
 Bröcker_Dieck-Representations_of_Compact_Lie_Groups
 
 ```
@@ -15,7 +44,7 @@ Bröcker_Dieck-Representations_of_Compact_Lie_Groups
 }
 ```
 
-Kerr and Li
+Kerr and Li for setup definitions
 
 ```
 @book{Kerr2016,
@@ -59,7 +88,7 @@ Bekka 2019: for summary of direct integrals, as dixmier is just too much to refe
 }
 ```
 
-dixmier: as transitive reference:
+dixmier: as transitive reference for direct integral:
 
 ```
 @book{dixmier1969c,

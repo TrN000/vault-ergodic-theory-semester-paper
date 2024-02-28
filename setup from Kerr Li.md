@@ -15,6 +15,9 @@ The Borel $\sigma$-algebra of a topological space $X$ is the $\sigma$-algebra $\
 open subsets of $X$ , and the members of $\mathscr{B}$ are called Borel sets (we may also refer to them as measurable sets if we are viewing $(X, \mathscr{B})$ abstractly as a measurable space).
 A Borel measure on $X$ is a probability measure on the Borel $\sigma$-algebra of $X$.
 
+## "direct difference" notation
+Zimmer, and we, use the symbol "$\ominus$" to denote "subtraction" of linear subspaces of Hilbert spaces.
+If $A \subset B$ are linear subspaces of a Hilbert space, $B \ominus A = \{x \in B: (x,y) = 0 \text{ for all }y \in A\}$.
 ## Group Actions
 By an action of the group $G$ on a set $X$ we mean a map $\alpha: G \times X \rightarrow X$ such that, writing the first argument as a subscript, $\alpha_s(\alpha_t(x)) = \alpha_{st}(x)$ and $\alpha_e(x) = x$ for all
 $x \in X$ and $s, t \in G$.
@@ -28,6 +31,18 @@ K x = \{sx : s \in K \},
 K A = \{sx : x \in A \text{ and } s \in K \}.
 $$
 The _G-orbit_ of a point $x \in X$ is the set $Gx$.
-[[todo]]: quasi-invariant and invariant, measures and topologies together, borel
 
 [[todo]]: hilbert spaces.
+
+[[todo]]: quasi-invariant and invariant, measures and topologies together, borel
+
+## Definition
+\definition{quasi-invariant}
+A measure $\mu$ is quasi-invariant under a group action of $G$ if it preserves null sets.
+If $A = gA$ then either $\mu(A)=0$ or $\mu(S\setminus A)=0$.
+
+
+[[todo]]: ergodicity
+## Ergodicity
+definition; explanation of definition; Examples; why the prerequisites come in, like quasi-invariance; clarify edge cases.
+summarize by "complicated orbits" argument (could use 2.1.7 as example of complicatedness).

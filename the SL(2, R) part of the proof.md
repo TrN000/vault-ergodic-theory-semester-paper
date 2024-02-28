@@ -17,12 +17,12 @@ This shows that the must be a matrix coefficient in $\pi | A$ that fails to vani
 
 ## The upper triangular subgroup
 
-We look at the group  $$P \subset SL(2, \mathbb{R}) = \pmatrix{a & b \\ 0 & a^{-1}}$$ of upper triangular matrices. Together with the lower diagonal matrices $\bar{P}$, they generate $SL(2, \mathbb{R})$. To see this, decompose as follows:
+We look at the group  $$P \subset SL(2, \mathbb{R}) = \begin{pmatrix}a & b \\ 0 & a^{-1}\end{pmatrix}$$ of upper triangular matrices. Together with the lower diagonal matrices $\bar{P}$, they generate $SL(2, \mathbb{R})$. To see this, decompose as follows:
 $$\begin{pmatrix}1&0\\\alpha&1\end{pmatrix}
 \begin{pmatrix}x&0\\0&1/x\end{pmatrix}
 \begin{pmatrix}1&\beta\\0&1\end{pmatrix} = 
 \begin{pmatrix} x&\beta x\\\alpha x& \alpha\beta x+1/x\end{pmatrix}$$
-For any matrix $A = \pmatrix{a & b \\ c & d}$ in $SL(2, \mathbb{R})$ with matrix coefficient $a \neq 0$, we can solve for $x,\alpha, \beta$.
+For any matrix $A = \begin{pmatrix}a & b \\ c & d\end{pmatrix}$ in $SL(2, \mathbb{R})$ with matrix coefficient $a \neq 0$, we can solve for $x,\alpha, \beta$.
 In the case of $a = 0$ we can use the following construction:
 $$\begin{pmatrix} 1&0\\\alpha&1\end{pmatrix}
 \begin{pmatrix} 1&\beta\\0&1\end{pmatrix}
@@ -37,9 +37,9 @@ If $1 + \beta\gamma = 0$, the above product becomes $\begin{pmatrix} 0&\beta\\ \
 ## Representation of $P$
 
 The upper triangular group can be decomposed into
-$$\pmatrix{a & b \\ 0 & a^{-1}} =
+$$\begin{pmatrix}a & b \\ 0 & a^{-1}\end{pmatrix} =
 P = AN \centercolon=
-\pmatrix{a & 0 \\ 0 & a^{-1}} \pmatrix{1 & b \\ 0 & 1}$$
+\begin{pmatrix}a & 0 \\ 0 & a^{-1}\end{pmatrix} \begin{pmatrix}1 & b \\ 0 & 1\end{pmatrix}$$
 ## Theorem
 (Zimmer 2.3.6)
 Let $\pi$ be a unitary representation of $P = AN$. Then either

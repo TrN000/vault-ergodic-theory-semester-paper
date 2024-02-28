@@ -9,6 +9,15 @@ Let $L^2(M, \{\mathscr{H}_x\})$ be the set of square integrable sections $\int \
 Suppose now we have for each $x \in M$ a unitary representation $\pi_x$ of a group $G$ on $\mathscr{H}_x$. We say this is measurable when for $g \in G$, $\pi_x(g)$ is a measurable function on each $M_i \times G$.
 
 This allows us to define the relevant representation
+
+
+
+# Unitary Representations
+
+[[todo]] (un-garbage intro)
+We need some more information about irreducible unitary representations to understand the action(s) of $SL(n, \mathbb{R})$. 
+
+
 ## Theorem
 (Zimmer 2.3.3)
 - For any unitary representation $\pi$ of $\mathbb{R}^n$, there exist $\mu, \mathscr{H}_{\lambda}$, on $\hat{\mathbb{R}}^n$ such that $\pi \cong \pi_{\mu, \mathscr{H}_{\lambda}}$.

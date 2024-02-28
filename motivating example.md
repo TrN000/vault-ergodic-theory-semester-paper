@@ -11,11 +11,11 @@ I get the first map now. The action, let's name it for now, $\alpha : SL(2, \mat
 
 How does the second map work?
 Using the same fractional linear transform but we take a real value instead of a complex one.
-It is easy to visualize as  a regular matrix product with $\pmatrix{x \\ 1}$ and projecting it to the projective line.
+It is easy to visualize as  a regular matrix product with $\begin{pmatrix}x \\ 1\end{pmatrix}$ and projecting it to the projective line.
 $$
-\pmatrix{a & b \\ c & d}\pmatrix{x \\ 1} =
-\pmatrix{ax + b \\ cx + d} \quad \rightarrow \quad
-\pmatrix{\frac{ax + b}{cx + d} \\ 1}
+\begin{pmatrix}a & b \\ c & d\end{pmatrix}\begin{pmatrix}x \\ 1\end{pmatrix} =
+\begin{pmatrix}ax + b \\ cx + d\end{pmatrix} \quad \rightarrow \quad
+\begin{pmatrix}\frac{ax + b}{cx + d} \\ 1\end{pmatrix}
 $$
 [[create images for]]: the one I've already made for this on the other pc.
 
@@ -33,7 +33,7 @@ $$
 g \cdot z=\frac{(az+b)}{(cz+d)}
 \quad
 \text{ where }g=
-\pmatrix{a & b \\ c & d}
+\begin{pmatrix}a & b \\ c & d\end{pmatrix}
 $$
 Suppose now that $\Gamma \subset G$ is a lattice, which we assume to be torsion free for simplicity.
 Since the action of $G$ on $X$ allows an identification of $X$ with $G/K$,
