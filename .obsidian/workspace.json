@@ -8,36 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "14aa450f5914b050",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "setup from Kerr Li.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "1b7f3121ebe6c5b8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "Recommended Literature.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "dbd52a18fe8d586d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Moore's Ergodicity Theorem.md",
                 "mode": "source",
                 "source": false
               }
@@ -68,18 +44,6 @@
             }
           },
           {
-            "id": "7b79b149c2f9f919",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "target.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "e59d81afce76e7ae",
             "type": "leaf",
             "state": {
@@ -92,36 +56,36 @@
             }
           },
           {
-            "id": "fae63fcc106513bf",
+            "id": "dbd52a18fe8d586d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "the SL(2, R) part of the proof.md",
+                "file": "Moore's Ergodicity Theorem.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "5eeebd98864b5926",
+            "id": "bb325de51e31d585",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "The SL(n, R) part of the proof.md",
+                "file": "Introduction.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "4708e08774ed6535",
+            "id": "5d7be1c7d2ad60bd",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "The proof for a general G.md",
+                "file": "References as bibtex.md",
                 "mode": "source",
                 "source": false
               }
@@ -162,8 +126,45 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "778cb9f680c1c5d1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "The Theorem.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "6c9d2d152a89eedd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Peter-Weyl Theorem.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "3c85d92d634efe89",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "The proof for a general G.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -192,7 +193,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "quasi-in",
+                "query": "Zimmer84",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -217,12 +218,12 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "da3931425c0228bf",
@@ -238,7 +239,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "setup from Kerr Li.md",
+                "file": "motivating example.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -255,7 +256,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "setup from Kerr Li.md",
+                "file": "motivating example.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -278,15 +279,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "setup from Kerr Li.md"
+                "file": "motivating example.md"
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -298,33 +301,37 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "14aa450f5914b050",
+  "active": "b40d8f7afd961927",
   "lastOpenFiles": [
-    "Recommended Literature.md",
+    "General Paper Plan.md",
     "Moore's Ergodicity Theorem.md",
-    "Connection between Matrix Coefficients and Ergodicity.md",
-    "setup from Kerr Li.md",
+    "Introduction.md",
     "motivating example.md",
+    "Connection between Matrix Coefficients and Ergodicity.md",
+    "refs.bib~",
+    "Recommended Literature.md",
+    "The proof for a general G.md",
+    "Peter-Weyl Theorem.md",
+    "The Theorem.md",
+    "notes to Iozzi.md",
+    "setup from Kerr Li.md",
     "Unitary Representations and Direct Integral.md",
     "References as bibtex.md",
-    "The proof for a general G.md",
-    "The SL(n, R) part of the proof.md",
+    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients-draft.synctex(busy)",
+    "motivating example.md~",
+    "README.md~",
+    "README.md",
+    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients-draft.synctex.gz",
+    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients-draft.tex.bbl",
+    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients-draft.tex.blg",
+    "refs.bib.bbl",
+    "refs.bib.blg",
+    "target.md~",
     "the SL(2, R) part of the proof.md",
-    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients-final.synctex.gz",
-    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients-final.synctex(busy)",
-    "General Paper Plan.md",
+    "The SL(n, R) part of the proof.md",
+    "todo.md",
     "target.md",
-    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients.log",
-    "The Theorem.md",
-    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients-final.pdf",
-    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients-final.aux",
-    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients-final.log",
-    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients-final.tex",
-    "Makefile~",
-    "Trutmann_Nicolas-On_A_Theorem_by_Moore_About_Vanishing_Matrix_Coefficients.pdf",
-    "target.tex",
     "Untitled 2.md",
-    "notes to Iozzi.md",
     "Matrix Coefficients.md",
     "unoriginal.md",
     "check.md",
@@ -337,10 +344,6 @@
     "Pasted image 20231211194629.png",
     "Pasted image 20231226223810.png",
     "Pasted image 20231226223840.png",
-    "Lattices.md",
-    "Labardini-Fragoso's Lectures.md",
-    "Added value of Paper.md",
-    "ergodic.md",
-    "Historic Timeline.md"
+    "Lattices.md"
   ]
 }

@@ -38,7 +38,7 @@ If $1 + \beta\gamma = 0$, the above product becomes $\begin{pmatrix} 0&\beta\\ \
 
 The upper triangular group can be decomposed into
 $$\begin{pmatrix}a & b \\ 0 & a^{-1}\end{pmatrix} =
-P = AN \centercolon=
+P = AN =
 \begin{pmatrix}a & 0 \\ 0 & a^{-1}\end{pmatrix} \begin{pmatrix}1 & b \\ 0 & 1\end{pmatrix}$$
 ## Theorem
 (Zimmer 2.3.6)

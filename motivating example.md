@@ -1,5 +1,8 @@
 [[todo]]:upper half plane, möbius transforms, give reference to misc things. and figure out what the actual example is. figure out what the theorem tries to answer.
 
+Now that we have a concrete question, let us try to get our hands dirty on an example.
+We'll use the action of fractional linear transforms on the upper half plane, which is nice, because we can look at hyperbolic geometry and draw meaningful pictures of the maps and spaces involved.
+It'll bring intuition about the question and why one would care to answer the question.
 
 I get the first map now. The action, let's name it for now, $\alpha : SL(2, \mathbb{R}) \curvearrowright \mathbb{H} \rightarrow \mathbb{H}$, wich acts by fractional linear transform.
 ## Lemma
@@ -7,7 +10,7 @@ I get the first map now. The action, let's name it for now, $\alpha : SL(2, \mat
 2. therefore, $G/K \cong AN$ with $KAN \cong G$ being the Iwasawa decomp.
 
 ### proof
-1. from \cite{Miyake1989}(Theorem 1.1.3) map to Klein disk; use Schwarz lemma; map back.
+1. from \cite{Miyake89}(Theorem 1.1.3) map to Klein disk; use Schwarz lemma; map back.
 
 How does the second map work?
 Using the same fractional linear transform but we take a real value instead of a complex one.
@@ -20,7 +23,8 @@ $$
 [[create images for]]: the one I've already made for this on the other pc.
 
 next we care about the behavior of a lattice $\Gamma \subset G$.
-
+If $G$ acts transitively on a space $X$, then there is an isomorphism of $G$-spaces $G/G_x \rightarrow X$, where $G_x = Stab_G (x)$ for $x \in X$, given by the map $gG_x \mapsto gx$.
+In the case of our example $G = SL(2, \mathbb{R})$, and, as we've shown in the preceding lemma, we know the stabilizer of $i$ to be $SO(2,\mathbb{R})$.
 ## where we want to go
 We want to show that the action of $\Gamma$ on $\bar{\mathbb{R}}$ is ergodic
 
