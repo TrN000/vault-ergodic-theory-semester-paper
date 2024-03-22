@@ -1,23 +1,20 @@
  We start here because it is an easy example of the theorem and a general group $G$ has many subgroups locally isomorphic to $SL(2, \mathbb{R})$. Later we extend the proof, first to $SL(n, \mathbb{R})$ and then to a general $G$.
 
-## Polar decomposition to Cartan
-$T = US$ for some unitary $U$ and a sym pos def $S$. $S$ can be diagonalized into $U_0 D U_0^{-1}$ so we can write $T = U U_0 D U_0^{-1} = U_1 D U_2$ for $U_i \in SO(2, \mathbb{R})$.
-Then $SL(2, \mathbb{R}) = KAK$ for $K = SO_2$ and $A$ the diagonal group. This is the Cartan decomposition.
+To state our intentions: we first show that either the matrix coefficients vanish as we want, or there exist invariant vectors.
+Then we show that there are no invariant vectors, completing the statement.
 
-## Lemma
-If $\pi$ is a unitary representation of a Group $G$ and we can write $G = KAK$, then it suffices to check that the matrix coefficients vanish on A as $g \rightarrow \infty$.
+We're going to use the following decomposition, which we take for granted [[todo]] (find reference for Iwasawa decomposition).
+The so called Iwasawa decomposition of $SL(2, \mathbb{R})$ into three matrices $K$, $A$, and $N$, defined as
+$$
+\begin{align}
+K & =\quad \left\{ \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta\end{pmatrix} \subset SL(2, \mathbb{R})  \ | \ \theta \in \mathbb{R} \right\} \\
+A & =\quad \left\{ \begin{pmatrix} r & 0 \\ 0 & r^{-1} \end{pmatrix} \subset SL(2, \mathbb{R})  \ | \ r > 0 \right\} \\
+N & =\quad \left\{ \begin{pmatrix} 1 & x \\ 0 & 1 \end{pmatrix} \subset SL(2, \mathbb{R})  \ | \ x \in \mathbb{R} \right\}\\
+\end{align}
+$$
 
-### proof
-The proof works by observing that $K$ is compact, and so the only part of G that can go to infinity is $A$.
-We take vectors $v, w$ and write $g \in G$ as $g = k_1 a k_2$. Then the corresponding matrix coefficient can be written as $\langle \pi(g)v|w \rangle = \langle \pi(a) \pi(k_2) v | \pi(k_1)^{-1} w \rangle$.
-Since $g \rightarrow \infty$ we can find a sequence $g_n = k_{1,n} g_{n} k_{2,n} \rightarrow \infty$ as $n \rightarrow \infty$ with $|\langle \pi(g_n) v | w \rangle | \geq \varepsilon$ for some $\varepsilon > 0$.
-Suppose $k_{1,n} \rightarrow k$ and $k_{2,n}^{-1} \rightarrow k'$, then for n sufficiently large n $|\langle \pi(a_n)\pi(k)v | \pi(k') w \rangle | \geq \varepsilon/2$.
-But since $K$ is compact and $g_n \rightarrow \infty$, we must have $a_n \rightarrow \infty$.
-This shows that the must be a matrix coefficient in $\pi | A$ that fails to vanish at infinity.
 
-## The upper triangular subgroup
-
-We look at the group  $$P \subset SL(2, \mathbb{R}) = \begin{pmatrix}a & b \\ 0 & a^{-1}\end{pmatrix}$$ of upper triangular matrices. Together with the lower diagonal matrices $\bar{P}$, they generate $SL(2, \mathbb{R})$. To see this, decompose as follows:
+We look at the subgroup  $$P \subset SL(2, \mathbb{R}) = \begin{pmatrix}a & b \\ 0 & a^{-1}\end{pmatrix}$$ of upper triangular matrices. Together with the lower diagonal matrices $\bar{P}$, they generate $SL(2, \mathbb{R})$. To see this, decompose as follows:
 $$\begin{pmatrix}1&0\\\alpha&1\end{pmatrix}
 \begin{pmatrix}x&0\\0&1/x\end{pmatrix}
 \begin{pmatrix}1&\beta\\0&1\end{pmatrix} = 
@@ -34,8 +31,8 @@ $$\begin{pmatrix} 1&0\\\alpha&1\end{pmatrix}
 \end{pmatrix}$$
 If $1 + \beta\gamma = 0$, the above product becomes $\begin{pmatrix} 0&\beta\\ \gamma& 1+\alpha\beta+\gamma\delta \end{pmatrix}$ and we can make suitable choices for $\alpha, \beta, \gamma, \delta$ to construct $A$.
 
-## Representation of $P$
 
+## Theorem for P
 The upper triangular group can be decomposed into
 $$\begin{pmatrix}a & b \\ 0 & a^{-1}\end{pmatrix} =
 P = AN =
@@ -66,10 +63,26 @@ Theorem 2.3.6 gives a vanishing theorem for the matrix coefficients of repre-
 sentations of P. In the next section we will see how to use this to prove Moore's
 theorem.
 
+## Theorem for Cartan decomposition
+
+## Polar decomposition to Cartan
+$T = US$ for some unitary $U$ and a sym pos def $S$. $S$ can be diagonalized into $U_0 D U_0^{-1}$ so we can write $T = U U_0 D U_0^{-1} = U_1 D U_2$ for $U_i \in SO(2, \mathbb{R})$.
+Then $SL(2, \mathbb{R}) = KAK$ for $K = SO_2$ and $A$ the diagonal group. This is the Cartan decomposition.
+
+## Lemma
+If $\pi$ is a unitary representation of a Group $G$ and we can write $G = KAK$, then it suffices to check that the matrix coefficients vanish on A as $g \rightarrow \infty$.
+
+### proof
+The proof works by observing that $K$ is compact, and so the only part of G that can go to infinity is $A$.
+We take vectors $v, w$ and write $g \in G$ as $g = k_1 a k_2$. Then the corresponding matrix coefficient can be written as $\langle \pi(g)v|w \rangle = \langle \pi(a) \pi(k_2) v | \pi(k_1)^{-1} w \rangle$.
+Since $g \rightarrow \infty$ we can find a sequence $g_n = k_{1,n} g_{n} k_{2,n} \rightarrow \infty$ as $n \rightarrow \infty$ with $|\langle \pi(g_n) v | w \rangle | \geq \varepsilon$ for some $\varepsilon > 0$.
+Suppose $k_{1,n} \rightarrow k$ and $k_{2,n}^{-1} \rightarrow k'$, then for n sufficiently large n $|\langle \pi(a_n)\pi(k)v | \pi(k') w \rangle | \geq \varepsilon/2$.
+But since $K$ is compact and $g_n \rightarrow \infty$, we must have $a_n \rightarrow \infty$.
+This shows that the must be a matrix coefficient in $\pi | A$ that fails to vanish at infinity.
 
 
-## Theorem
-()
+## Theorem for SL(2, R) this time
+
 If $\pi$ is a unitary representation of $G = SL(2, \mathbb{R})$ with no invariant vectors, then all matrix coefficients of $\pi$ vanish at $\infty$.
 
 ### proof

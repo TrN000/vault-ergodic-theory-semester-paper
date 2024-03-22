@@ -1,5 +1,6 @@
 Now that we have stated the goal of the paper, let us immediately make a detour.
 We will state definitions and relevant theorems (without proof) in compact form with ample references so that a reader can catch up if necessary.
+The advanced reader can skip this section and move straight to the next topic without issue.
 
 [[todo]] (put references for everything in each section)
 

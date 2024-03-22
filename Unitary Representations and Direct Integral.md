@@ -50,3 +50,38 @@ Suppose $\mathbb{R}^n \subset G$ is a normal subgroup and $\pi$ is a unitary rep
 [[todo]]
 
 
+
+## Representation of R^n
+
+[[todo]] (this drops out of nowhere)
+All the irreducible unitary representations of $\mathbb{R}^n$ are one-dimensional.
+
+It turns out that the group unitary representations on $\mathbb{R}^n$ are isomorphic to $\mathbb{R}^n$.
+So we define a map from $\mathbb{R}^n$ to $\mathcal{U}(\mathbb{C})$ and show that it's in fact bijective.
+Let $\theta$. $t$ be in $\mathbb{R}^n$ and let $\lambda_{\theta}(t) = e^{i\langle \theta | t \rangle}$.
+This is in fact a unitary automorphism on $\mathbb{C}$ by multiplication.
+To clarify, for every $\theta \in \mathbb{R}^n$ we have a representation given by
+$$
+\begin{align*}
+\lambda_{\theta}:\ & \mathbb{R}^n \rightarrow \mathcal{U}(\mathbb{C}) \\
+& t \mapsto e^{i \langle \theta | t \rangle}
+\end{align*}
+$$
+We denote the group of representations by $\hat{\mathbb{R}}^n$. It is in fact a group under pointwise multiplication.
+
+[[todo]] (this sort of drops out of nowhere)
+
+This definition is maybe a bit dense, so here is the assignment formatted in pseudo code.
+Note here that $\text{lambda}$ denotes the programming term of a lambda function, an unfortunate notation collision.
+$$
+\begin{align*}
+& \text{func }\ \pi_{\mu,\mathscr{H}_{\lambda}}(t: \mathbb{R}^n) \rightarrow \mathcal{U}(L^2(\hat{\mathbb{R}}^n)) \ \{ \\
+& \qquad \text{return lambda}(f:\ L^2(\hat{\mathbb{R}}^n)) \rightarrow L^2(\hat{\mathbb{R}}^n) \ \{ \\
+& \qquad \qquad \text{return lambda}(\lambda:\ \hat{\mathbb{R}}^n) \rightarrow \mathscr{H}_{\lambda} \ \{ \\
+& \qquad \qquad \qquad \text{return }\lambda(t)f(\lambda) \\
+& \qquad \qquad \} \\
+& \qquad \} \\
+& \} \\
+\end{align*}
+$$
+

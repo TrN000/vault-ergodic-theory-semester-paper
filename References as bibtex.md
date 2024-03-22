@@ -165,3 +165,22 @@ dixmier1: straight up not relevant
 	file = {ScienceDirect Snapshot:/home/trn/Zotero/storage/E9ET8KLZ/0022123679900788.html:text/html},
 }
 ```
+
+Mackey for historical background
+```
+@article{mackey74,
+	title = {Ergodic theory and its significance for statistical mechanics and probability theory},
+	volume = {12},
+	issn = {0001-8708},
+	url = {https://www.sciencedirect.com/science/article/pii/S0001870874800034},
+	doi = {10.1016/S0001-8708(74)80003-4},
+	number = {2},
+	urldate = {2024-03-18},
+	journal = {Advances in Mathematics},
+	author = {Mackey, George W.},
+	month = feb,
+	year = {1974},
+	pages = {178--268},
+	file = {ScienceDirect Snapshot:/home/trn/Zotero/storage/8MM3BDMA/S0001870874800034.html:text/html},
+}
+```

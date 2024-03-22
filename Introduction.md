@@ -10,10 +10,15 @@ The techniques of the proof show a nice interplay between fields and their diffe
 We assume the reader to have an undergraduate level understanding of the prerequisites in algebra and representation theory, but will state foundational information regardless, and provide references in all cases.
 We furthermore take care to clarify notation before use.
 
-The theorem, which we will state shortly, is historically at home in the development of ergodic theory due to a number of authors, namely 
-[[todo]] (find these: Margulis, Borel, Furstenberg, Kazhdan, Moore, Howe, and Zimmer)
+The theorem, which we will state shortly, is historically at home in the development of ergodic theory, which in turn is a relatively new field of mathematics. The original definition of ergodicity was given in 1928 in a paper by P. Smith and G. Birkhoff on dynamical systems.
+The concept gained importance in 1931 when von Neumann and Birkhoff nearly simultaneously proved the mean and pointwise ergodic theorems. These may be regarded as the starting point of the subject.
+
+[[todo]] (find these: Margulis, Borel, Furstenberg, Kazhdan, Moore, Howe, and Zimmer \cite{Mackey74})
 The paper by Moore \cite{Moore66} was published in 1966. Margulis' Theorems were published in 
 [[todo]] (wtf, idk. historical research has never been my forte) Initially for dynamical systems, with physics applications, here however actions of more general groups are studied with respect to ergodicity.
+
+Sources for the historical background: \cite{Mackey74}(chapter 1. Introduction) \cite{Zimmer84}(chapter 1. Introduction)
+
 The theorem itself does not directly involve ergodicity, but is instead used to prove ergodicity.
 
 
