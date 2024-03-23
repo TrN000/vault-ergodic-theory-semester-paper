@@ -85,3 +85,39 @@ $$
 \end{align*}
 $$
 
+## The Connection between Ergodicity and Unitary Representations
+
+approach:
+- char func
+- char func in L2(S) and non-trivial
+- if A invariant then char func invariant as a vector in L2(S)
+- due diligence: make sure measure works
+
+To see why we care about unitary representations at all if we really want ergodicity, we neeedd to make the folllowing connection.
+We use the characteristic function of a set to connect the set to a vector in $L^2(S)$.
+The characteristic function of a subset $A\subset S$, is defined as $\chi_A(x) = 1$  for $x \in A$ and  $0$  otherwise.
+
+This representation allows us to pass from talking about sets to talking about vectors, while retaining the properties we care about. 
+
+\begin{thm}
+An action $G\curvearrowright S$, with **finite** invariant measure is ergodic on $S$ if and only if the restriction of the above representation to  in $L^2(S) \ominus \mathbb{C}$ has no invariant vectors.
+\end{thm}
+
+Since $S$ has finite measure, assume $\mu(S) =1$.
+
+\begin{pf}
+"$\Leftarrow$": Proof by contrapositive: If $A\subset S$ is $G$-invariant with measure $0 < \mu(A) < \mu(S) = 1$ then $\chi_A$ is also $G$-invariant in $L^2(S)$ as well as the projection $\chi_A - \mu(A)\cdot 1$ in $L^2(S)\ominus \mathbb{C}$.
+Therefore there exists an invariant vector in $L^2(S)\ominus \mathbb{C}$.
+"$\Rightarrow$": (\cite{Kerr16}(Prop 2.7)) Suppose the action is ergodic and $f\in L^2(S)\ominus \mathbb{C}$ is $G$-invariant.
+We can find a measurable set $D\subset \mathbb{C}$ such that $0<\mu(f^{-1}(D)) < 1$ and denote $\widetilde{A} = f^{-1}$. Now we verify ergodicity. For every $g\in G$ the symmetric difference $g\widetilde{A} \Delta \widetilde{A}$, for which all points are in the set $\{x \in X | \ |f(x)-sf(x)| > 0\}$, which has measure zero because $\|f- sf\|_2=0$. Therefore the action fails to be ergodic.
+\end{pf}
+
+The adjective "finite" on the measure is necessary, because for a set $A$ of infinite measure the statement is no longer true as $\chi_A$ will no longer be in $L^2$.
+
+
+
+
+If $A\subset S$ is $G$-invariant then $\chi_A\in L^2(S)$ will also be $G$-invariant.
+[[todo]] (is ominus actually a valid op here? yes, see Kerr Li prop 2.7)
+For $A$ neither null nor conull then $\chi_A$,
+$f_A \neq 0$, where $f_A$ is the projection of $\chi_A$ onto $L^2(S) \ominus \mathbb{C}$.
