@@ -1,3 +1,5 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ↓ pandoc stuff
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
@@ -40,16 +42,47 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
-\usepackage{mathrsfs}
-\newtheorem{defn}{Definition}
-\usepackage{biblatex}
-\addbibresource{refs.bib}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
+
+% ↑ from pandoc
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorem styles
+
+\usepackage{mathrsfs}
+% \usepackage{amsthm}
+% \usepackage{thm-amsthm}
+\usepackage{ntheorem}
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{pf}{proof}
+\newtheorem{lem}{Lemma}
+\newtheorem{rk}{Remark}
+\newtheorem{ex}{Example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% custom commands
+
+\newcommand{\G}{\ensuremath{G}}
+\newcommand{\bbr}{\ensuremath{\mathbb{R}}}
+\newcommand{\bbc}{\ensuremath{\mathbb{C}}}
+\newcommand{\hilb}{\ensuremath{\mathscr{H}}}
+\newcommand{\sltr}{\ensuremath{SL(2, \mathbb{R})}}
+\newcommand{\slnr}{\ensuremath{SL(n, \mathbb{R})}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% bibtex stuff
+
+\usepackage{biblatex}
+\addbibresource{refs.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \hypersetup{
   pdftitle={On Theorem by Moore about Vanishing Matrix Coefficients},
   pdfauthor={Nicolas Trutmann},
@@ -60,21 +93,31 @@
 \author{Nicolas Trutmann}
 \date{}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
 \maketitle
 
-In this paper we'll showcase a theorem in ergodic theory by Howe and
-Moore \cite{howe79}. On the way there, we'll touch many different
-fields, from measure theory, over functional analysis, representation
-theory and ergodic theory of course.
+\begin{abstract}
+  In this paper we'll showcase a theorem in ergodic theory by Howe and
+  Moore \cite{howe79}.
+  % TODO: is this actually the right citation?
+  On the way there, we'll touch many different
+  fields, from measure theory, over functional analysis, representation
+  theory and ergodic theory of course.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
 
 This paper is based on the book ``Ergodic Theory and semisimple Lie
 Groups'' by Robert Zimmer \cite{Zimmer84}, in particular the first two
 chapters, which contain the theorem itself (Theorem 2.2.20) and
 surrounding material concerning ergodic theory.
 
-{[}{[}todo{]}{]} (this is uglily wrenched in here. find more elegant
-place for this) The main aim of the book by Zimmer is focused on two
+%TODO: (this is uglily wrenched in here. find more elegant place for this)
+The main aim of the book by Zimmer is focused on two
 theorems by Mostow and Margulis. The ``arithmeticity theorem'' and the
 ``rigidity theorem'', which show how Lie groups and lattices in them
 interact.
@@ -94,15 +137,15 @@ gained importance in 1931 when von Neumann and Birkhoff nearly
 simultaneously proved the mean and pointwise ergodic theorems. These may
 be regarded as the starting point of the subject.
 
-{[}{[}todo{]}{]} (find these: Margulis, Borel, Furstenberg, Kazhdan,
-Moore, Howe, and Zimmer \cite{Mackey74}) The paper by Moore
-\cite{Moore66} was published in 1966. Margulis' Theorems were published
-in {[}{[}todo{]}{]} (wtf, idk. historical research has never been my
-forte) Initially for dynamical systems, with physics applications, here
+
+% TODO:  (find these: Margulis, Borel, Furstenberg, Kazhdan, Moore, Howe, and Zimmer \cite{mackey74})
+The paper by Moore \cite{Moore66} was published in 1966. Margulis' Theorems were published in 
+% TODO:  (wtf, idk. historical research has never been my forte)
+Initially for dynamical systems, with physics applications, here
 however actions of more general groups are studied with respect to
 ergodicity.
 
-Sources for the historical background: \cite{Mackey74}(chapter 1.
+Sources for the historical background: \cite{mackey74}(chapter 1.
 Introduction) \cite{Zimmer84}(chapter 1. Introduction)
 
 The theorem itself does not directly involve ergodicity, but is instead
@@ -119,12 +162,17 @@ have that \(\pi(g)v = v\), or, that \(v\) is preserved by any linear map
 given by the representation.
 
 \hypertarget{introduction}{%
-\subsection{Introduction}\label{introduction}}
+\section{Introduction}\label{introduction}}
 
-{[}{[}todo{]}{]} (remove this section once implemented) - historical
-context -\textgreater{} up in first section. maybe move down - where
-this theorem comes from -\textgreater{} \cite{howe79} - what it does -
-why we care - how we're gonna go about it
+
+% TODO:  (remove this section once implemented)
+\begin{itemize}
+  \item historical context -\textgreater{} up in first section. maybe move down
+  \item where this theorem comes from -\textgreater{} \cite{howe79}
+  \item what it does
+  \item why we care
+  \item how we're gonna go about it
+\end{itemize}
 
 \hypertarget{question-when-is-an-action-ergodic}{%
 \subsection{question: when is an action
@@ -138,7 +186,8 @@ answers the following question.
 Let \(G\) be a semisimple Lie group and \(S\) an ergodic \(G\)-space. If
 \(H\subset G\) is a closed subgroup, when is \(H\) ergodic on \(S\).
 
-{[}{[}todo{]}{]} (fill out) Why would we care? -\textgreater{} boundary
+
+% TODO:  (fill out) Why would we care? -\textgreater{} boundary
 action, lattices in ss groups, asymptotic behavior in non-compact groups
 \cite{howe79}
 Now that we have a concrete question, let us try to get our hands dirty
@@ -174,8 +223,8 @@ projective line. \[
 \begin{pmatrix}a & b \\ c & d\end{pmatrix}\begin{pmatrix}x \\ 1\end{pmatrix} =
 \begin{pmatrix}ax + b \\ cx + d\end{pmatrix} \quad \rightarrow \quad
 \begin{pmatrix}\frac{ax + b}{cx + d} \\ 1\end{pmatrix}
-\] {[}{[}create images for{]}{]}: the one I've already made for this on
-the other pc.
+\] 
+% TODO: create images for: the one I've already made for this on the other pc.
 
 next we care about the behavior of a lattice \(\Gamma \subset G\). If
 \(G\) acts transitively on a space \(X\), then there is an isomorphism
@@ -237,6 +286,18 @@ map \(S \times G \rightarrow S\) is measurable and \(\mu\) is
 quasi-invariant, i.e., \(\mu(A) = 0\) if and only if \(\mu(Ag) = 0\).
 The action is called ergodic if \(A \subset S\) is measurable and
 \(G\)-invariant implies \(\mu(A) = 0\) or \(\mu(S\setminus A) = 0\).
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hypertarget{definitions-and-notation}{%
+\section{Definitions and Notation}\label{definitions-and-notation}}
+
 Now that we have stated the goal of the paper, let us immediately make a
 detour. We will state definitions and relevant theorems (without proof)
 in compact form with ample references so that a reader can catch up if
@@ -250,7 +311,7 @@ Throughout the whole text, unless otherwise stated, G is a countable
 discrete group. Its identity element will always be denoted by e.
 
 \hypertarget{measure-spaces}{%
-\section{Measure Spaces}\label{measure-spaces}}
+\subsection{Measure Spaces}\label{measure-spaces}}
 
 A \emph{measurable space} is a pair \((X, \mathscr{B})\) where \(X\) is
 a set and \(\mathscr{B}\) is a \(\sigma\)-algebra of subsets of \(X\).
@@ -282,6 +343,7 @@ here we clarify which words we will use to mean which objects. We will
 revisit representations in detail in the following chapter, so we will
 be brief.
 
+  
 \begin{defn}
 A representation is a group-homomorphism from a group into the general linear group of a vector space.
 $$
@@ -345,6 +407,16 @@ definition; explanation of definition; Examples; why the prerequisites
 come in, like quasi-invariance; clarify edge cases. summarize by
 ``complicated orbits'' argument (could use 2.1.7 as example of
 complicatedness).
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\hypertarget{the-direct-integral-and-unitary-representations}{%
+\section{The Direct Integral and Unitary Representations}\label{the-direct-integral-and-unitary-representations}}
+
 what do we need actually? We have to take a detour into unitary
 representations and define the direct integral to make statements about
 certain subgroups. These lead to a theorem (Zimmer 2.2.5) about
@@ -356,10 +428,11 @@ of a group action we look at the behavior of matrices.
 
 The way there will lead us through the direct integral, unitary
 representations and in particular the representation of
-\(\mathbb{R}^n\), {[}{[}todo{]}{]} (I wanna say why, but I'm not sure.)
+\(\mathbb{R}^n\), 
+% TODO:  (I wanna say why, but I'm not sure.)
 
 \hypertarget{the-direct-integral}{%
-\section{The Direct Integral}\label{the-direct-integral}}
+\subsection{The Direct Integral}\label{the-direct-integral}}
 
 In simple terms, the direct integral is a way to patch together locally
 defined functions into a function on the whole domain. Let us first
@@ -370,21 +443,24 @@ functions into is the space of square integrable functions on \(M\),
 denoted \(L^2(M, \mathscr{H})\). The word `sensible' here is justified
 by being again a Hilbert space by integration
 \(\langle f, g\rangle = \int_M\langle f(x), g(x)\rangle\).
-{[}{[}todo{]}{]} (doesn't mention measurablity)
+
+% TODO:  (doesn't mention measurablity)
 
 The next step towards locality is to use two function, by defining
 \(L^2(M_1 \sqcup M_2, \mathscr{H}_1 \oplus \mathscr{H}_2)\), where every
 function is defined separately on each \(M_i\), and taking values in
 \(\mathscr{H}_i\).
 
-{[}{[}todo{]}{]} (show the decomp in the fin dim case to make matrix rep
+
+% TODO:  (show the decomp in the fin dim case to make matrix rep
 clear. and say that the intuition works the same later on)
 
 Suppose we have a measure space \(M\), and for each \(x \in M\) a
 Hilbert space \(\mathscr{H}_x\) such that \(x \mapsto \mathscr{H}_x\) is
 piecewise constant, that is, we have a disjoint decomposition of \(M\)
 into \(\cup_{i=1}^{\infty} M_i\) such that for \(x,y \in M_i\),
-\(\mathscr{H}_x = \mathscr{H}_y\). {[}{[}todo{]}{]} (fix with info)
+\(\mathscr{H}_x = \mathscr{H}_y\). 
+% TODO:  (fix with info)
 Interesting aside: the condition that the assignment
 \(x \mapsto \mathscr{H}_x\) be piecewise constant is not necessary. We
 can allow the Hilbert spaces to be arbitrary, and in fact uncountably
@@ -408,42 +484,60 @@ This allows us to define the relevant representation we intermediately
 care about.
 
 \hypertarget{unitary-representations}{%
-\section{Unitary Representations}\label{unitary-representations}}
+\subsection{Unitary Representations}\label{unitary-representations}}
 
-{[}{[}todo{]}{]} (un-garbage intro) We need some more information about
+
+% TODO:  (un-garbage intro) We need some more information about
 irreducible unitary representations to understand the action(s) of
 \(SL(n, \mathbb{R})\).
 
 \hypertarget{theorem}{%
 \subsection{Theorem}\label{theorem}}
 
-(Zimmer 2.3.3) - For any unitary representation \(\pi\) of
-\(\mathbb{R}^n\), there exist \(\mu, \mathscr{H}_{\lambda}\), on
-\(\hat{\mathbb{R}}^n\) such that
-\(\pi \cong \pi_{\mu, \mathscr{H}_{\lambda}}\). -
-\(\pi_{\mu, \mathscr{H}_{\lambda}}\) and
-\(\pi_{\mu', \mathscr{H}_{\lambda}'}\) are unitarily equivalent if and
-only if - \(\mu \sim \mu'\), i.e., they are in the same measure class
-and - \(dim\mathscr{H}_{\lambda} = dim \mathscr{H}_{\lambda}'\) a.e.
+\begin{thm}[Zimmer 2.3.3]
+  \begin{itemize}
+    \item For any unitary representation \(\pi\) of
+      \(\mathbb{R}^n\), there exist \(\mu, \mathscr{H}_{\lambda}\), on
+      \(\hat{\mathbb{R}}^n\) such that \(\pi \cong \pi_{\mu, \mathscr{H}_{\lambda}}\).
+    \item \(\pi_{\mu, \mathscr{H}_{\lambda}}\) and
+      \(\pi_{\mu', \mathscr{H}_{\lambda}'}\) are unitarily equivalent if and only if 
+      \begin{itemize}
+        \item \(\mu \sim \mu'\), i.e., they are in the same measure class
+        \item and \(dim\mathscr{H}_{\lambda} = dim \mathscr{H}_{\lambda}'\) a.e.
+      \end{itemize}
+  \end{itemize}
+\end{thm}
 
 \hypertarget{theorem-1}{%
 \subsection{Theorem}\label{theorem-1}}
 
-(2.3.5 Proposition Mackey 3) Suppose \(\mathbb{R}^n \subset G\) is a
-normal subgroup and \(\pi\) is a unitary representation of \(G\). Write
-\(\pi | \mathbb{R}^n \cong \pi_{(\mu, \mathscr{H}_{\lambda})}\) for some
-\((\mu, \mathscr{H}_{\lambda})\) by 2.3.3. Then - \(\mu\) is
-quasi-invariant under the action of \(G\) on \(\hat{\mathbb{R}}^n\). -
-If \(E \subset \mathbb{R}^n\) is measurable, let
-\(\mathscr{H}_E = L^2(E, \mu, \{\mathscr{H}_{\lambda}\})\) . Then
-\(\pi(g)\mathscr{H}_E = \mathscr{H}_{g \cdot E}\) - If \(\pi\) is
-irreducible, then \(\mu\) is ergodic and \(dim\mathscr{H}_{\lambda}\) is
-constant on a \(\mu\)-conull set. \#\#\# proof {[}{[}todo{]}{]}
+\begin{thm}[Zimmer Proposition 2.3.5, from \cite{mackey76}]
+   
+Suppose \(\mathbb{R}^n \subset G\) is a normal subgroup and \(\pi\) is a unitary representation of \(G\).
+Write \(\pi | \mathbb{R}^n \cong \pi_{(\mu, \mathscr{H}_{\lambda})}\) for some
+\((\mu, \mathscr{H}_{\lambda})\) by 2.3.3. Then  
+  \begin{itemize}
+    \item \(\mu\) is quasi-invariant under the action of \(G\) on \(\hat{\mathbb{R}}^n\). 
+    \item If \(E \subset \mathbb{R}^n\) is measurable, let
+      \(\mathscr{H}_E = L^2(E, \mu, \{\mathscr{H}_{\lambda}\})\).
+      Then \(\pi(g)\mathscr{H}_E = \mathscr{H}_{g \cdot E}\)
+    \item If \(\pi\) is irreducible, then \(\mu\) is ergodic and \(dim\mathscr{H}_{\lambda}\) is
+      constant on a \(\mu\)-conull set.
+  \end{itemize}
+\end{thm}
+
+\begin{pf}
+   \#\#\# proof 
+% TODO: finish proof lmao
+\end{pf}
+
 
 \hypertarget{representation-of-rn}{%
 \subsection{Representation of R\^{}n}\label{representation-of-rn}}
 
-{[}{[}todo{]}{]} (this drops out of nowhere) All the irreducible unitary
+
+% TODO:  (this drops out of nowhere)
+All the irreducible unitary
 representations of \(\mathbb{R}^n\) are one-dimensional.
 
 It turns out that the group unitary representations on \(\mathbb{R}^n\)
@@ -453,20 +547,21 @@ fact bijective. Let \(\theta\). \(t\) be in \(\mathbb{R}^n\) and let
 \(\lambda_{\theta}(t) = e^{i\langle \theta | t \rangle}\). This is in
 fact a unitary automorphism on \(\mathbb{C}\) by multiplication. To
 clarify, for every \(\theta \in \mathbb{R}^n\) we have a representation
-given by \[
-\begin{align*}
-\lambda_{\theta}:\ & \mathbb{R}^n \rightarrow \mathcal{U}(\mathbb{C}) \\
-& t \mapsto e^{i \langle \theta | t \rangle}
-\end{align*}
-\] We denote the group of representations by \(\hat{\mathbb{R}}^n\). It
+given by
+  \begin{align*}
+  \lambda_{\theta}:\ & \mathbb{R}^n \rightarrow \mathcal{U}(\mathbb{C}) \\
+  & t \mapsto e^{i \langle \theta | t \rangle}
+  \end{align*}
+We denote the group of representations by \(\hat{\mathbb{R}}^n\). It
 is in fact a group under pointwise multiplication.
 
-{[}{[}todo{]}{]} (this sort of drops out of nowhere)
+
+% TODO:  (this sort of drops out of nowhere)
 
 This definition is maybe a bit dense, so here is the assignment
 formatted in pseudo code. Note here that \(\text{lambda}\) denotes the
 programming term of a lambda function, an unfortunate notation
-collision. \[
+collision.
 \begin{align*}
 & \text{func }\ \pi_{\mu,\mathscr{H}_{\lambda}}(t: \mathbb{R}^n) \rightarrow \mathcal{U}(L^2(\hat{\mathbb{R}}^n)) \ \{ \\
 & \qquad \text{return lambda}(f:\ L^2(\hat{\mathbb{R}}^n)) \rightarrow L^2(\hat{\mathbb{R}}^n) \ \{ \\
@@ -476,7 +571,6 @@ collision. \[
 & \qquad \} \\
 & \} \\
 \end{align*}
-\]
 
 \hypertarget{the-connection-between-ergodicity-and-unitary-representations}{%
 \subsection{The Connection between Ergodicity and Unitary
@@ -495,10 +589,12 @@ defined as \(\chi_A(x) = 1\) for \(x \in A\) and \(0\) otherwise.
 This representation allows us to pass from talking about sets to talking
 about vectors, while retaining the properties we care about.
 
-\begin{thm}
-An action $G\curvearrowright S$, with **finite** invariant measure is ergodic on $S$ if and only if the restriction of the above representation to  in $L^2(S) \ominus \mathbb{C}$ has no invariant vectors.
+\begin{thm}[]
+  An action $G\curvearrowright S$, with **finite** invariant measure is ergodic
+  on $S$ if and only if the restriction of the above representation to  in
+  $L^2(S) \ominus \mathbb{C}$ has no invariant vectors.
 \end{thm}
-
+  
 Since \(S\) has finite measure, assume \(\mu(S) =1\).
 
 \begin{pf}
@@ -513,10 +609,19 @@ The adjective ``finite'' on the measure is necessary, because for a set
 will no longer be in \(L^2\).
 
 If \(A\subset S\) is \(G\)-invariant then \(\chi_A\in L^2(S)\) will also
-be \(G\)-invariant. {[}{[}todo{]}{]} (is ominus actually a valid op
-here? yes, see Kerr Li prop 2.7) For \(A\) neither null nor conull then
+be \(G\)-invariant. 
+% TODO:  (is ominus actually a valid op here? yes, see Kerr Li prop 2.7)
+For \(A\) neither null nor conull then
 \(\chi_A\), \(f_A \neq 0\), where \(f_A\) is the projection of
 \(\chi_A\) onto \(L^2(S) \ominus \mathbb{C}\).
+
+
+
+\hypertarget{proof-for-sln2r}{%
+\section{Proof for \(SL(2, \mathbb{R})\)}
+\label{proof-for-sln2r}}
+
+
 We start here because it is an easy example of the theorem and a general
 group \(G\) has many subgroups locally isomorphic to
 \(SL(2, \mathbb{R})\). Later we extend the proof, first to
@@ -527,15 +632,15 @@ coefficients vanish as we want, or there exist invariant vectors. Then
 we show that there are no invariant vectors, completing the statement.
 
 We're going to use the following decomposition, which we take for
-granted {[}{[}todo{]}{]} (find reference for Iwasawa decomposition). The
-so called Iwasawa decomposition of \(SL(2, \mathbb{R})\) into three
-matrices \(K\), \(A\), and \(N\), defined as \[
+granted 
+% TODO:  (find reference for Iwasawa decomposition).
+The so called Iwasawa decomposition of \(SL(2, \mathbb{R})\) into three
+matrices \(K\), \(A\), and \(N\), defined as
 \begin{align}
 K & =\quad \left\{ \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta\end{pmatrix} \subset SL(2, \mathbb{R})  \ | \ \theta \in \mathbb{R} \right\} \\
 A & =\quad \left\{ \begin{pmatrix} r & 0 \\ 0 & r^{-1} \end{pmatrix} \subset SL(2, \mathbb{R})  \ | \ r > 0 \right\} \\
 N & =\quad \left\{ \begin{pmatrix} 1 & x \\ 0 & 1 \end{pmatrix} \subset SL(2, \mathbb{R})  \ | \ x \in \mathbb{R} \right\}\\
 \end{align}
-\]
 
 We look at the subgroup
 \[P \subset SL(2, \mathbb{R}) = \begin{pmatrix}a & b \\ 0 & a^{-1}\end{pmatrix}\]
@@ -574,7 +679,9 @@ P = AN =
 \hypertarget{proof}{%
 \subsubsection{proof}\label{proof}}
 
-{[}{[}unoriginal{]}{]} We apply 2.3.5, identifying N \textasciitilde{}
+
+% TODO: unoriginal
+ We apply 2.3.5, identifying N \textasciitilde{}
 IR. Let n IN = n\textless ll.K ,\textgreater· If Jl( \{0\})
 \textgreater{} 0, then n IN has invariant vectors (namely Jt' 0 ). We
 now show that if Jl( \{0\}) = 0, then assertion (ii) in the theorem is
@@ -644,7 +751,11 @@ no invariant vectors, then all matrix coefficients of \(\pi\) vanish at
 \hypertarget{proof-2}{%
 \subsubsection{proof}\label{proof-2}}
 
-{[}{[}unoriginal{]}{]} {[}{[}create images for{]}{]} orbits Proof: By
+
+% TODO: unoriginal
+ 
+% TODO: create images for orbits
+Proof: By
 the preceding lemma, it suffices to see that the matrix coefficients
 vanish at infinity along A and by Theorem 2.3.6, it suffices to see that
 there are no N invariant vectors. Suppose to the contrary that v =f.~0
@@ -666,7 +777,34 @@ under P. But P has a dense orbit in GjP. (For example, identify G/P with
 projective space of IR 2 under ordinary matrix multiplication.) Thusfis
 actually a constant function, and as above, this implies that v is
 G-invariant. We are now ready to prove 2.2.20.
-{[}{[}unoriginal{]}{]} Following our remark in the preface, we shall
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hypertarget{proof-for-slnr}{%
+\section{Proof for \(SL(n, \mathbb{R})\)}
+\label{proof-for-slnr}}
+
+In this section we'll prove the statement for $G = \slnr$ and later show how the proof is extended to a general group \G.
+
+
+\begin{math}
+  \begin{pmatrix}
+    1 & b_{1,2} & & \cdots & & b_{1,n} \\
+    0 & & &  & \\
+    \vdots & & & \text{Id}_{n-1} & \\
+    0 & & & & \\
+  \end{pmatrix}
+\end{math}
+
+Note: in the case of $n = 2$, which reduces this to \sltr and the above matrix to $N$ from the previous proof.
+
+
+
+
+
+% TODO: unoriginal
+ Following our remark in the preface, we shall
 prove this in detail for G = SL(n, IR), and then indicate how the proof
 carries over to general G. Let A c SL(n, IR) be the group of diagonal
 matrices. We denote an element aEA by (at, \ldots{} , an), where these
@@ -721,7 +859,23 @@ A;-invariant vectors are also Bki invariant. Hence in this case, too,
 Bki leaves W invariant. Finally, we remark that since A; c A, A abelian,
 A also leaves W invariant. However, A and all Bki together generate G.
 Therefore G leaves W invariant, completing the proof.
-{[}{[}unoriginal{]}{]} In concluding this section, we indicate the
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hypertarget{proof-for-a-general-G}{%
+\section{Proof for a general $G$}\label{proof-for-a-general-G}}
+
+
+
+% TODO: unoriginal
+ In concluding this section, we indicate the
 modifications necessary in the above argument for a general semisimple
 G. Let A c G be a maximal IR-split torus. Then A c G' c G where G' is
 semisimple and split over IR, and A is the maximal IR-split torus of G'.
@@ -743,14 +897,28 @@ SL(2, IR) suffices.) The proof then proceeds as in the case of SL(n,
 IR); G is generated by elements that either commute with Ao or lie in a
 suitable copy of the group P.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypertarget{outro}{%
+\section{Outro}\label{outro}}
+
+
 \hypertarget{return-of-the-initial-example}{%
-\subsection{return of the initial
-example}\label{return-of-the-initial-example}}
+\subsection{The return of the initial example
+}\label{return-of-the-initial-example}}
 
 circle back to fractional linear transforms.
 hyperbolas! 3 cases comp eucl and non-comp. if we want to go to infinity
 and don't want boring examples, hyperbolic geometry is necessary.
 fractional linear transforms. riemann sphere model?
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{section}{Bibliography}
 
 \printbibliography
 
