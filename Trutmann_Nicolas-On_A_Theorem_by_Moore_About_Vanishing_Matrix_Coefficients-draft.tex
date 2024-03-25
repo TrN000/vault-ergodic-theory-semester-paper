@@ -8,6 +8,7 @@
 ]{article}
 \usepackage{amsmath,amssymb}
 \usepackage{iftex}
+\usepackage[a4paper]{geometry}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
@@ -45,13 +46,17 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{bookmark.sty}{% if bookmark
+  \usepackage{bookmark}
+}{% else
+\usepackage[
+]{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 
 % ↑ from pandoc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Theorem styles
+% ↓ Theorem styles
 
 \usepackage{mathrsfs}
 % \usepackage{amsthm}
@@ -65,7 +70,7 @@
 \newtheorem{ex}{Example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% custom commands
+% ↓ custom commands
 
 \newcommand{\G}{\ensuremath{G}}
 \newcommand{\bbr}{\ensuremath{\mathbb{R}}}
@@ -73,21 +78,29 @@
 \newcommand{\hilb}{\ensuremath{\mathscr{H}}}
 \newcommand{\sltr}{\ensuremath{SL(2, \mathbb{R})}}
 \newcommand{\slnr}{\ensuremath{SL(n, \mathbb{R})}}
+\newcommand{\ipmatrix}[1]{%% make inline smallmatrix with parens. suited for 2x2 matrices.
+  \big(\begin{smallmatrix} #1 \end{smallmatrix}\big)}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% bibtex stuff
+% ↓ bibtex stuff
 
 \usepackage{biblatex}
 \addbibresource{refs.bib}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ↓ document
+
+\usepackage{lineno}
+\linenumbers
 
 
 \hypersetup{
   pdftitle={On Theorem by Moore about Vanishing Matrix Coefficients},
   pdfauthor={Nicolas Trutmann},
   hidelinks,
-  pdfcreator={LaTeX via pandoc}}
+  pdfcreator = {Nicolas Trutmann},
+  pdfkeywords = {Ergodic Theory},
+}
 
 \title{On Theorem by Moore about Vanishing Matrix Coefficients}
 \author{Nicolas Trutmann}
@@ -160,6 +173,11 @@ This allows us to talk about ``infinity'' at all. Next, what is an
 invariant vector? Simply, for all \(g\in G\), and a vector \(v\), we
 have that \(\pi(g)v = v\), or, that \(v\) is preserved by any linear map
 given by the representation.
+
+
+
+
+
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -618,7 +636,7 @@ For \(A\) neither null nor conull then
 
 
 \hypertarget{proof-for-sln2r}{%
-\section{Proof for \(SL(2, \mathbb{R})\)}
+  \section{Proof for \texorpdfstring{$SL(2, \mathbb{R})$}{SL(2, R)}}
 \label{proof-for-sln2r}}
 
 
@@ -653,20 +671,24 @@ as follows: \[\begin{pmatrix}1&0\\\alpha&1\end{pmatrix}
 For any matrix \(A = \begin{pmatrix}a & b \\ c & d\end{pmatrix}\) in
 \(SL(2, \mathbb{R})\) with matrix coefficient \(a \neq 0\), we can solve
 for \(x,\alpha, \beta\). In the case of \(a = 0\) we can use the
-following construction: \[\begin{pmatrix} 1&0\\\alpha&1\end{pmatrix}
-\begin{pmatrix} 1&\beta\\0&1\end{pmatrix}
-\begin{pmatrix} 1&0\\\gamma&1\end{pmatrix}
-\begin{pmatrix} 1&\delta\\0&1\end{pmatrix}=
-\begin{pmatrix}
-1+\beta\gamma&\delta(1+\beta\gamma)+\beta\\
-\alpha(1+\beta\gamma)+\gamma&\alpha\delta(1+\beta\gamma)+\alpha\beta+\gamma\delta+1
-\end{pmatrix}\] If \(1 + \beta\gamma = 0\), the above product becomes
+following construction:
+\[
+  \begin{pmatrix} 1&0\\\alpha&1\end{pmatrix}
+  \begin{pmatrix} 1&\beta\\0&1\end{pmatrix}
+  \begin{pmatrix} 1&0\\\gamma&1\end{pmatrix}
+  \begin{pmatrix} 1&\delta\\0&1\end{pmatrix}=
+  \begin{pmatrix}
+    1+\beta\gamma&\delta(1+\beta\gamma)+\beta\\
+    \alpha(1+\beta\gamma)+\gamma&\alpha\delta(1+\beta\gamma)+\alpha\beta+\gamma\delta+1
+  \end{pmatrix}
+\]
+If \(1 + \beta\gamma = 0\), the above product becomes
 \(\begin{pmatrix} 0&\beta\\ \gamma& 1+\alpha\beta+\gamma\delta \end{pmatrix}\)
 and we can make suitable choices for \(\alpha, \beta, \gamma, \delta\)
 to construct \(A\).
 
 \hypertarget{theorem-for-p}{%
-\subsection{Theorem for P}\label{theorem-for-p}}
+\subsection{Theorem for \texorpdfstring{$P$}{P}}\label{theorem-for-p}}
 
 The upper triangular group can be decomposed into
 \[\begin{pmatrix}a & b \\ 0 & a^{-1}\end{pmatrix} =
@@ -676,8 +698,16 @@ P = AN =
 \(P = AN\). Then either - \(\pi|N\) has a nontrivial invariant vector or
 - The matrix coefficients of \(\pi(g)\) as \(g \rightarrow \infty\).
 
-\hypertarget{proof}{%
-\subsubsection{proof}\label{proof}}
+Note first, that $N$ is normal in $P$. To see this, first calculate that the
+inverse of a matrix $\ipmatrix{ a & x \\ 0 & a^{-1} }$ in $P$ is
+$\ipmatrix{ a^{-1} & -x \\ 0 & a }$.
+Next note that the result of conjugation with an element in $P$ is again in $N$:
+$\ipmatrix{ a & x \\ 0 & a^{-1} } \ipmatrix{1 & y \\ 0 & 1} \ipmatrix{ a^{-1} & -x \\ 0 & a } = \ipmatrix{1 & a^2x \\ 0 & 1}$.
+This defines a group action $P \curvearrowright N \rightarrow N$ by multiplication with $a^2$.
+
+\begin{pf}
+  
+\end{pf}
 
 
 % TODO: unoriginal
@@ -751,7 +781,6 @@ no invariant vectors, then all matrix coefficients of \(\pi\) vanish at
 \hypertarget{proof-2}{%
 \subsubsection{proof}\label{proof-2}}
 
-
 % TODO: unoriginal
  
 % TODO: create images for orbits
@@ -782,7 +811,7 @@ G-invariant. We are now ready to prove 2.2.20.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \hypertarget{proof-for-slnr}{%
-\section{Proof for \(SL(n, \mathbb{R})\)}
+  \section{Proof for \texorpdfstring{$SL(n, \mathbb{R})$}{SL(n, R)}}
 \label{proof-for-slnr}}
 
 In this section we'll prove the statement for $G = \slnr$ and later show how the proof is extended to a general group \G.
@@ -870,7 +899,7 @@ Therefore G leaves W invariant, completing the proof.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \hypertarget{proof-for-a-general-G}{%
-\section{Proof for a general $G$}\label{proof-for-a-general-G}}
+\section{Proof for a general \texorpdfstring{$G$}{G}}\label{proof-for-a-general-G}}
 
 
 
