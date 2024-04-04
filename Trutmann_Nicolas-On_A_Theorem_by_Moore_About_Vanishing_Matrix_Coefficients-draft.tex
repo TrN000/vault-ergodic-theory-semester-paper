@@ -46,46 +46,76 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\IfFileExists{bookmark.sty}{% if bookmark
-  \usepackage{bookmark}
-}{% else
-\usepackage[
-]{hyperref}}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same}
 
-% ↑ from pandoc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ↓ Theorem styles
 
 \usepackage{mathrsfs}
 % \usepackage{amsthm}
 % \usepackage{thm-amsthm}
-\usepackage{ntheorem}
+\usepackage[standard,thref,hyperref]{ntheorem}
+\theorempreskip{20pt} % TODO: hacky
+\theorempostskip{10pt} % TODO: hacky
+\theoremstyle{break}
+\theorembodyfont{\normalfont}
 \newtheorem{defn}{Definition}
 \newtheorem{thm}{Theorem}
-\newtheorem{pf}{proof}
-\newtheorem{lem}{Lemma}
-\newtheorem{rk}{Remark}
-\newtheorem{ex}{Example}
+\theoremstyle{plain}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{pf}{proof}
+\newtheorem*{rk}{Remark}
+\newtheorem*{ex}{Example}
+
+
+
+
+
+\IfFileExists{bookmark.sty}{% if bookmark
+  \usepackage{bookmark}
+}{% else
+\usepackage[
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=black
+]{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+
+% ↑ from pandoc
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ↓ custom commands
 
 \newcommand{\G}{\ensuremath{G}}
+\newcommand{\mpi}{\ensuremath{\pi}}
 \newcommand{\bbr}{\ensuremath{\mathbb{R}}}
 \newcommand{\bbc}{\ensuremath{\mathbb{C}}}
 \newcommand{\hilb}{\ensuremath{\mathscr{H}}}
 \newcommand{\sltr}{\ensuremath{SL(2, \mathbb{R})}}
 \newcommand{\slnr}{\ensuremath{SL(n, \mathbb{R})}}
+\newcommand{\Ninv}{$N$-invariant}
 \newcommand{\ipmatrix}[1]{%% make inline smallmatrix with parens. suited for 2x2 matrices.
-  \big(\begin{smallmatrix} #1 \end{smallmatrix}\big)}
+\ensuremath{\big(\begin{smallmatrix} #1 \end{smallmatrix}\big)}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ↓ bibtex stuff
 
 \usepackage{biblatex}
 \addbibresource{refs.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ↓ images
+
+\usepackage{graphicx}
+\usepackage{svg}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ↓ declaration of originality
+
+\usepackage{pdfpages}
+% \includepdf[pages={-}]{declaration-of-originality.pdf} <- TODO: put before end document
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ↓ document
@@ -112,12 +142,13 @@
 \maketitle
 
 \begin{abstract}
-  In this paper we'll showcase a theorem in ergodic theory by Howe and
-  Moore \cite{howe79}.
+  In this paper we'll showcase a theorem in ergodic theory by R. Howe and
+  C. Moore \cite{howe79}, as it is presented in the book by R. Zimmer in his
+  book "\citetitle{Zimmer84}" \cite{Zimmer84}
   % TODO: is this actually the right citation?
   On the way there, we'll touch many different
   fields, from measure theory, over functional analysis, representation
-  theory and ergodic theory of course.
+  theory and of course ergodic theory.
 \end{abstract}
 
 \newpage
@@ -128,12 +159,6 @@ This paper is based on the book ``Ergodic Theory and semisimple Lie
 Groups'' by Robert Zimmer \cite{Zimmer84}, in particular the first two
 chapters, which contain the theorem itself (Theorem 2.2.20) and
 surrounding material concerning ergodic theory.
-
-%TODO: (this is uglily wrenched in here. find more elegant place for this)
-The main aim of the book by Zimmer is focused on two
-theorems by Mostow and Margulis. The ``arithmeticity theorem'' and the
-``rigidity theorem'', which show how Lie groups and lattices in them
-interact.
 
 The techniques of the proof show a nice interplay between fields and
 their different approaches, while staying relatively simple. We assume
@@ -150,13 +175,29 @@ gained importance in 1931 when von Neumann and Birkhoff nearly
 simultaneously proved the mean and pointwise ergodic theorems. These may
 be regarded as the starting point of the subject.
 
+The theory presented here is almost entirely due to a single mathematical
+lineage. The root of this lineage is G.D. Birkhoff, who, on one side was the
+(biological) father of G. Birkhoff, which in turn was the advisor of G. Mostow,
+known for his rigidity theory which was instrumental to G. Margulis' rigidity
+and arithmeticity theorem. These theorems are a central part of Zimmer's book,
+although we will not cover them. On the other side, G.D. Birkhoff was advisor
+to M.H. Stone who was advisor to Mackey, whose work on representations will
+feature prominently in the chapter \hyperlink{the-direct-integral-and-unitary-representations}{on unitary representations}.
+And Mackey was the advisor of R. Zimmer, the author of our main reference, as
+well as C.C. Moore, who, together with his student R. Howe, worked out the
+theorem we are talking about in this paper.
+
+%TODO: (this is uglily wrenched in here. find more elegant place for this)
+The main aim of the book by Zimmer is focused on two
+theorems by Mostow and Margulis. The ``arithmeticity theorem'' and the
+``rigidity theorem'', which show how Lie groups and lattices in them
+interact. 
+
 
 % TODO:  (find these: Margulis, Borel, Furstenberg, Kazhdan, Moore, Howe, and Zimmer \cite{mackey74})
+% TODO: should really cite howe 79 and read it too, lol
 The paper by Moore \cite{Moore66} was published in 1966. Margulis' Theorems were published in 
 % TODO:  (wtf, idk. historical research has never been my forte)
-Initially for dynamical systems, with physics applications, here
-however actions of more general groups are studied with respect to
-ergodicity.
 
 Sources for the historical background: \cite{mackey74}(chapter 1.
 Introduction) \cite{Zimmer84}(chapter 1. Introduction)
@@ -170,17 +211,16 @@ The theorem itself is rather simple to state:
 
 To clarify some points, note that we have specified non-compact groups.
 This allows us to talk about ``infinity'' at all. Next, what is an
-invariant vector? Simply, for all \(g\in G\), and a vector \(v\), we
-have that \(\pi(g)v = v\), or, that \(v\) is preserved by any linear map
+invariant vector? Simply, for all $g\in G$, and a vector $v$, we
+have that $\pi(g)v = v$, or, that $v$ is preserved by any linear map
 given by the representation.
 
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\hypertarget{introduction}{%
-\section{Introduction}\label{introduction}}
+\hypertarget{introduction}{\section{Introduction}\label{sec:introduction}}
 
 
 % TODO:  (remove this section once implemented)
@@ -201,8 +241,8 @@ individually, can we find criteria for ergodicity that are easier to
 evaluate? The Moore's theorem sits in the middle of an argument that
 answers the following question.
 
-Let \(G\) be a semisimple Lie group and \(S\) an ergodic \(G\)-space. If
-\(H\subset G\) is a closed subgroup, when is \(H\) ergodic on \(S\).
+Let $G$ be a semisimple Lie group and $S$ an ergodic $G$-space. If
+$H\subset G$ is a closed subgroup, when is $H$ ergodic on $S$.
 
 
 % TODO:  (fill out) Why would we care? -\textgreater{} boundary
@@ -216,15 +256,13 @@ It'll bring intuition about the question and why one would care to
 answer the question.
 
 I get the first map now. The action, let's name it for now,
-\(\alpha : SL(2, \mathbb{R}) \curvearrowright \mathbb{H} \rightarrow \mathbb{H}\),
+$\alpha : SL(2, \mathbb{R}) \curvearrowright \mathbb{H} \rightarrow \mathbb{H}$,
 wich acts by fractional linear transform. \#\# Lemma 1.
-\(K:= SO(2, \mathbb{R})\) is the stabilizer of \(i \in \mathbb{H}\). 2.
-therefore, \(G/K \cong AN\) with \(KAN \cong G\) being the Iwasawa
+$K:= SO(2, \mathbb{R})$ is the stabilizer of $i \in \mathbb{H}$. 2.
+therefore, $G/K \cong AN$ with $KAN \cong G$ being the Iwasawa
 decomp.
 
-\hypertarget{proof}{%
-\subsubsection{proof}\label{proof}}
-
+\begin{pf}\label{pf:miyake}
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
@@ -232,11 +270,12 @@ decomp.
   from \cite{Miyake89}(Theorem 1.1.3) map to Klein disk; use Schwarz
   lemma; map back.
 \end{enumerate}
+\end{pf}
 
 How does the second map work? Using the same fractional linear transform
 but we take a real value instead of a complex one. It is easy to
 visualize as a regular matrix product with
-\(\begin{pmatrix}x \\ 1\end{pmatrix}\) and projecting it to the
+$\begin{pmatrix}x \\ 1\end{pmatrix}$ and projecting it to the
 projective line. \[
 \begin{pmatrix}a & b \\ c & d\end{pmatrix}\begin{pmatrix}x \\ 1\end{pmatrix} =
 \begin{pmatrix}ax + b \\ cx + d\end{pmatrix} \quad \rightarrow \quad
@@ -244,74 +283,74 @@ projective line. \[
 \] 
 % TODO: create images for: the one I've already made for this on the other pc.
 
-next we care about the behavior of a lattice \(\Gamma \subset G\). If
-\(G\) acts transitively on a space \(X\), then there is an isomorphism
-of \(G\)-spaces \(G/G_x \rightarrow X\), where \(G_x = Stab_G (x)\) for
-\(x \in X\), given by the map \(gG_x \mapsto gx\). In the case of our
-example \(G = SL(2, \mathbb{R})\), and, as we've shown in the preceding
-lemma, we know the stabilizer of \(i\) to be \(SO(2,\mathbb{R})\). \#\#
-where we want to go We want to show that the action of \(\Gamma\) on
-\(\bar{\mathbb{R}}\) is ergodic
+next we care about the behavior of a lattice $\Gamma \subset G$. If
+$G$ acts transitively on a space $X$, then there is an isomorphism
+of $G$-spaces $G/G_x \rightarrow X$, where $G_x = Stab_G (x)$ for
+$x \in X$, given by the map $gG_x \mapsto gx$. In the case of our
+example $G = SL(2, \mathbb{R})$, and, as we've shown in the preceding
+lemma, we know the stabilizer of $i$ to be $SO(2,\mathbb{R})$. \#\#
+where we want to go We want to show that the action of $\Gamma$ on
+$\bar{\mathbb{R}}$ is ergodic
 
 \hypertarget{from-book}{%
 \subsection{from book}\label{from-book}}
+% TODO: unoriginal
 
 \href{Zimmer\%20p.4}{{[}unoriginal{]}} To see why ergodicity is
 relevant, and in fact to say a word about what it is, let us consider a
-classical example. Let \(G = SL(2, \mathbb{R})\), and let \(X\) be the
-upper half plane, \(X= \{z \in \mathbb{C} | lm(z) > 0\}\). As is well
+classical example. Let $G = SL(2, \mathbb{R})$, and let $X$ be the
+upper half plane, $X= \{z \in \mathbb{C} | lm(z) > 0\}$. As is well
 known\href{upper\%20half\%20plane,\%20möbius\%20transforms,\%20give\%20reference\%20to\%20misc\%20things.\%20and\%20figure\%20out\%20what\%20the\%20actual\%20example\%20is.\%20figure\%20out\%20what\%20the\%20theorem\%20tries\%20to\%20answer.}{{[}todo{]}},
 G acts on X via fractional linear transformations, i.e., \[
 g \cdot z=\frac{(az+b)}{(cz+d)}
 \quad
 \text{ where }g=
 \begin{pmatrix}a & b \\ c & d\end{pmatrix}
-\] Suppose now that \(\Gamma \subset G\) is a lattice, which we assume
-to be torsion free for simplicity. Since the action of \(G\) on \(X\)
-allows an identification of \(X\) with \(G/K\), where \(K = SO(2)\) (the
-stabilizer of \(i \in X\)), and \(K\) is compact, it follows that the
-action of \(\Gamma\) on \(X\) is properly discontinuous, and so
-\(\Gamma\backslash X\) will be a manifold, in fact a finite volume
+\] Suppose now that $\Gamma \subset G$ is a lattice, which we assume
+to be torsion free for simplicity. Since the action of $G$ on $X$
+allows an identification of $X$ with $G/K$, where $K = SO(2)$ (the
+stabilizer of $i \in X$), and $K$ is compact, it follows that the
+action of $\Gamma$ on $X$ is properly discontinuous, and so
+$\Gamma\backslash X$ will be a manifold, in fact a finite volume
 Riemann surface. On the other hand, via the same fractional linear
-formula, \(G\) acts on
-\(\bar{\mathbb{R}} = \mathbb{R} \cup \{ \infty \}\), and
-\(\bar{\mathbb{R}}\) can be identified with \(G/P\), where \(P\) is the
+formula, $G$ acts on
+$\bar{\mathbb{R}} = \mathbb{R} \cup \{ \infty \}$, and
+$\bar{\mathbb{R}}$ can be identified with $G/P$, where $P$ is the
 group of upper triangular matrices and the stabilizer of
-\(\infty \in \bar{\mathbb{R}}\). Once again, we can consider the action
-of \(\Gamma\) on \(\bar{\mathbb{R}}\), but now the action will be very
-far from being properly discontinuous. In fact, every \(\Gamma\)-orbit
-in \(\bar{\mathbb{R}}\) will be a (countable) dense set. In particular,
-if we try taking the quotient \(\Gamma\backslash\bar{\mathbb{R}}\), we
+$\infty \in \bar{\mathbb{R}}$. Once again, we can consider the action
+of $\Gamma$ on $\bar{\mathbb{R}}$, but now the action will be very
+far from being properly discontinuous. In fact, every $\Gamma$-orbit
+in $\bar{\mathbb{R}}$ will be a (countable) dense set. In particular,
+if we try taking the quotient $\Gamma\backslash\bar{\mathbb{R}}$, we
 obtain a space with the trivial topology. On the other hand,
-\(\bar{\mathbb{R}}\) provides a natural compactification of \(X\), and
-in fact \(\bar{\mathbb{R}}\) can be identified with asymptotic
-equivalence classes of geodesics in \(X\), where \(X\) has the
-essentially unique \(G\)-invariant metric. Thus, it is certainly
-reasonable to expect the action of \(\Gamma\) on \(\bar{\mathbb{R}}\) to
+$\bar{\mathbb{R}}$ provides a natural compactification of $X$, and
+in fact $\bar{\mathbb{R}}$ can be identified with asymptotic
+equivalence classes of geodesics in $X$, where $X$ has the
+essentially unique $G$-invariant metric. Thus, it is certainly
+reasonable to expect the action of $\Gamma$ on $\bar{\mathbb{R}}$ to
 yield useful information. However, a thorough understanding requires us
 to come to grips with actions in which the orbits are very complicated
 (e.g.~dense) sets. Ergodic theory is (in large part) the study of
 complicated orbit structure in the presence of a measure. Not only are
-there no non-constant \(\Gamma\)-invariant continuous real-valued
-functions on \(\bar{\mathbb{R}}\), but the same is true for measurable
+there no non-constant $\Gamma$-invariant continuous real-valued
+functions on $\bar{\mathbb{R}}$, but the same is true for measurable
 functions. This is embodied in the following definition.
 
 \hypertarget{definition}{%
 \subsection{Definition}\label{definition}}
 
-Suppose \(G\) acts on a measure space \((S, \mu)\) so that the action
-map \(S \times G \rightarrow S\) is measurable and \(\mu\) is
-quasi-invariant, i.e., \(\mu(A) = 0\) if and only if \(\mu(Ag) = 0\).
-The action is called ergodic if \(A \subset S\) is measurable and
-\(G\)-invariant implies \(\mu(A) = 0\) or \(\mu(S\setminus A) = 0\).
+Suppose $G$ acts on a measure space $(S, \mu)$ so that the action
+map $S \times G \rightarrow S$ is measurable and $\mu$ is
+quasi-invariant, i.e., $\mu(A) = 0$ if and only if $\mu(Ag) = 0$.
+The action is called ergodic if $A \subset S$ is measurable and
+$G$-invariant implies $\mu(A) = 0$ or $\mu(S\setminus A) = 0$.
 
 
 
 
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \hypertarget{definitions-and-notation}{%
 \section{Definitions and Notation}\label{definitions-and-notation}}
@@ -322,57 +361,73 @@ in compact form with ample references so that a reader can catch up if
 necessary. The advanced reader can skip this section and move straight
 to the next topic without issue.
 
-\href{ergodicity}{{[}todo{]}} (put references for everything in each
-section)
+% TODO:  (put references for everything in each section)
+% Throughout the whole text, unless otherwise stated, G is a countable
+% discrete group. Its identity element will always be denoted by e.
 
-Throughout the whole text, unless otherwise stated, G is a countable
-discrete group. Its identity element will always be denoted by e.
+
 
 \hypertarget{measure-spaces}{%
 \subsection{Measure Spaces}\label{measure-spaces}}
 
-A \emph{measurable space} is a pair \((X, \mathscr{B})\) where \(X\) is
-a set and \(\mathscr{B}\) is a \(\sigma\)-algebra of subsets of \(X\).
-Elements of \(\mathscr{B}\) are called \emph{measurable sets}. A
-function of measurable spaces \(f: X \rightarrow Y\) is called
-\emph{measurable} if \(f^{-1}(A)\) is a measurable set in \(X\) for all
-measurable sets \(A\) of \(Y\).
+A \emph{measurable space} is a pair $(X, \mathscr{B})$ where $X$ is
+a set and $\mathscr{B}$ is a $\sigma$-algebra of subsets of $X$.
+Elements of $\mathscr{B}$ are called \emph{measurable sets}. A
+function of measurable spaces $f: X \rightarrow Y$ is called
+\emph{measurable} if $f^{-1}(A)$ is a measurable set in $X$ for all
+measurable sets $A$ of $Y$.
 
-A \emph{measure} on a measurable space \((X, \mathscr{B})\) is a map
-\(\mu: \mathscr{B} \rightarrow [0, \infty]\) such that -
-\(\mu(\emptyset) = 0\), and -
-\(\mu(\cup_{n=1}^{\infty} A_n) = \sum_{n=1}^{\infty} \mu(A_n)\) for
-every countable collection \(\{A_n\}_{n=1}^{\infty}\) of pairwise
-disjoint sets in \(\mathscr{B}\) (countable additivity).
+A \emph{measure} on a measurable space $(X, \mathscr{B})$ is a map
+$\mu: \mathscr{B} \rightarrow [0, \infty]$ such that -
+$\mu(\emptyset) = 0$, and -
+$\mu(\cup_{n=1}^{\infty} A_n) = \sum_{n=1}^{\infty} \mu(A_n)$ for
+every countable collection $\{A_n\}_{n=1}^{\infty}$ of pairwise
+disjoint sets in $\mathscr{B}$ (countable additivity).
 
-The Borel \(\sigma\)-algebra of a topological space \(X\) is the
-\(\sigma\)-algebra \(\mathscr{B}\) generated by the open subsets of
-\(X\) , and the members of \(\mathscr{B}\) are called Borel sets (we may
-also refer to them as measurable sets if we are viewing
-\((X, \mathscr{B})\) abstractly as a measurable space). A Borel measure
-on \(X\) is a probability measure on the Borel \(\sigma\)-algebra of
-\(X\).
+The Borel $\sigma$-algebra of a topological space $X$ is the
+$\sigma$-algebra $\mathscr{B}$ generated by the open subsets of
+$X$ , and the members of $\mathscr{B}$ are called Borel sets. 
+
+A measure $\mu$ is called \emph{finite} if the whole space has finite measure $\mu(X) < \infty $,
+and \emph{$\sigma$-finite} if $X$ is the countable union of sets with finite measure,
+meaning, there exist sets $\{A_i\}_{i\in \mathbb{N}}$ such that $\cup_{i=1}^{\infty} A_i = X$ and
+$\mu(A_i) < \infty $ for all $i$.
+
+
+
+
+% TODO: this section should be called 'groups' and include def of lattices and Lie groups
+\hypertarget{groups}{%
+\subsection{Groups}\label{groups}}
+
+We are interested in Lie groups. Primarily for its nature as a topological group.
+A \emph{ Lie group } is a group that is also a manifold. A \emph{locally compact} group
+is locally compact as a topological space.
+We require groups to be locally compact, so that the Haar measure exists, which is, up to scaling,
+the unique measure on Borel sets which satisfies the following: For all $g\in G$
+$\mu(gS) = \mu(S)$, $\mu$ is finite on compact sets and is inner and outer
+regular.
+Unless otherwise specified, we talk about these types of groups.
+
+A \emph{lattice} is a discrete subgroup $\Gamma$ of a locally compact group $G$
+such that there exists a finite measure on the quotient space $G/\Gamma$.
+
+
+
+
+
 
 \hypertarget{representations}{%
 \subsection{Representations}\label{representations}}
 
-The notation(s) in representation theory are sometimes confusing, so
-here we clarify which words we will use to mean which objects. We will
-revisit representations in detail in the following chapter, so we will
-be brief.
+% TODO: matrix coefficients
 
-  
-\begin{defn}
-A representation is a group-homomorphism from a group into the general linear group of a vector space.
-$$
-\pi: G \rightarrow GL(V)
-$$
-\end{defn}
-
+A \emph{ representation } is a group-homomorphism from a group into the general linear
+group of a vector space, $\pi: G \rightarrow GL(V)$.
 We consistently use lowercase Greek letters to refer to representations.
-Most often \(\pi\) and \(\lambda\).
+Most often $\pi$ and $\lambda$.
 
-The vector space \(V\) is often not just a vector space but a
+The vector space $V$ is often not just a vector space but a
 topological vector space and in particular a Hilbert space.
 
 \href{ergodicity}{{[}todo{]}} (all of this) repr: a map dim of a repr
@@ -382,29 +437,38 @@ agree with topology. unitary repr. A unitary representation
 \subsection{``direct difference''
 notation}\label{direct-difference-notation}}
 
-Zimmer, and we, use the symbol ``\(\ominus\)'' to denote ``subtraction''
-of linear subspaces of Hilbert spaces. If \(A \subset B\) are linear
+Zimmer, and we, use the symbol ``$\ominus$'' to denote ``subtraction''
+of linear subspaces of Hilbert spaces. If $A \subset B$ are linear
 subspaces of a Hilbert space,
-\(B \ominus A = \{x \in B: (x,y) = 0 \text{ for all }y \in A\}\). \#\#
-Group Actions By an action of the group \(G\) on a set \(X\) we mean a
-map \(\alpha: G \times X \rightarrow X\) such that, writing the first
-argument as a subscript, \(\alpha_s(\alpha_t(x)) = \alpha_{st}(x)\) and
-\(\alpha_e(x) = x\) for all \(x \in X\) and \(s, t \in G\). Most of the
-time we will not give this map a name and write the image of a pair
-\((s, x)\) written as \(sx\), or as \(s \cdot x\) if there is a chance
-of notational confusion. For sets \(A \subset X\) and \(K \subset G\)
-and an \(s \in G\) we write \[
+$B \ominus A = \{x \in B: (x,y) = 0 \text{ for all }y \in A\}$.
+
+The specifically we will use it on $L^2(\hilb) \ominus \bbc$, to denote
+the square integrable functions on \hilb "minus" the subspace of constant functions.
+
+
+\hypertarget{group-actions}{
+\subsection{Group Actions}\label{group-actions}}
+
+By an \emph{action} of the group $G$ on a set $X$ we mean a
+map $\alpha: G \times X \rightarrow X$ such that, writing the first
+argument as a subscript, $\alpha_s(\alpha_t(x)) = \alpha_{st}(x)$ and
+$\alpha_e(x) = x$ for all $x \in X$ and $s, t \in G$.
+Most of the time we will not give this map a name and write the image of a pair
+$(s, x)$ written as $sx$. For sets $A \subset X$ and $K \subset G$
+and an $s \in G$ we write
+$$
 s A = \{sx : x \in A\},
 \quad
 K x = \{sx : s \in K \},
 \quad
 K A = \{sx : x \in A \text{ and } s \in K \}.
-\] The \emph{G-orbit} of a point \(x \in X\) is the set \(Gx\).
+$$
+The \emph{G-orbit} of a point $x \in X$ is the set $Gx$.
 
-\begin{defn}{quasi-invariant}
-A measure $\mu$ is quasi-invariant under a group action of $G$ if it preserves null sets.
-If $A = gA$ then either $\mu(A)=0$ or $\mu(S\setminus A)=0$.
-\end{defn}
+% \begin{defn}{quasi-invariant}
+% A measure $\mu$ is quasi-invariant under a group action of $G$ if it preserves null sets.
+% If $A = gA$ then either $\mu(A)=0$ or $\mu(S\setminus A)=0$.
+% \end{defn}
 
 \hypertarget{ergodicity}{%
 \subsection{Ergodicity}\label{ergodicity}}
@@ -444,10 +508,11 @@ representation theory, where we transform a problem of groups to a
 problem of linear algebra. So instead of asking about invariant vectors
 of a group action we look at the behavior of matrices.
 
-The way there will lead us through the direct integral, unitary
-representations and in particular the representation of
-\(\mathbb{R}^n\), 
-% TODO:  (I wanna say why, but I'm not sure.)
+The way there will lead us through the direct integral, unitary representations
+and in particular the representation of $\mathbb{R}^n$. To jump ahead of
+ourselves, we'll later look at the upper diagonal group and its subgroup
+\ipmatrix{1 & x \\ 0 & 1}, which is isomorphic to $\mathbb{R}$ and whose
+representation we'll care about.
 
 \hypertarget{the-direct-integral}{%
 \subsection{The Direct Integral}\label{the-direct-integral}}
@@ -455,48 +520,56 @@ representations and in particular the representation of
 In simple terms, the direct integral is a way to patch together locally
 defined functions into a function on the whole domain. Let us first
 consider the simple case where we have global functions on a measure
-space \(M\), that takes values in some Hilbert space \(\mathscr{H}\),
-\(f:M \rightarrow \mathscr{H}\). The `sensible' space to put these
-functions into is the space of square integrable functions on \(M\),
-denoted \(L^2(M, \mathscr{H})\). The word `sensible' here is justified
+space $M$, that takes values in some Hilbert space $\mathscr{H}$,
+$f:M \rightarrow \mathscr{H}$. The `sensible' space to put these
+functions into is the space of square integrable functions on $M$,
+denoted $L^2(M, \mathscr{H})$. The word `sensible' here is justified
 by being again a Hilbert space by integration
-\(\langle f, g\rangle = \int_M\langle f(x), g(x)\rangle\).
+$\langle f, g\rangle = \int_M\langle f(x), g(x)\rangle$.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{./direct-integral-graphic-1.png}
+\caption{aa}
+\end{figure}
+
+
 
 % TODO:  (doesn't mention measurablity)
 
 The next step towards locality is to use two function, by defining
-\(L^2(M_1 \sqcup M_2, \mathscr{H}_1 \oplus \mathscr{H}_2)\), where every
-function is defined separately on each \(M_i\), and taking values in
-\(\mathscr{H}_i\).
+$L^2(M_1 \sqcup M_2, \mathscr{H}_1 \oplus \mathscr{H}_2)$, where every
+function is defined separately on each $M_i$, and taking values in
+$\mathscr{H}_i$.
 
 
 % TODO:  (show the decomp in the fin dim case to make matrix rep
 clear. and say that the intuition works the same later on)
 
-Suppose we have a measure space \(M\), and for each \(x \in M\) a
-Hilbert space \(\mathscr{H}_x\) such that \(x \mapsto \mathscr{H}_x\) is
-piecewise constant, that is, we have a disjoint decomposition of \(M\)
-into \(\cup_{i=1}^{\infty} M_i\) such that for \(x,y \in M_i\),
-\(\mathscr{H}_x = \mathscr{H}_y\). 
+Suppose we have a measure space $M$, and for each $x \in M$ a
+Hilbert space $\mathscr{H}_x$ such that $x \mapsto \mathscr{H}_x$ is
+piecewise constant, that is, we have a disjoint decomposition of $M$
+into $\cup_{i=1}^{\infty} M_i$ such that for $x,y \in M_i$,
+$\mathscr{H}_x = \mathscr{H}_y$. 
 % TODO:  (fix with info)
 Interesting aside: the condition that the assignment
-\(x \mapsto \mathscr{H}_x\) be piecewise constant is not necessary. We
+$x \mapsto \mathscr{H}_x$ be piecewise constant is not necessary. We
 can allow the Hilbert spaces to be arbitrary, and in fact uncountably
 infinite. Short answer: magic; slightly less short answer: von Neumann.
-A \emph{section} on \(M\) is an assignment \(x \mapsto f(x)\), where
-\(f(x) \in \mathscr{H}_x\). Since \(\mathscr{H}_x\) is piecewise
+A \emph{section} on $M$ is an assignment $x \mapsto f(x)$, where
+$f(x) \in \mathscr{H}_x$. Since $\mathscr{H}_x$ is piecewise
 constant, the notion of measurability carries over in an obvious manner,
-namely that a measurable function on \(M\) is measurable on each \(M_i\)
-into the appropriate Hilbert space. Let \(L^2(M, \{\mathscr{H}_x\})\) be
-the set of square integrable sections \(\int \| f \|^2 < \infty\) where
+namely that a measurable function on $M$ is measurable on each $M_i$
+into the appropriate Hilbert space. Let $L^2(M, \{\mathscr{H}_x\})$ be
+the set of square integrable sections $\int \| f \|^2 < \infty$ where
 we identify two sections if they agree almost everywhere. This set is
 then also a Hilbert space with the inner product
-\(\langle f | g \rangle = \int_M \langle f(x) | g(x) \rangle\).
+$\langle f | g \rangle = \int_M \langle f(x) | g(x) \rangle$.
 
-Suppose now we have for each \(x \in M\) a unitary representation
-\(\pi_x\) of a group \(G\) on \(\mathscr{H}_x\). We say this is
-measurable when for \(g \in G\), \(\pi_x(g)\) is a measurable function
-on each \(M_i \times G\).
+Suppose now we have for each $x \in M$ a unitary representation
+$\pi_x$ of a group $G$ on $\mathscr{H}_x$. We say this is
+measurable when for $g \in G$, $\pi_x(g)$ is a measurable function
+on each $M_i \times G$.
 
 This allows us to define the relevant representation we intermediately
 care about.
@@ -507,21 +580,21 @@ care about.
 
 % TODO:  (un-garbage intro) We need some more information about
 irreducible unitary representations to understand the action(s) of
-\(SL(n, \mathbb{R})\).
+$SL(n, \mathbb{R})$.
 
 \hypertarget{theorem}{%
 \subsection{Theorem}\label{theorem}}
 
 \begin{thm}[Zimmer 2.3.3]
   \begin{itemize}
-    \item For any unitary representation \(\pi\) of
-      \(\mathbb{R}^n\), there exist \(\mu, \mathscr{H}_{\lambda}\), on
-      \(\hat{\mathbb{R}}^n\) such that \(\pi \cong \pi_{\mu, \mathscr{H}_{\lambda}}\).
-    \item \(\pi_{\mu, \mathscr{H}_{\lambda}}\) and
-      \(\pi_{\mu', \mathscr{H}_{\lambda}'}\) are unitarily equivalent if and only if 
+    \item For any unitary representation $\pi$ of
+      $\mathbb{R}^n$, there exist $\mu, \mathscr{H}_{\lambda}$, on
+      $\hat{\mathbb{R}}^n$ such that $\pi \cong \pi_{\mu, \mathscr{H}_{\lambda}}$.
+    \item $\pi_{\mu, \mathscr{H}_{\lambda}}$ and
+      $\pi_{\mu', \mathscr{H}_{\lambda}'}$ are unitarily equivalent if and only if 
       \begin{itemize}
-        \item \(\mu \sim \mu'\), i.e., they are in the same measure class
-        \item and \(dim\mathscr{H}_{\lambda} = dim \mathscr{H}_{\lambda}'\) a.e.
+        \item $\mu \sim \mu'$, i.e., they are in the same measure class
+        \item and $dim\mathscr{H}_{\lambda} = dim \mathscr{H}_{\lambda}'$ a.e.
       \end{itemize}
   \end{itemize}
 \end{thm}
@@ -529,18 +602,18 @@ irreducible unitary representations to understand the action(s) of
 \hypertarget{theorem-1}{%
 \subsection{Theorem}\label{theorem-1}}
 
-\begin{thm}[Zimmer Proposition 2.3.5, from \cite{mackey76}]
+\begin{thm}[Zimmer Proposition 2.3.5, from \Citeauthor{mackey76} \cite{mackey76}]
    
-Suppose \(\mathbb{R}^n \subset G\) is a normal subgroup and \(\pi\) is a unitary representation of \(G\).
-Write \(\pi | \mathbb{R}^n \cong \pi_{(\mu, \mathscr{H}_{\lambda})}\) for some
-\((\mu, \mathscr{H}_{\lambda})\) by 2.3.3. Then  
+Suppose $\mathbb{R}^n \subset G$ is a normal subgroup and $\pi$ is a unitary representation of $G$.
+Write $\pi | \mathbb{R}^n \cong \pi_{(\mu, \mathscr{H}_{\lambda})}$ for some
+$(\mu, \mathscr{H}_{\lambda})$ by 2.3.3. Then  
   \begin{itemize}
-    \item \(\mu\) is quasi-invariant under the action of \(G\) on \(\hat{\mathbb{R}}^n\). 
-    \item If \(E \subset \mathbb{R}^n\) is measurable, let
-      \(\mathscr{H}_E = L^2(E, \mu, \{\mathscr{H}_{\lambda}\})\).
-      Then \(\pi(g)\mathscr{H}_E = \mathscr{H}_{g \cdot E}\)
-    \item If \(\pi\) is irreducible, then \(\mu\) is ergodic and \(dim\mathscr{H}_{\lambda}\) is
-      constant on a \(\mu\)-conull set.
+    \item $\mu$ is quasi-invariant under the action of $G$ on $\hat{\mathbb{R}}^n$. 
+    \item If $E \subset \mathbb{R}^n$ is measurable, let
+      $\mathscr{H}_E = L^2(E, \mu, \{\mathscr{H}_{\lambda}\})$.
+      Then $\pi(g)\mathscr{H}_E = \mathscr{H}_{g \cdot E}$
+    \item If $\pi$ is irreducible, then $\mu$ is ergodic and $dim\mathscr{H}_{\lambda}$ is
+      constant on a $\mu$-conull set.
   \end{itemize}
 \end{thm}
 
@@ -549,35 +622,51 @@ Write \(\pi | \mathbb{R}^n \cong \pi_{(\mu, \mathscr{H}_{\lambda})}\) for some
 % TODO: finish proof lmao
 \end{pf}
 
+% TODO: this was planted here so I could refer to it later on.
+\begin{thm}[Zimmer 2.3.6]
+\label{thm:2.3.6}
+  Let \mpi be  a unitary representation of $P = AN$.
+  \begin{itemize}
+    \item either $\pi|N$ has non-trivial invariant vectors or
+    \item or for $g \in A$ and any vectors, $v$, $w$, the matrix coefficients
+      $\langle \pi(g)v, w \rangle \rightarrow 0$ as $g \rightarrow \infty$.
+  \end{itemize}
+\end{thm}
+
+\begin{pf}
+   % TODO: fill in
+\end{pf}
+
 
 \hypertarget{representation-of-rn}{%
-\subsection{Representation of R\^{}n}\label{representation-of-rn}}
+\section{Representation of \texorpdfstring{$\bbr^n$}{R\^{}n}}\label{representation-of-rn}}
 
 
-% TODO:  (this drops out of nowhere)
+% TODO:  (this drops out of nowhere) -> schur decomp
+% TODO: Schur decomp
 All the irreducible unitary
-representations of \(\mathbb{R}^n\) are one-dimensional.
+representations of $\mathbb{R}^n$ are one-dimensional.
 
-It turns out that the group unitary representations on \(\mathbb{R}^n\)
-are isomorphic to \(\mathbb{R}^n\). So we define a map from
-\(\mathbb{R}^n\) to \(\mathcal{U}(\mathbb{C})\) and show that it's in
-fact bijective. Let \(\theta\). \(t\) be in \(\mathbb{R}^n\) and let
-\(\lambda_{\theta}(t) = e^{i\langle \theta | t \rangle}\). This is in
-fact a unitary automorphism on \(\mathbb{C}\) by multiplication. To
-clarify, for every \(\theta \in \mathbb{R}^n\) we have a representation
+It turns out that the group unitary representations on $\mathbb{R}^n$
+are isomorphic to $\mathbb{R}^n$. So we define a map from
+$\mathbb{R}^n$ to $\mathcal{U}(\mathbb{C})$ and show that it's in
+fact bijective. Let $\theta$. $t$ be in $\mathbb{R}^n$ and let
+$\lambda_{\theta}(t) = e^{i\langle \theta | t \rangle}$. This is in
+fact a unitary automorphism on $\mathbb{C}$ by multiplication. To
+clarify, for every $\theta \in \mathbb{R}^n$ we have a representation
 given by
   \begin{align*}
   \lambda_{\theta}:\ & \mathbb{R}^n \rightarrow \mathcal{U}(\mathbb{C}) \\
   & t \mapsto e^{i \langle \theta | t \rangle}
   \end{align*}
-We denote the group of representations by \(\hat{\mathbb{R}}^n\). It
+We denote the group of representations by $\hat{\mathbb{R}}^n$. It
 is in fact a group under pointwise multiplication.
 
 
 % TODO:  (this sort of drops out of nowhere)
 
 This definition is maybe a bit dense, so here is the assignment
-formatted in pseudo code. Note here that \(\text{lambda}\) denotes the
+formatted in pseudo code. Note here that $\text{lambda}$ denotes the
 programming term of a lambda function, an unfortunate notation
 collision.
 \begin{align*}
@@ -601,8 +690,8 @@ make sure measure works
 To see why we care about unitary representations at all if we really
 want ergodicity, we neeedd to make the folllowing connection. We use the
 characteristic function of a set to connect the set to a vector in
-\(L^2(S)\). The characteristic function of a subset \(A\subset S\), is
-defined as \(\chi_A(x) = 1\) for \(x \in A\) and \(0\) otherwise.
+$L^2(S)$. The characteristic function of a subset $A\subset S$, is
+defined as $\chi_A(x) = 1$ for $x \in A$ and $0$ otherwise.
 
 This representation allows us to pass from talking about sets to talking
 about vectors, while retaining the properties we care about.
@@ -613,37 +702,49 @@ about vectors, while retaining the properties we care about.
   $L^2(S) \ominus \mathbb{C}$ has no invariant vectors.
 \end{thm}
   
-Since \(S\) has finite measure, assume \(\mu(S) =1\).
+Since $S$ has finite measure, assume $\mu(S) =1$.
 
 \begin{pf}
-"$\Leftarrow$": Proof by contrapositive: If $A\subset S$ is $G$-invariant with measure $0 < \mu(A) < \mu(S) = 1$ then $\chi_A$ is also $G$-invariant in $L^2(S)$ as well as the projection $\chi_A - \mu(A)\cdot 1$ in $L^2(S)\ominus \mathbb{C}$.
-Therefore there exists an invariant vector in $L^2(S)\ominus \mathbb{C}$.
-"$\Rightarrow$": (\cite{Kerr16}(Prop 2.7)) Suppose the action is ergodic and $f\in L^2(S)\ominus \mathbb{C}$ is $G$-invariant.
-We can find a measurable set $D\subset \mathbb{C}$ such that $0<\mu(f^{-1}(D)) < 1$ and denote $\widetilde{A} = f^{-1}$. Now we verify ergodicity. For every $g\in G$ the symmetric difference $g\widetilde{A} \Delta \widetilde{A}$, for which all points are in the set $\{x \in X | \ |f(x)-sf(x)| > 0\}$, which has measure zero because $\|f- sf\|_2=0$. Therefore the action fails to be ergodic.
+"$\Leftarrow$": Proof by contrapositive: If $A\subset S$ is $G$-invariant with
+measure $0 < \mu(A) < \mu(S) = 1$ then $\chi_A$ is also $G$-invariant in
+$L^2(S)$ as well as the projection $\chi_A - \mu(A)\cdot 1$ in $L^2(S)\ominus
+\mathbb{C}$. Therefore there exists an invariant vector in $L^2(S)\ominus
+\mathbb{C}$. "$\Rightarrow$": (\cite{Kerr16}(Prop 2.7)) Suppose the action is
+ergodic and $f\in L^2(S)\ominus \mathbb{C}$ is $G$-invariant. We can find a
+measurable set $D\subset \mathbb{C}$ such that $0<\mu(f^{-1}(D)) < 1$ and
+denote $\widetilde{A} = f^{-1}$. Now we verify ergodicity. For every $g\in G$
+the symmetric difference $g\widetilde{A} \Delta \widetilde{A}$, for which all
+points are in the set $\{x \in X | \ |f(x)-sf(x)| > 0\}$, which has measure
+zero because $\|f- sf\|_2=0$. Therefore the action fails to be ergodic.
 \end{pf}
 
 The adjective ``finite'' on the measure is necessary, because for a set
-\(A\) of infinite measure the statement is no longer true as \(\chi_A\)
-will no longer be in \(L^2\).
+$A$ of infinite measure the statement is no longer true as $\chi_A$
+will no longer be in $L^2$.
 
-If \(A\subset S\) is \(G\)-invariant then \(\chi_A\in L^2(S)\) will also
-be \(G\)-invariant. 
+If $A\subset S$ is $G$-invariant then $\chi_A\in L^2(S)$ will also
+be $G$-invariant. 
 % TODO:  (is ominus actually a valid op here? yes, see Kerr Li prop 2.7)
-For \(A\) neither null nor conull then
-\(\chi_A\), \(f_A \neq 0\), where \(f_A\) is the projection of
-\(\chi_A\) onto \(L^2(S) \ominus \mathbb{C}\).
+For $A$ neither null nor conull then
+$\chi_A$, $f_A \neq 0$, where $f_A$ is the projection of
+$\chi_A$ onto $L^2(S) \ominus \mathbb{C}$.
 
 
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \hypertarget{proof-for-sln2r}{%
-  \section{Proof for \texorpdfstring{$SL(2, \mathbb{R})$}{SL(2, R)}}
-\label{proof-for-sln2r}}
+\section{Proof for \texorpdfstring{$SL(2, \mathbb{R})$}{SL(2, R)}}\label{proof-for-sln2r}}
 
 
 We start here because it is an easy example of the theorem and a general
-group \(G\) has many subgroups locally isomorphic to
-\(SL(2, \mathbb{R})\). Later we extend the proof, first to
-\(SL(n, \mathbb{R})\) and then to a general \(G\).
+group $G$ has many subgroups locally isomorphic to
+$SL(2, \mathbb{R})$. Later we extend the proof, first to
+$SL(n, \mathbb{R})$ and then to a general $G$.
 
 To state our intentions: we first show that either the matrix
 coefficients vanish as we want, or there exist invariant vectors. Then
@@ -652,8 +753,8 @@ we show that there are no invariant vectors, completing the statement.
 We're going to use the following decomposition, which we take for
 granted 
 % TODO:  (find reference for Iwasawa decomposition).
-The so called Iwasawa decomposition of \(SL(2, \mathbb{R})\) into three
-matrices \(K\), \(A\), and \(N\), defined as
+The so called Iwasawa decomposition of $SL(2, \mathbb{R})$ into three
+matrices $K$, $A$, and $N$, defined as
 \begin{align}
 K & =\quad \left\{ \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta\end{pmatrix} \subset SL(2, \mathbb{R})  \ | \ \theta \in \mathbb{R} \right\} \\
 A & =\quad \left\{ \begin{pmatrix} r & 0 \\ 0 & r^{-1} \end{pmatrix} \subset SL(2, \mathbb{R})  \ | \ r > 0 \right\} \\
@@ -663,14 +764,14 @@ N & =\quad \left\{ \begin{pmatrix} 1 & x \\ 0 & 1 \end{pmatrix} \subset SL(2, \m
 We look at the subgroup
 \[P \subset SL(2, \mathbb{R}) = \begin{pmatrix}a & b \\ 0 & a^{-1}\end{pmatrix}\]
 of upper triangular matrices. Together with the lower diagonal matrices
-\(\bar{P}\), they generate \(SL(2, \mathbb{R})\). To see this, decompose
+$\bar{P}$, they generate $SL(2, \mathbb{R})$. To see this, decompose
 as follows: \[\begin{pmatrix}1&0\\\alpha&1\end{pmatrix}
 \begin{pmatrix}x&0\\0&1/x\end{pmatrix}
 \begin{pmatrix}1&\beta\\0&1\end{pmatrix} = 
 \begin{pmatrix} x&\beta x\\\alpha x& \alpha\beta x+1/x\end{pmatrix}\]
-For any matrix \(A = \begin{pmatrix}a & b \\ c & d\end{pmatrix}\) in
-\(SL(2, \mathbb{R})\) with matrix coefficient \(a \neq 0\), we can solve
-for \(x,\alpha, \beta\). In the case of \(a = 0\) we can use the
+For any matrix $A = \begin{pmatrix}a & b \\ c & d\end{pmatrix}$ in
+$SL(2, \mathbb{R})$ with matrix coefficient $a \neq 0$, we can solve
+for $x,\alpha, \beta$. In the case of $a = 0$ we can use the
 following construction:
 \[
   \begin{pmatrix} 1&0\\\alpha&1\end{pmatrix}
@@ -682,10 +783,10 @@ following construction:
     \alpha(1+\beta\gamma)+\gamma&\alpha\delta(1+\beta\gamma)+\alpha\beta+\gamma\delta+1
   \end{pmatrix}
 \]
-If \(1 + \beta\gamma = 0\), the above product becomes
-\(\begin{pmatrix} 0&\beta\\ \gamma& 1+\alpha\beta+\gamma\delta \end{pmatrix}\)
-and we can make suitable choices for \(\alpha, \beta, \gamma, \delta\)
-to construct \(A\).
+If $1 + \beta\gamma = 0$, the above product becomes
+$\begin{pmatrix} 0&\beta\\ \gamma& 1+\alpha\beta+\gamma\delta \end{pmatrix}$
+and we can make suitable choices for $\alpha, \beta, \gamma, \delta$
+to construct $A$.
 
 \hypertarget{theorem-for-p}{%
 \subsection{Theorem for \texorpdfstring{$P$}{P}}\label{theorem-for-p}}
@@ -694,16 +795,17 @@ The upper triangular group can be decomposed into
 \[\begin{pmatrix}a & b \\ 0 & a^{-1}\end{pmatrix} =
 P = AN =
 \begin{pmatrix}a & 0 \\ 0 & a^{-1}\end{pmatrix} \begin{pmatrix}1 & b \\ 0 & 1\end{pmatrix}\]
-\#\# Theorem (Zimmer 2.3.6) Let \(\pi\) be a unitary representation of
-\(P = AN\). Then either - \(\pi|N\) has a nontrivial invariant vector or
-- The matrix coefficients of \(\pi(g)\) as \(g \rightarrow \infty\).
+\#\# Theorem (Zimmer 2.3.6) Let $\pi$ be a unitary representation of
+$P = AN$. Then either - $\pi|N$ has a nontrivial invariant vector or
+- The matrix coefficients of $\pi(g)$ as $g \rightarrow \infty$.
 
 Note first, that $N$ is normal in $P$. To see this, first calculate that the
-inverse of a matrix $\ipmatrix{ a & x \\ 0 & a^{-1} }$ in $P$ is
-$\ipmatrix{ a^{-1} & -x \\ 0 & a }$.
-Next note that the result of conjugation with an element in $P$ is again in $N$:
-$\ipmatrix{ a & x \\ 0 & a^{-1} } \ipmatrix{1 & y \\ 0 & 1} \ipmatrix{ a^{-1} & -x \\ 0 & a } = \ipmatrix{1 & a^2x \\ 0 & 1}$.
-This defines a group action $P \curvearrowright N \rightarrow N$ by multiplication with $a^2$.
+inverse of a matrix $\ipmatrix{ a & x \\ 0 & a^{-1} }$ in $P$ is $\ipmatrix{
+a^{-1} & -x \\ 0 & a }$. Next note that the result of conjugation with an
+element in $P$ is again in $N$: $\ipmatrix{ a & x \\ 0 & a^{-1} } \ipmatrix{1 &
+y \\ 0 & 1} \ipmatrix{ a^{-1} & -x \\ 0 & a } = \ipmatrix{1 & a^2x \\ 0 & 1}$.
+This defines a group action $P \curvearrowright N \rightarrow N$ by
+multiplication with $a^2$.
 
 \begin{pf}
   
@@ -730,6 +832,10 @@ vanishing theorem for the matrix coefficients of repre- sentations of P.
 In the next section we will see how to use this to prove Moore's
 theorem.
 
+
+
+% TODO: various decompositions for how we want to look at sl2r for 
+
 \hypertarget{theorem-for-cartan-decomposition}{%
 \subsection{Theorem for Cartan
 decomposition}\label{theorem-for-cartan-decomposition}}
@@ -738,74 +844,109 @@ decomposition}\label{theorem-for-cartan-decomposition}}
 \subsection{Polar decomposition to
 Cartan}\label{polar-decomposition-to-cartan}}
 
-\(T = US\) for some unitary \(U\) and a sym pos def \(S\). \(S\) can be
-diagonalized into \(U_0 D U_0^{-1}\) so we can write
-\(T = U U_0 D U_0^{-1} = U_1 D U_2\) for \(U_i \in SO(2, \mathbb{R})\).
-Then \(SL(2, \mathbb{R}) = KAK\) for \(K = SO_2\) and \(A\) the diagonal
+$T = US$ for some unitary $U$ and a sym pos def $S$. $S$ can be
+diagonalized into $U_0 D U_0^{-1}$ so we can write
+$T = U U_0 D U_0^{-1} = U_1 D U_2$ for $U_i \in SO(2, \mathbb{R})$.
+Then $SL(2, \mathbb{R}) = KAK$ for $K = SO_2$ and $A$ the diagonal
 group. This is the Cartan decomposition.
 
-\hypertarget{lemma}{%
-\subsection{Lemma}\label{lemma}}
 
-If \(\pi\) is a unitary representation of a Group \(G\) and we can write
-\(G = KAK\), then it suffices to check that the matrix coefficients
-vanish on A as \(g \rightarrow \infty\).
 
-\hypertarget{proof-1}{%
-\subsubsection{proof}\label{proof-1}}
 
-The proof works by observing that \(K\) is compact, and so the only part
-of G that can go to infinity is \(A\). We take vectors \(v, w\) and
-write \(g \in G\) as \(g = k_1 a k_2\). Then the corresponding matrix
+
+\begin{lem}\label{lemma}
+If $\pi$ is a unitary representation of a Group $G$ and we can write
+$G = KAK$, then it suffices to check that the matrix coefficients
+vanish on A as $g \rightarrow \infty$.
+\end{lem}
+
+\begin{pf}\label{pf:lemma}
+
+The proof works by observing that $K$ is compact, and so the only part
+of G that can go to infinity is $A$. We take vectors $v, w$ and
+write $g \in G$ as $g = k_1 a k_2$. Then the corresponding matrix
 coefficient can be written as
-\(\langle \pi(g)v|w \rangle = \langle \pi(a) \pi(k_2) v | \pi(k_1)^{-1} w \rangle\).
-Since \(g \rightarrow \infty\) we can find a sequence
-\(g_n = k_{1,n} g_{n} k_{2,n} \rightarrow \infty\) as
-\(n \rightarrow \infty\) with
-\(|\langle \pi(g_n) v | w \rangle | \geq \varepsilon\) for some
-\(\varepsilon > 0\). Suppose \(k_{1,n} \rightarrow k\) and
-\(k_{2,n}^{-1} \rightarrow k'\), then for n sufficiently large n
-\(|\langle \pi(a_n)\pi(k)v | \pi(k') w \rangle | \geq \varepsilon/2\).
-But since \(K\) is compact and \(g_n \rightarrow \infty\), we must have
-\(a_n \rightarrow \infty\). This shows that the must be a matrix
-coefficient in \(\pi | A\) that fails to vanish at infinity.
+$\langle \pi(g)v|w \rangle = \langle \pi(a) \pi(k_2) v | \pi(k_1)^{-1} w \rangle$.
+Since $g \rightarrow \infty$ we can find a sequence
+$g_n = k_{1,n} g_{n} k_{2,n} \rightarrow \infty$ as
+$n \rightarrow \infty$ with
+$|\langle \pi(g_n) v | w \rangle | \geq \varepsilon$ for some
+$\varepsilon > 0$. Suppose $k_{1,n} \rightarrow k$ and
+$k_{2,n}^{-1} \rightarrow k'$, then for n sufficiently large n
+$|\langle \pi(a_n)\pi(k)v | \pi(k') w \rangle | \geq \varepsilon/2$.
+But since $K$ is compact and $g_n \rightarrow \infty$, we must have
+$a_n \rightarrow \infty$. This shows that the must be a matrix
+coefficient in $\pi | A$ that fails to vanish at infinity.
 
-\hypertarget{theorem-for-sl2-r-this-time}{%
-\subsection{Theorem for SL(2, R) this
-time}\label{theorem-for-sl2-r-this-time}}
+\end{pf}
 
-If \(\pi\) is a unitary representation of \(G = SL(2, \mathbb{R})\) with
-no invariant vectors, then all matrix coefficients of \(\pi\) vanish at
-\(\infty\).
+\hypertarget{theorem-for-sl2-r}{%
+  \subsection{Theorem for \texorpdfstring{$SL(2, \mathbb{R})$}{SN(2, R)})}\label{theorem-for-sl2-r}}
 
-\hypertarget{proof-2}{%
-\subsubsection{proof}\label{proof-2}}
+If $\pi$ is a unitary representation of $G = SL(2, \mathbb{R})$ with no
+invariant vectors, then all matrix coefficients of $\pi$ vanish at $\infty$.
 
-% TODO: unoriginal
- 
-% TODO: create images for orbits
-Proof: By
-the preceding lemma, it suffices to see that the matrix coefficients
-vanish at infinity along A and by Theorem 2.3.6, it suffices to see that
-there are no N invariant vectors. Suppose to the contrary that v =f.~0
-is N-invariant. Let f(g) = (n(g)vlv). Thenfis continuous and
-hi-invariant under N, i.e.,f lifts from a continuous N-invariant
-function on G/N. Now N is exactly the stabilizer of a vector (namely (1,
-0)) in IR 2 under the natural SL(2, IR) action. Thus, we can identify
-G/N with IR 2 - \{0\}. The action of Non G/N is therefore identified
-with the action on IR 2 - \{0\} given by ordinary matrix multiplication.
-Thus there are two types of orbits, namely all horizontal lines except
-the x-axis, and each point on the x-axis (except the origin, of course).
-Clearly any continuous function on IR 2 - \{0\} \textasciitilde{} G/N
-which is constant along these orbits must actually be constant on the
-x-axis. But the x-axis is identified with P/N c G/N under the
-identification of G/N with IR 2 - \{0\}. Hencef(g) is constant on P.
-However, since n is unitary, if f(g) = (n(g)vlv) is constant on P, it
-follows that v must be P-invariant. Therefore f is actually hi-invariant
-under P. But P has a dense orbit in GjP. (For example, identify G/P with
-projective space of IR 2 under ordinary matrix multiplication.) Thusfis
-actually a constant function, and as above, this implies that v is
-G-invariant. We are now ready to prove 2.2.20.
+
+We can now start on the statement for \sltr. Thanks to the work we did in the
+preceeding chapter, the statement is actually not very difficult to prove. The
+theorem \ref{thm:2.3.6} and the preceeding lemma \ref{lemma} does the bulk of
+the heavy lifting here.
+
+
+\begin{pf}
+  By assumption, \G has no invariant vectors. By theorem \ref{thm:2.3.6},
+  There are two possible cases. Either $N$ has non-zero invariant vectors,
+  or the matrix coefficients vanish along $A$.
+
+  Should there be no non-zero invariant vectors, as we'll show, then
+  the matrix coefficients vanish along $A$, and, by lemma \ref{lemma},
+  vanishing along $A$ implies vanishing along \G.
+
+  To see that there are no $N$-invariant vectors, we assume towards a contradiction
+  that there are $N$-invariant vectors and show that these must be \G-invariant as well,
+  which contradicts our assumption.
+
+  Suppose there is a vector $v$ that is \Ninv, meaning $\pi(n)v = v$ for all $n \in N$.
+  As a shorthand, define the function $f(g) = \langle \pi(g)v,v\rangle$.
+  This defines a continuous bi-\Ninv function on $G$.
+
+  This is because $f(gn) = \langle \pi(gn)v,v,\rangle = \langle \pi(g)\pi(n)v,v\rangle = \langle \pi(g)v,v\rangle = f(g)$,
+  and $f(ng) = \langle \pi(n)\pi(g)v,v\rangle \xrightarrow{unitary} \langle \pi(g)v, \pi(n)^{-1}v\rangle = f(g)$.
+
+  Thus $f$ lifts from a continuous bi-\Ninv function on $G/N$.
+
+  \G acts transitively on $\bbr^2\setminus \{0\}$ by matrix multiplication,
+  and, using the fact that $N$ is exactly the stabilizer of $\ipmatrix{1 \\
+  0}$, we get an isomorphism $G/N \cong \bbr^2\setminus \{0\}$ \footnote{This
+  is due to the fact that for a transitive action $G\curvearrowright X$ there
+  is an isomorphism $G/Stab_G(x) \rightarrow X$ sending $g\cdot Stab_G(x)
+  \mapsto gx$.}.
+
+  Calculating the orbits of this action we have $\ipmatrix{1 & x \\ 0 &
+  1}\ipmatrix{a \\ b} = \ipmatrix{a +bx \\ b}$. So there exist two kinds of
+  orbits: for $b \neq 0$. the orbit is the horizontal line at height $b$ and
+  for $b=0$ every individual point $(a\ 0)$ on the $x$-axix. (See Figure~\ref{fig:n-orbits-in-r2}). As $f$ is \Ninv,
+  $f$ will be constant along these orbits. Because $f$ is continuous, $f$ will
+  also be constant along the $x$-axis.
+
+  \begin{figure}
+    \begin{center}
+      \includegraphics[width=0.95\textwidth]{N-orbits-in-R2-1.png}
+    \end{center}
+    \caption{The orbits of $N$ on $G/N$ correspond either to the horizontal lines parallel to the x-axis or to the individual points on the x-axis. }
+    \label{fig:n-orbits-in-r2}
+  \end{figure}
+
+  But we can also identify the $x$-axis with $P/N$ by $\ipmatrix{a & b \\ 0 &
+  a^{-1}}\ipmatrix{x \\ 0} = \ipmatrix{ax \\ 0}$. Therefore $f$ is also
+  constant on $P$. So it follows that $v$ is $P$-invariant. And as we've seen
+  in the \hyperref[sec:introduction]{intoduction}, we can identify $G/P$ with
+  the real projective line and $P$ has a dense orbit in $G/P$ so $f$ is
+  constant on $G$ and therefore $v$ is actually \G-invariant, contradicting our
+  assumption.
+\end{pf}
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -946,9 +1087,17 @@ fractional linear transforms. riemann sphere model?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage
+
+\section{List of Theorems}
+\theoremlisttype{allname}
+\listtheorems{thm,lem}
+
+\phantomsection
+\addcontentsline{toc}{section}{List of Figures}
+\listoffigures
+
 \phantomsection
 \addcontentsline{toc}{section}{Bibliography}
-
 \printbibliography
 
 \end{document}

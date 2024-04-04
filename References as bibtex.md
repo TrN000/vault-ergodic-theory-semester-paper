@@ -60,7 +60,7 @@ Kerr and Li for setup definitions
 }
 ```
 
-Deitmanr 2014: direct integrals?
+Deitmar 2014: direct integrals?
 
 ```
 @book{Deitmar14,
