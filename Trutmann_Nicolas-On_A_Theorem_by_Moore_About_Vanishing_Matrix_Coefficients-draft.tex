@@ -63,6 +63,7 @@
 \newtheorem{thm}{Theorem}
 \theoremstyle{plain}
 \newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
 \newtheorem*{pf}{proof}
 \theoremindent1cm
 \newtheorem*{rk}{Remark}
@@ -101,6 +102,9 @@
 \newcommand{\ipmatrix}[1]{%% make inline smallmatrix with parens. suited for 2x2 matrices.
 \ensuremath{\big(\begin{smallmatrix} #1 \end{smallmatrix}\big)}}
 \newcommand{\Ginv}{{\ensuremath G}-invariant}
+\newcommand{\abs}[1]{| #1 |}
+\newcommand{\inn}[1]{\left\langle #1 \right\rangle}
+\newcommand{\norm}[1]{\lVert #1 \rVert}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Id}{Id}
 \DeclareMathOperator{\id}{id}
@@ -161,66 +165,66 @@
 \tableofcontents
 \newpage
 
-This paper is based on the book ``Ergodic Theory and semisimple Lie
-Groups'' by Robert Zimmer \cite{Zimmer84}, in particular the first two
-chapters, which contain the theorem itself (Theorem 2.2.20) and
-surrounding material concerning ergodic theory.
 
-The techniques of the proof show a nice interplay between fields and
-their different approaches, while staying relatively simple. We assume
-the reader to have an undergraduate level understanding of the
-prerequisites in algebra and representation theory, but will state
-foundational information regardless, and provide references in all
-cases. We furthermore take care to clarify notation before use.
+  This paper is based on the book ``Ergodic Theory and semisimple Lie
+  Groups'' by Robert Zimmer \cite{Zimmer84}, in particular the first two
+  chapters, which contain the theorem itself (Theorem 2.2.20) and
+  surrounding material concerning ergodic theory.
 
-The theorem, which we will state shortly, is historically at home in the
-development of ergodic theory, which in turn is a relatively new field
-of mathematics. The original definition of ergodicity was given in 1928
-in a paper by P. Smith and G. Birkhoff on dynamical systems. The concept
-gained importance in 1931 when von Neumann and Birkhoff nearly
-simultaneously proved the mean and pointwise ergodic theorems. These may
-be regarded as the starting point of the subject.
+  The techniques of the proof show a nice interplay between fields and
+  their different approaches, while staying relatively simple. We assume
+  the reader to have an undergraduate level understanding of the
+  prerequisites in algebra and representation theory, but will state
+  foundational information regardless, and provide references in all
+  cases. We furthermore take care to clarify notation before use.
 
-The theory presented here is almost entirely due to a single mathematical
-lineage. The root of this lineage is G.D. Birkhoff, who, on one side was the
-(biological) father of G. Birkhoff, which in turn was the advisor of G. Mostow,
-known for his rigidity theory which was instrumental to G. Margulis' rigidity
-and arithmeticity theorem. These theorems are a central part of Zimmer's book,
-although we will not cover them. On the other side, G.D. Birkhoff was advisor
-to M.H. Stone who was advisor to Mackey, whose work on representations will
-feature prominently in the chapter \hyperlink{the-direct-integral-and-unitary-representations}{on unitary representations}.
-And Mackey was the advisor of R. Zimmer, the author of our main reference, as
-well as C.C. Moore, who, together with his student R. Howe, worked out the
-theorem we are talking about in this paper.
+  The theorem, which we will state shortly, is historically at home in the
+  development of ergodic theory, which in turn is a relatively new field
+  of mathematics. The original definition of ergodicity was given in 1928
+  in a paper by P. Smith and G. Birkhoff on dynamical systems. The concept
+  gained importance in 1931 when von Neumann and Birkhoff nearly
+  simultaneously proved the mean and pointwise ergodic theorems. These may
+  be regarded as the starting point of the subject.
 
-%TODO: (this is uglily wrenched in here. find more elegant place for this)
-The main aim of the book by Zimmer is focused on two
-theorems by Mostow and Margulis. The ``arithmeticity theorem'' and the
-``rigidity theorem'', which show how Lie groups and lattices in them
-interact. 
+  The theory presented here is almost entirely due to a single mathematical
+  lineage. The root of this lineage is G.D. Birkhoff, who, on one side was the
+  (biological) father of G. Birkhoff, which in turn was the advisor of G. Mostow,
+  known for his rigidity theory which was instrumental to G. Margulis' rigidity
+  and arithmeticity theorem. These theorems are a central part of Zimmer's book,
+  although we will not cover them. On the other side, G.D. Birkhoff was advisor
+  to M.H. Stone who was advisor to Mackey, whose work on representations will
+  feature prominently in the chapter \hyperlink{the-direct-integral-and-unitary-representations}{on unitary representations}.
+  And Mackey was the advisor of R. Zimmer, the author of our main reference, as
+  well as C.C. Moore, who, together with his student R. Howe, worked out the
+  theorem we are talking about in this paper.
+
+  %TODO: (this is uglily wrenched in here. find more elegant place for this)
+  The main aim of the book by Zimmer is focused on two
+  theorems by Mostow and Margulis. The ``arithmeticity theorem'' and the
+  ``rigidity theorem'', which show how Lie groups and lattices in them
+  interact. 
 
 
-% TODO:  (find these: Margulis, Borel, Furstenberg, Kazhdan, Moore, Howe, and Zimmer \cite{mackey74})
-% TODO: should really cite howe 79 and read it too, lol
-The paper by Moore \cite{Moore66} was published in 1966. Margulis' Theorems were published in 
-% TODO:  (wtf, idk. historical research has never been my forte)
+  % TODO:  (find these: Margulis, Borel, Furstenberg, Kazhdan, Moore, Howe, and Zimmer \cite{mackey74})
+  % TODO: should really cite howe 79 and read it too, lol
+  The paper by Moore \cite{Moore66} was published in 1966. Margulis' Theorems were published in 
+  % TODO:  (wtf, idk. historical research has never been my forte)
 
-Sources for the historical background: \cite{mackey74}(chapter 1.
-Introduction) \cite{Zimmer84}(chapter 1. Introduction)
+  Sources for the historical background: \cite{mackey74}(chapter 1.
+  Introduction) \cite{Zimmer84}(chapter 1. Introduction)
 
-The theorem itself does not directly involve ergodicity, but is instead
-used to prove ergodicity.
+  The theorem itself does not directly involve ergodicity, but is instead
+  used to prove ergodicity.
 
-The theorem itself is rather simple to state:
+  The theorem itself is rather simple to state:
 
-{[}{[}Moore's Ergodicity Theorem{]}{]}
+  {[}{[}Moore's Ergodicity Theorem{]}{]}
 
-To clarify some points, note that we have specified non-compact groups.
-This allows us to talk about ``infinity'' at all. Next, what is an
-invariant vector? Simply, for all $g\in G$, and a vector $v$, we
-have that $\pi(g)v = v$, or, that $v$ is preserved by any linear map
-given by the representation.
-
+  To clarify some points, note that we have specified non-compact groups.
+  This allows us to talk about ``infinity'' at all. Next, what is an
+  invariant vector? Simply, for all $g\in G$, and a vector $v$, we
+  have that $\pi(g)v = v$, or, that $v$ is preserved by any linear map
+  given by the representation.
 
 
 
@@ -463,6 +467,15 @@ given by the representation.
   $\pi: G \rightarrow \mathcal{U}(V) \subset GL(V)$, where the unitary group
   consists of all unitary operators on \hilb.
 
+  For a representation $\pi$ onto a (complex) Hilbert space \hilb, $\pi:G \rightarrow GL(\hilb)$
+  and two vectors $v, w \in \hilb$,
+  a \emph{matrix coefficient} is a map $f(g): G \rightarrow \bbc$ defined by
+  $$
+  f(g) = \inn{\pi(g)v, w}
+  $$
+  In the case of a finite dimensional Hilbert space and, for a given choice of basis, and two basis vectors $e_i,\ e_j$,
+  the inner product $\inn{e_i\pi(g), e_j}$ works out to be the coefficient of the matrix associates to $\pi(g)$.
+
 
   % TODO: (all of this) repr: a map dim of a repr
   % TODO: agree with topology.
@@ -497,19 +510,32 @@ given by the representation.
   To reiterate % TODO: have we iterated it once?
 
   \begin{defn}{Ergodicity}
-  For a group $G$, a measurable separable space $S$, and a $G$-invariant measure $\mu$. An action is called ergodic if all $G$-invariant subsets $A\subset S$ are either null or conull. Which means 
+  For a group $G$, a measurable separable space $S$, and a $G$-invariant
+  measure $\mu$. An action is called ergodic if all $G$-invariant subsets
+  $A\subset S$ are either null or conull. Which means
   $$
-  \forall g\in G:\ gA = A \quad \Rightarrow \quad \mu(A)=0 \text{ or } \mu(S\setminus A)=0
+  \forall g\in G:\ gA = A \quad \Rightarrow \quad \mu(A)=0 \text{ or }
+  \mu(S\setminus A)=0
   $$
   \end{defn}
 
-  Let us try to build some intuition for what this means.
-  Notice that orbits are, by definition \Ginv, so one way to constructively build invariant sets is to consider orbits of actions.
-  Inversely as well, any invariant set can be considered a union of orbits of all its points.
-  Recall from basic group theory that orbits partition the space, so saying that these must be either null or conull
-  means there is no straightforward ``divide and conquer'' strategy for understanding ergodic actions.
-  In this regard ergodicity resembles a sort of ``irreducibility''-property.
-  To put it in Zimmer's words ``Ergodic theory is (in large part) the study of complicated orbit structure in the presence of a measure.''
+  Let us try to build some intuition for what this means. Notice that orbits
+  are, by definition \Ginv, so one way to constructively build invariant sets
+  is to consider orbits of actions. Inversely as well, any invariant set can be
+  considered a union of orbits of all its points. Recall from basic group
+  theory that orbits partition the space, so saying that these must be either
+  null or conull means there is no straightforward ``divide and conquer''
+  strategy for understanding ergodic actions. In this regard ergodicity
+  resembles a sort of ``irreducibility''-property. To put it in Zimmer's words
+  ``Ergodic theory is (in large part) the study of complicated orbit structure
+  in the presence of a measure.''
+
+
+  Note, that the adjective ``ergodic'' sometimes applied to either the action, the measure or the space.
+  What that means is that, for two out of three given, the third completes the definition.
+  All three are necessary to be ergodic but when, for example, we have a group
+  action on a space, we call a measure ergodic if together with the others they
+  are ergodic.
 
 
   \begin{ex}
@@ -517,20 +543,22 @@ given by the representation.
     $A: \mathbb{T} \rightarrow \mathbb{T}$ multiplication by $e^{i\alpha}$ with
     $\alpha/2\pi$ irrational. This induces an action
     $\mathbb{Z}\curvearrowright\mathbb{T} \rightarrow \mathbb{T}$ by $ n\cdot z
-    \mapsto e^{in\alpha}z$.
-     
+    \mapsto e^{in\alpha}z$. As a measure we take the arc-length measure, which
+    is preserved under the action of $A$.
+
+    This is an example of an ergodic action.
+
+    To prove this, suppose $S \subset \mathbb{T}$ is $A$-invariant. We take
+    $\chi_S(z) = 1 \text{ for } z\in S \text{ and } 0 \text{ for } z \notin S$,
+    the characteristic function of $S$ and take the $L^2$-Fourier expansion
+    $\sum a_n z^n$. Then, by invariance, $\chi_S(z) = \chi_S(e^{i\alpha}z) =
+    \sum a_n e^{in\alpha}z^n$. Therefore $a_ne^{in\alpha} = a_n$. By assumption
+    $\alpha/2\pi \notin \mathbb{Q}$, so $a_n = 0$ for all $n \neq 0$. This
+    implies $\chi_S$ is constant, meaning either constant $0$ or constant $1$,
+    which implies ergodicity.
   \end{ex}
-
   definition; explanation of definition; Examples; why the prerequisites
-  come in, like quasi-invariance; clarify edge cases. summarize by
-  ``complicated orbits'' argument (could use 2.1.7 as example of
-  complicatedness).
-
-
-
-
-
-
+  come in, like quasi-invariance; clarify edge cases of properly ergodic.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -540,14 +568,15 @@ given by the representation.
 \section{The Direct Integral and Unitary Representations}\label{the-direct-integral-and-unitary-representations}}
 
 
-  what do we need actually? We have to take a detour into unitary
+  Now that we've laid out the prerequisites, we can turn to what we'll actually need in terms of this specific subject.
+  We have to take a detour into unitary
   representations and define the direct integral to make statements about
-  certain subgroups. These lead to a theorem (Zimmer 2.2.5) about
-  vanishing matrix coefficients, which we will use to prove the central
-  theorem in question. This is a great example of the usefulness of
-  representation theory, where we transform a problem of groups to a
-  problem of linear algebra. So instead of asking about invariant vectors
-  of a group action we look at the behavior of matrices.
+  certain subgroups, in particular $\bbr^n$.
+  It turns out, we can transform questions about ergodicity into questions about representations.
+  Thereby opening up the problems to more tractable linear algebra and matrix groups.
+
+  The question about ergodicity, that hangs in the background of the theorem is:
+  ``what happens at the boundary?''. Boundary means we are interested in the limit behavior of an ergodic action, which explains why our theorem makes an assertion about matrix coefficients at infinity.
 
   The way there will lead us through the direct integral, unitary representations
   and in particular the representation of $\mathbb{R}^n$. To jump ahead of
@@ -637,17 +666,12 @@ given by the representation.
   $SL(n, \mathbb{R})$.
 
 
-
-
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \hypertarget{representation-of-rn}{%
 \section{Representation of \texorpdfstring{$\bbr^n$}{R\^{}n}}\label{representation-of-rn}}
+
 
   \begin{thm}[Zimmer 2.3.3]
     \label{thm:2.3.3}
@@ -681,7 +705,7 @@ given by the representation.
     \label{pf:2.3.4}
   \end{pf}
 
-  \begin{thm}[Zimmer Proposition 2.3.5, from \Citeauthor{mackey76} \cite{mackey76}]
+  \begin{thm}[Zimmer 2.3.5, from \Citeauthor{mackey76} \cite{mackey76}]
     \label{thm:2.3.5}
     Suppose $\mathbb{R}^n \subset G$ is a normal subgroup and $\pi$ is a unitary representation of $G$.
     Write $\pi | \mathbb{R}^n \cong \pi_{(\mu, \mathscr{H}_{\lambda})}$ for some
@@ -712,6 +736,7 @@ given by the representation.
   \end{thm}
 
   \begin{pf}
+    We identify $N$ with \bbr via the map $\ipmatrix{1 & x \\ 0 & 1} \mapsto x$ 
      % TODO: fill in
   \end{pf}
 
@@ -804,16 +829,11 @@ given by the representation.
   $\chi_A$ onto $L^2(S) \ominus \mathbb{C}$.
 
 
-
-
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\hypertarget{proof-for-sln2r}{%
-\section{Proof for \texorpdfstring{$SL(2, \mathbb{R})$}{SL(2, R)}}\label{proof-for-sln2r}}
+
+\hypertarget{proof-for-sl2r}{%
+\section{Proof for \texorpdfstring{$SL(2, \mathbb{R})$}{SL(2, R)}}\label{proof-for-sl2r}}
 
 
   We start here because it is an easy example of the theorem and a general
@@ -836,77 +856,60 @@ given by the representation.
   N & =\quad \left\{ \begin{pmatrix} 1 & x \\ 0 & 1 \end{pmatrix} \subset SL(2, \mathbb{R})  \ | \ x \in \mathbb{R} \right\}\\
   \end{align}
 
-  We look at the subgroup
-  \[P \subset SL(2, \mathbb{R}) = \begin{pmatrix}a & b \\ 0 & a^{-1}\end{pmatrix}\]
-  of upper triangular matrices. Together with the lower diagonal matrices
-  $\bar{P}$, they generate $SL(2, \mathbb{R})$. To see this, decompose
-  as follows: \[\begin{pmatrix}1&0\\\alpha&1\end{pmatrix}
-  \begin{pmatrix}x&0\\0&1/x\end{pmatrix}
-  \begin{pmatrix}1&\beta\\0&1\end{pmatrix} = 
-  \begin{pmatrix} x&\beta x\\\alpha x& \alpha\beta x+1/x\end{pmatrix}\]
-  For any matrix $A = \begin{pmatrix}a & b \\ c & d\end{pmatrix}$ in
-  $SL(2, \mathbb{R})$ with matrix coefficient $a \neq 0$, we can solve
-  for $x,\alpha, \beta$. In the case of $a = 0$ we can use the
-  following construction:
-  \[
-    \begin{pmatrix} 1&0\\\alpha&1\end{pmatrix}
-    \begin{pmatrix} 1&\beta\\0&1\end{pmatrix}
-    \begin{pmatrix} 1&0\\\gamma&1\end{pmatrix}
-    \begin{pmatrix} 1&\delta\\0&1\end{pmatrix}=
-    \begin{pmatrix}
-      1+\beta\gamma&\delta(1+\beta\gamma)+\beta\\
-      \alpha(1+\beta\gamma)+\gamma&\alpha\delta(1+\beta\gamma)+\alpha\beta+\gamma\delta+1
-    \end{pmatrix}
-  \]
-  If $1 + \beta\gamma = 0$, the above product becomes
-  $\begin{pmatrix} 0&\beta\\ \gamma& 1+\alpha\beta+\gamma\delta \end{pmatrix}$
-  and we can make suitable choices for $\alpha, \beta, \gamma, \delta$
-  to construct $A$.
 
   \hypertarget{theorem-for-p}{%
   \subsection{Theorem for \texorpdfstring{$P$}{P}}\label{theorem-for-p}}
 
-  The upper triangular group can be decomposed into
-  \[\begin{pmatrix}a & b \\ 0 & a^{-1}\end{pmatrix} =
-  P = AN =
-  \begin{pmatrix}a & 0 \\ 0 & a^{-1}\end{pmatrix} \begin{pmatrix}1 & b \\ 0 & 1\end{pmatrix}\]
-  \#\# Theorem (Zimmer 2.3.6) Let $\pi$ be a unitary representation of
-  $P = AN$. Then either - $\pi|N$ has a nontrivial invariant vector or
-  - The matrix coefficients of $\pi(g)$ as $g \rightarrow \infty$.
-
-  Note first, that $N$ is normal in $P$. To see this, first calculate that the
-  inverse of a matrix $\ipmatrix{ a & x \\ 0 & a^{-1} }$ in $P$ is $\ipmatrix{
-  a^{-1} & -x \\ 0 & a }$. Next note that the result of conjugation with an
-  element in $P$ is again in $N$: $\ipmatrix{ a & x \\ 0 & a^{-1} } \ipmatrix{1 &
-  y \\ 0 & 1} \ipmatrix{ a^{-1} & -x \\ 0 & a } = \ipmatrix{1 & a^2x \\ 0 & 1}$.
-  This defines a group action $P \curvearrowright N \rightarrow N$ by
-  multiplication with $a^2$.
+  \begin{lem}[decomposition of \sltr and $P$]
+    \label{ref:lem:decomp}
+    \begin{enumerate}
+      \item The upper triangular group $P$ and $\bar{P}$ generate \sltr.
+      \item The upper triangular group can be decomposed into the semidirect product:
+        $$
+        P = AN = \begin{pmatrix}a & 0 \\ 0 & a^{-1}\end{pmatrix} \begin{pmatrix}1 & b \\ 0 & 1\end{pmatrix}
+        $$
+      \item $N$ is normal in $P$
+    \end{enumerate}
+     
+  \end{lem}
 
   \begin{pf}
-    
+    \label{ref:lem:pf:decomp}
+    We look at the subgroup
+    \[P \subset SL(2, \mathbb{R}) = \begin{pmatrix}a & b \\ 0 & a^{-1}\end{pmatrix}\]
+    of upper triangular matrices. Together with the lower diagonal matrices
+    $\bar{P}$, they generate $SL(2, \mathbb{R})$. To see this, decompose
+    as follows: \[\begin{pmatrix}1&0\\\alpha&1\end{pmatrix}
+    \begin{pmatrix}x&0\\0&1/x\end{pmatrix}
+    \begin{pmatrix}1&\beta\\0&1\end{pmatrix} = 
+    \begin{pmatrix} x&\beta x\\\alpha x& \alpha\beta x+1/x\end{pmatrix}\]
+    For any matrix $A = \begin{pmatrix}a & b \\ c & d\end{pmatrix}$ in
+    $SL(2, \mathbb{R})$ with matrix coefficient $a \neq 0$, we can solve
+    for $x,\alpha, \beta$. In the case of $a = 0$ we can use the
+    following construction:
+    \[
+      \begin{pmatrix} 1&0\\\alpha&1\end{pmatrix}
+      \begin{pmatrix} 1&\beta\\0&1\end{pmatrix}
+      \begin{pmatrix} 1&0\\\gamma&1\end{pmatrix}
+      \begin{pmatrix} 1&\delta\\0&1\end{pmatrix}=
+      \begin{pmatrix}
+        1+\beta\gamma&\delta(1+\beta\gamma)+\beta\\
+        \alpha(1+\beta\gamma)+\gamma&\alpha\delta(1+\beta\gamma)+\alpha\beta+\gamma\delta+1
+      \end{pmatrix}
+    \]
+    If $1 + \beta\gamma = 0$, the above product becomes
+    $\begin{pmatrix} 0&\beta\\ \gamma& 1+\alpha\beta+\gamma\delta \end{pmatrix}$
+    and we can make suitable choices for $\alpha, \beta, \gamma, \delta$
+    to construct $A$.
+
+    Note first, that $N$ is normal in $P$. To see this, first calculate that the
+    inverse of a matrix $\ipmatrix{ a & x \\ 0 & a^{-1} }$ in $P$ is $\ipmatrix{
+    a^{-1} & -x \\ 0 & a }$. Next note that the result of conjugation with an
+    element in $P$ is again in $N$: $\ipmatrix{ a & x \\ 0 & a^{-1} } \ipmatrix{1 &
+    y \\ 0 & 1} \ipmatrix{ a^{-1} & -x \\ 0 & a } = \ipmatrix{1 & a^2x \\ 0 & 1}$.
+    This defines a group action $P \curvearrowright N \rightarrow N$ by
+    multiplication with $a^2$.
   \end{pf}
-
-
-  % TODO: unoriginal
-   We apply 2.3.5, identifying N \textasciitilde{}
-  IR. Let n IN = n\textless ll.K ,\textgreater· If Jl( \{0\})
-  \textgreater{} 0, then n IN has invariant vectors (namely Jt' 0 ). We
-  now show that if Jl( \{0\}) = 0, then assertion (ii) in the theorem is
-  satisfied. To see this, consider the action of P on N. An elementary
-  calculation shows thatErgodic theory and semisimple groups 28 acts on fJ
-  \textasciitilde{} IR via multiplication by a 2 • Hence, given any
-  compact subsets E, F c IR- \{0\}, for gEA outside a sufficiently large
-  compact set we have Jl.(gE n F) = 0. Given any two unit vectors f, hE L
-  2 (1R, Jl., \{ Jf;.\} ), and e \textgreater{} 0 we can choose compact
-  subsets E, F c IR- \{0\} such that Then I\textless{} n(g)fl h) I :`£ 2e
-  + I(n(g)(XEf)I(XF'' h))l. But n(g)(xEf)EJf9 E by 2.3.5 (ii) and by our
-  above remark, choosing gEA outside a sufficiently large compact subset
-  of A we can ensure Jf gE .1 Jt' p, and hence that I\textless{} n(g)fl h)
-  I ;£ 2e. This completes the proof of the theorem. Theorem 2.3.6 gives a
-  vanishing theorem for the matrix coefficients of repre- sentations of P.
-  In the next section we will see how to use this to prove Moore's
-  theorem.
-
 
 
   % TODO: various decompositions for how we want to look at sl2r for 
@@ -916,8 +919,8 @@ given by the representation.
   decomposition}\label{theorem-for-cartan-decomposition}}
 
   \hypertarget{polar-decomposition-to-cartan}{%
-  \subsection{Polar decomposition to
-  Cartan}\label{polar-decomposition-to-cartan}}
+  \subsection{Polar decomposition to Cartan}
+  \label{polar-decomposition-to-cartan}}
 
   $T = US$ for some unitary $U$ and a sym pos def $S$. $S$ can be
   diagonalized into $U_0 D U_0^{-1}$ so we can write
@@ -929,31 +932,54 @@ given by the representation.
 
 
 
-  \begin{lem}\label{lemma}
-  If $\pi$ is a unitary representation of a Group $G$ and we can write
-  $G = KAK$, then it suffices to check that the matrix coefficients
-  vanish on A as $g \rightarrow \infty$.
+  \begin{lem}
+    \label{lemma}
+    If $\pi$ is a unitary representation of a Group $G$ (which is assumed to be second countable) and we can write $G =
+    KAK$, with $K$ compact, then it suffices to check that the matrix
+    coefficients vanish on A as $g \rightarrow \infty$.
   \end{lem}
 
-  \begin{pf}\label{pf:lemma}
+  \begin{pf}
+    \label{pf:lemma}
+    We take vectors $v, w$ and write $g \in G$ as $g = k_1 a k_2$.
+    Then the corresponding matrix
+    coefficient can be written as $\langle \pi(g)v|w \rangle = \langle \pi(a) \pi(k_2) v | \pi(k_1)^{-1} w \rangle$.
 
-  The proof works by observing that $K$ is compact, and so the only part
-  of G that can go to infinity is $A$. We take vectors $v, w$ and
-  write $g \in G$ as $g = k_1 a k_2$. Then the corresponding matrix
-  coefficient can be written as
-  $\langle \pi(g)v|w \rangle = \langle \pi(a) \pi(k_2) v | \pi(k_1)^{-1} w \rangle$.
-  Since $g \rightarrow \infty$ we can find a sequence
-  $g_n = k_{1,n} g_{n} k_{2,n} \rightarrow \infty$ as
-  $n \rightarrow \infty$ with
-  $|\langle \pi(g_n) v | w \rangle | \geq \varepsilon$ for some
-  $\varepsilon > 0$. Suppose $k_{1,n} \rightarrow k$ and
-  $k_{2,n}^{-1} \rightarrow k'$, then for n sufficiently large n
-  $|\langle \pi(a_n)\pi(k)v | \pi(k') w \rangle | \geq \varepsilon/2$.
-  But since $K$ is compact and $g_n \rightarrow \infty$, we must have
-  $a_n \rightarrow \infty$. This shows that the must be a matrix
-  coefficient in $\pi | A$ that fails to vanish at infinity.
+    We make a proof via contraposition.
+    If there exists a matrix coefficient that fails to vanish as $g \rightarrow \infty$
+    we can find a sequence $g_n = k_{1,n} g_{n} k_{2,n} \rightarrow \infty$ as
+    $n \rightarrow \infty$ with
+    $|\langle \pi(g_n) v | w \rangle | \geq \varepsilon$ for some $\varepsilon > 0$.
 
+    Because $G$, and therefore $K$ is second countable and compact, it is also sequentially compact.
+    So we can suppose $k_{1,n} \rightarrow k$ and $k_{2,n}^{-1} \rightarrow k'$.
+    Then, for $n$ sufficiently large, $|\langle \pi(a_n)\pi(k)v | \pi(k') w \rangle | \geq \varepsilon/2$.
+    This follows from the following estimation, where we ommit the representation $\pi$ for legibility:
+
+    \begin{align*}
+        &=\abs{\inn{a_n k_n v, k_n' w} - \inn{a_n k v, k' w}} \\
+        &= \abs{\inn{a_nk_nv - a_nkv, k_n'w} \ + \ \inn{a_nkv, k_n'w - k'w}}  \\
+        &\leq \abs{\inn{a_nk_nv - a_nkv, k_n'w}} \ + \ \abs{\inn{a_nkv, k_n'w - k'w}} \quad \text{Triangle Inequality} \\
+        &\leq \norm{a_nk_nv - a_nkv}\norm{k_n'v} \ + \ \norm{a_nkv}\norm{k_n'w - k'w} \quad \text{Cauchy-Schwarz} \\
+     \end{align*}
+
+    From here, we can pick an $n$ large enough to assert the inequality.
+
+    But since $K$ is compact and $g_n \rightarrow \infty$, we must have
+    $a_n \rightarrow \infty$. This shows that the must be a matrix
+    coefficient in $\pi | A$ that fails to vanish at infinity.
   \end{pf}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hypertarget{proof-for-slnr}{%
+  \section{Proof for \texorpdfstring{$SL(n, \mathbb{R})$}{SL(n, R)}}
+\label{proof-for-slnr}}
+
+
+% old stuff
 
   \hypertarget{theorem-for-sl2-r}{%
     \subsection{Theorem for \texorpdfstring{$SL(2, \mathbb{R})$}{SN(2, R)})}\label{theorem-for-sl2-r}}
@@ -1022,27 +1048,20 @@ given by the representation.
   \end{pf}
 
 
+%%
 
 
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\hypertarget{proof-for-slnr}{%
-  \section{Proof for \texorpdfstring{$SL(n, \mathbb{R})$}{SL(n, R)}}
-\label{proof-for-slnr}}
-
-
-  In this section we'll prove the statement for $G = \slnr$ and later show how the proof is extended to a general group \G.
+  In this section we'll prove the statement for $G = \slnr$ and later show how
+  the proof is extended to a general group \G. We begin just as for \sltr, by
+  applying \hyperref[lemma]{lemma} \ref{lemma}. Thus it suffices to show that
+  matrix coefficients vanish on $A \subset G$ to imply that they vanish on \G.
 
 
   \begin{math}
     \begin{pmatrix}
       1 & b_{1,2} & & \cdots & & b_{1,n} \\
       0 & & &  & \\
-      \vdots & & & \text{Id}_{n-1} & \\
+      \vdots & & & \Id_{n-1} & \\
       0 & & & & \\
     \end{pmatrix}
   \end{math}
@@ -1111,17 +1130,11 @@ given by the representation.
   Therefore G leaves W invariant, completing the proof.
 
 
-
-
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \hypertarget{proof-for-a-general-G}{%
 \section{Proof for a general \texorpdfstring{$G$}{G}}\label{proof-for-a-general-G}}
-
 
 
   % TODO: unoriginal
@@ -1148,13 +1161,9 @@ given by the representation.
   suitable copy of the group P.
 
 
-
-
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \hypertarget{outro}{%
 \section{Outro}\label{outro}}
 
@@ -1169,15 +1178,24 @@ given by the representation.
   fractional linear transforms. riemann sphere model?
 
 
-
-
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+
 \cleardoublepage
+
+\appendix
+
+\hypertarget{auxilliary-statements}{%
+\section{Auxilliary Statements}\label{auxilliary-statements}}
+
+\begin{prop}
+  In a second countable topological space, compactness and sequential compactness are equivalent.
+\end{prop}
+
+\begin{pf}
+  no proof % TODO: where??
+\end{pf}
 
 \section{List of Theorems}
 \theoremlisttype{allname}
