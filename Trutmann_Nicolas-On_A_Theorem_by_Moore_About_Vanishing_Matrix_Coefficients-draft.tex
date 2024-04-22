@@ -59,8 +59,9 @@
 \theorempostskip{10pt} % TODO: hacky
 \theoremstyle{break}
 \theorembodyfont{\normalfont}
-\newtheorem{defn}{Definition}
 \newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}[thm]
+\newtheorem*{problem}{Problem}
 \theoremstyle{plain}
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
@@ -91,20 +92,33 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ↓ custom commands
 
-\newcommand{\G}{\ensuremath{G}}
-\newcommand{\mpi}{\ensuremath{\pi}}
-\newcommand{\bbr}{\ensuremath{\mathbb{R}}}
-\newcommand{\bbc}{\ensuremath{\mathbb{C}}}
-\newcommand{\hilb}{\ensuremath{\mathscr{H}}}
-\newcommand{\sltr}{\ensuremath{SL(2, \mathbb{R})}}
-\newcommand{\slnr}{\ensuremath{SL(n, \mathbb{R})}}
-\newcommand{\Ninv}{{\ensuremath N}-invariant}
+% I'm lazy
+\usepackage{xspace}
+\newcommand{\G}{\ensuremath{G}\xspace}
+\newcommand{\Gamm}{\ensuremath{\Gamma}\xspace}
+\newcommand{\mpi}{\ensuremath{\pi}\xspace}
+
+% special typefaces
+\newcommand{\bbr}{\ensuremath{\mathbb{R}}\xspace}
+\newcommand{\bbc}{\ensuremath{\mathbb{C}}\xspace}
+\newcommand{\hilb}{\ensuremath{\mathscr{H}}\xspace}
+
+% my favorite spaces
+\newcommand{\sltr}{\ensuremath{SL(2, \mathbb{R})}\xspace}
+\newcommand{\slnr}{\ensuremath{SL(n, \mathbb{R})}\xspace}
+
+% inline matrix. why was this removed??
 \newcommand{\ipmatrix}[1]{%% make inline smallmatrix with parens. suited for 2x2 matrices.
-\ensuremath{\big(\begin{smallmatrix} #1 \end{smallmatrix}\big)}}
+\ensuremath{\big(\begin{smallmatrix} #1 \end{smallmatrix}\big)}\xspace}
 \newcommand{\Ginv}{{\ensuremath G}-invariant}
+\newcommand{\Ninv}{{\ensuremath N}-invariant}
+
+% surrounding marks
 \newcommand{\abs}[1]{| #1 |}
 \newcommand{\inn}[1]{\left\langle #1 \right\rangle}
 \newcommand{\norm}[1]{\lVert #1 \rVert}
+
+% operators
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Id}{Id}
 \DeclareMathOperator{\id}{id}
@@ -250,10 +264,20 @@
   Instead of verifying ergodicity for any given action, space and measure
   individually, can we find criteria for ergodicity that are easier to
   evaluate? The Moore's theorem sits in the middle of an argument that
-  answers the following question.
+  answers the following questions.
 
-  Let $G$ be a semisimple Lie group and $S$ an ergodic $G$-space. If
-  $H\subset G$ is a closed subgroup, when is $H$ ergodic on $S$.
+  % TODO: For example, consider a group \G, a lattice $\Gamma \subset G$ and a closed subgroup $H \subset G$.
+  % this is of course, a priori, a bit of a contrived example, but consider that lattices in Lie groups are a considerable field of study.
+  % The previously mentioned Theorem by \cite{margulis91} concerns itself with lattices.
+
+
+  \begin{problem}[When do closed subgroups act ergodically]
+    If $H_1, H_2 \subset G$ are closed subgroups in \G, is the action $H_1\curvearrowright G/H_2$ ergodic?
+  \end{problem}
+
+  \begin{problem}[When do closed subgroups act ergodically]
+    Let \G be a semisimple Lie group and $S$ an ergodic \G-space. If $H\subset G$ is a closed subgroup, when is $H$ ergodic on $S$.
+  \end{problem}
 
 
   % TODO:  (fill out) Why would we care? -\textgreater{} boundary
@@ -357,12 +381,13 @@
   \hypertarget{definition}{%
   \subsection{Definition}\label{definition}}
 
-  Suppose $G$ acts on a measure space $(S, \mu)$ so that the action
-  map $S \times G \rightarrow S$ is measurable and $\mu$ is
-  quasi-invariant, i.e., $\mu(A) = 0$ if and only if $\mu(Ag) = 0$.
-  The action is called ergodic if $A \subset S$ is measurable and
-  $G$-invariant implies $\mu(A) = 0$ or $\mu(S\setminus A) = 0$.
-
+  \begin{defn}
+    Suppose $G$ acts on a measure space $(S, \mu)$ so that the action
+    map $S \times G \rightarrow S$ is measurable and $\mu$ is
+    quasi-invariant, i.e., $\mu(A) = 0$ if and only if $\mu(Ag) = 0$.
+    The action is called ergodic if $A \subset S$ is measurable and
+    $G$-invariant implies $\mu(A) = 0$ or $\mu(S\setminus A) = 0$.
+  \end{defn}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -795,7 +820,8 @@
   This representation allows us to pass from talking about sets to talking
   about vectors, while retaining the properties we care about.
 
-  \begin{thm}[]
+  \begin{thm}[Zimmer 2.2.17]
+    \label{thm:2.2.17}
     An action $G\curvearrowright S$, with **finite** invariant measure is ergodic
     on $S$ if and only if the restriction of the above representation to  in
     $L^2(S) \ominus \mathbb{C}$ has no invariant vectors.
@@ -804,22 +830,25 @@
   Since $S$ has finite measure, assume $\mu(S) =1$.
 
   \begin{pf}
-  "$\Leftarrow$": Proof by contrapositive: If $A\subset S$ is $G$-invariant with
-  measure $0 < \mu(A) < \mu(S) = 1$ then $\chi_A$ is also $G$-invariant in
-  $L^2(S)$ as well as the projection $\chi_A - \mu(A)\cdot 1$ in $L^2(S)\ominus
-  \mathbb{C}$. Therefore there exists an invariant vector in $L^2(S)\ominus
-  \mathbb{C}$. "$\Rightarrow$": (\cite{Kerr16}(Prop 2.7)) Suppose the action is
-  ergodic and $f\in L^2(S)\ominus \mathbb{C}$ is $G$-invariant. We can find a
-  measurable set $D\subset \mathbb{C}$ such that $0<\mu(f^{-1}(D)) < 1$ and
-  denote $\widetilde{A} = f^{-1}$. Now we verify ergodicity. For every $g\in G$
-  the symmetric difference $g\widetilde{A} \Delta \widetilde{A}$, for which all
-  points are in the set $\{x \in X | \ |f(x)-sf(x)| > 0\}$, which has measure
-  zero because $\|f- sf\|_2=0$. Therefore the action fails to be ergodic.
+    "$\Leftarrow$": Proof by contrapositive: If $A\subset S$ is $G$-invariant
+    with measure $0 < \mu(A) < \mu(S) = 1$ then $\chi_A$ is also $G$-invariant
+    in $L^2(S)$ as well as the projection $\chi_A - \mu(A)\cdot 1$ in
+    $L^2(S)\ominus \mathbb{C}$. Therefore there exists an invariant vector in
+    $L^2(S)\ominus \mathbb{C}$. "$\Rightarrow$": (\cite{Kerr16}(Prop 2.7))
+    Suppose the action is ergodic and $f\in L^2(S)\ominus \mathbb{C}$ is
+    $G$-invariant. We can find a measurable set $D\subset \mathbb{C}$ such that
+    $0<\mu(f^{-1}(D)) < 1$ and denote $\widetilde{A} = f^{-1}$. Now we verify
+    ergodicity. For every $g\in G$ the symmetric difference $g\widetilde{A}
+    \Delta \widetilde{A}$, for which all points are in the set $\{x \in X | \
+    |f(x)-sf(x)| > 0\}$, which has measure zero because $\|f- sf\|_2=0$.
+    Therefore the action fails to be ergodic.
   \end{pf}
 
   The adjective ``finite'' on the measure is necessary, because for a set
   $A$ of infinite measure the statement is no longer true as $\chi_A$
   will no longer be in $L^2$.
+
+  % TODO: This is of course fine, because we care about the special case where the space $S$ in question is the quotient of a lattice $G/\Gamma$, which has finite measure by definiton. So this restriction is not only acceptable but desired.
 
   If $A\subset S$ is $G$-invariant then $\chi_A\in L^2(S)$ will also
   be $G$-invariant. 
@@ -1168,14 +1197,82 @@
 \section{Outro}\label{outro}}
 
 
+  Now that we've proven the theorem, it's natural to ask what we do with it now.
+  At first glance, the statement about matrix coefficients doesn't seem particularly useful,
+  but recall from this \hyperref[the-connection-between-ergodicity-and-unitary-representations]{section}
+  that we have a connection to invariant subsets of a possibly ergodic space.
+
+  We have mentioned in the very beginning where we wanted to go with this, but let's recall it here.
+
+  The problem we posed at the beginning of the paper is the following:
+
+  \begin{problem}[When do closed subgroups act ergodically]
+    Let \G be a semisimple Lie group and $S$ an ergodic \G-space. If $H\subset G$ is a closed subgroup, when is $H$ ergodic on $S$.
+  \end{problem}
+
+  \begin{thm}[Zimmer 2.2.19, originally \citeauthor{Moore66}\cite{Moore66}]
+    \label{thm:2.2.19}
+     Let $G_i$ be semisimple, non-compact Lie groups and $G = \prod G_i$ and
+     suppose \mpi is a unitary representation that has no invariant vectors of
+     \G such that \mpi has no invariant vectors for each $\pi|G_i$. If $H
+     \subset G$ is a closed subgroup and $\pi|H$ has non-trivial invariant
+     vectors then $H$ is compact.
+  \end{thm}
+
+  \begin{pf}
+     % TODO: fill in
+  \end{pf}
+
+
+  % TODO: for the case of spaces with finite invariant measure the established condition is exactly necessary and sufficient for ergodicity.
+  \hyperref[thm:2.2.17]{invariant vec}
+
+  % TODO: Recall that the defition of a lattice specifies that the quotient $G/Gamma$ has finite measure. This means for actions on that space, searching for invariant vectors is exactly equivalent to establishing ergodicity.
+
+  % lemma 2.2.13
+  % leads to thm 2.2.15
+  % leads to thm 2.2.6 Moore's ergodicity theorem. find reference
+
+  \begin{thm}[Zimmer 2.2.15]
+    \label{thm:2.2.15}
+     
+  \end{thm}
+
+  \begin{pf}
+     
+  \end{pf}
+
+  \begin{thm}[Zimmer 2.2.6, Moore's Ergodicity Theorem]
+    \label{thm:2.2.6}
+    \G as usual.
+    Let $\Gamma \subset G$ be an irreducible Lattice. % TODO: irreducible?
+    If $H \subset G$ is a closed subgroup and $H$ is not compact, then $H$ is ergodic on $G/\Gamma$
+  \end{thm}
+
+  \begin{pf}
+     
+  \end{pf}
+
+  % TODO: cor 2.2.4
+
+  % TODO: mat coeff vanish > no invv means H cpct > no invv iff H erg in L^2 - C > H closed non-cpct impl H erg > S=G/Gamma > original problem
+
+
   \hypertarget{return-of-the-initial-example}{%
   \subsection{The return of the initial example
   }\label{return-of-the-initial-example}}
 
-  circle back to fractional linear transforms.
-  hyperbolas! 3 cases comp eucl and non-comp. if we want to go to infinity
-  and don't want boring examples, hyperbolic geometry is necessary.
-  fractional linear transforms. riemann sphere model?
+
+  Looking back at the initial example, the case becomes clear.
+  applying the \hyperref{thm:}[theorem] with $\G = \sltr$.
+  A lattice \Gamm in \G acts ergodically on $\bar{\bbr}$, since $\bar{\bbr} \cong \sltr / P$ and $P$ is not compact. %% Ex 2.2.8
+
+  % TODO: def 2.2.4 needs to get in here somehow.
+
+  % circle back to fractional linear transforms.
+  % hyperbolas! 3 cases comp eucl and non-comp. if we want to go to infinity
+  % and don't want boring examples, hyperbolic geometry is necessary.
+  % fractional linear transforms. riemann sphere model?
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
