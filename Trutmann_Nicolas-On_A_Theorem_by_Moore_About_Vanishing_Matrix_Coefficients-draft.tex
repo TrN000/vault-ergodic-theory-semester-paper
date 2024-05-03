@@ -54,7 +54,7 @@
 \usepackage{mathrsfs}
 % \usepackage{amsthm}
 % \usepackage{thm-amsthm}
-\usepackage[standard,thref,hyperref]{ntheorem}
+\usepackage[standard,amsmath,thref,hyperref]{ntheorem}
 \theorempreskip{20pt} % TODO: hacky
 \theorempostskip{10pt} % TODO: hacky
 \theoremstyle{break}
@@ -65,6 +65,7 @@
 \theoremstyle{plain}
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
 \newtheorem*{pf}{proof}
 \theoremindent1cm
 \newtheorem*{rk}{Remark}
@@ -190,7 +191,7 @@
   the reader to have an undergraduate level understanding of the
   prerequisites in algebra and representation theory, but will state
   foundational information regardless, and provide references in all
-  cases. We furthermore take care to clarify notation before use.
+  cases. We also take care to clarify notation before use.
 
   The theorem, which we will state shortly, is historically at home in the
   development of ergodic theory, which in turn is a relatively new field
@@ -212,33 +213,42 @@
   well as C.C. Moore, who, together with his student R. Howe, worked out the
   theorem we are talking about in this paper.
 
+  To give an extremely rough idea of the subject, ergodic throry concerns itself with (group) actions on some (measure) space
+  describing long-term behavior of dynamical systems.
+  The classical example comes from thermodynamics. Consider the motion of particles in an ideal gas.
+  Ergodicity provides a framework for studying the common-sense notion that the particles would eventually mix completely (i.e. reach every possible configuration of the space),
+  like smoke in an enclosed room would eventually fill the entire room completely.
+
+  The way this behavior is modelled is by a time evolution map $T:X \rightarrow X$ on some phase space $X$.
+  and ergodicity is expressed in the following way :
+
+  There is no true subset of $X$, $\emptyset \subsetneq A \subsetneq X$ that is also invariant with respect to some measure $\mu$.
+  Equivalently, if $A$ is invariant then either $\mu(A) =0$ ($A$ is a null set) or $\mu(A) = \mu(X)$ ($A$ is dense in $X$).
+
+  Mathematicians found purely mathematical interest in this behavior and began studying it on its own,\
+  dropping the phzsical notion of configuration space and time evolution and substituting the evolution map with group actions $G:X \rightarrow X$.
+  Notably using topological groups such as Lie groups, as we will do in this paper.
+
   %TODO: (this is uglily wrenched in here. find more elegant place for this)
   The main aim of the book by Zimmer is focused on two
   theorems by Mostow and Margulis. The ``arithmeticity theorem'' and the
   ``rigidity theorem'', which show how Lie groups and lattices in them
   interact. 
 
+  A lattice \Gamm in a locally compact topological group \G is a discrete subgroup such that the quotient $G/\Gamma$ has finite measure.
+  For example, $\mathbb{Z}^n$ in $\bbr^n$ is a lattice, as is $SL(n, \mathbb{Z})$ in $\slnr$.
+  The rigidity and arithmeticity theorems state (very roughly) that lattices determine the surrounding group and groups determine lattices.
+  This glosses over a tremendous amount of detail, but these theorems are not the focus of this paper, so this shall suffice.
+  They serve the purpose of motivating the study of lattices in Lie groups.
 
-  % TODO:  (find these: Margulis, Borel, Furstenberg, Kazhdan, Moore, Howe, and Zimmer \cite{mackey74})
-  % TODO: should really cite howe 79 and read it too, lol
-  The paper by Moore \cite{Moore66} was published in 1966. Margulis' Theorems were published in 
-  % TODO:  (wtf, idk. historical research has never been my forte)
+  % todo:  (find these: Margulis, Borel, Furstenberg, Kazhdan, Moore, Howe, and Zimmer \cite{mackey74})
+  % todo: should really cite howe 79 and read it too, lol
+  % The paper by Moore \cite{Moore66} was published in 1966. Margulis' Theorems were published in 
+  % todo:  (wtf, idk. historical research has never been my forte)
 
-  Sources for the historical background: \cite{mackey74}(chapter 1.
-  Introduction) \cite{Zimmer84}(chapter 1. Introduction)
+  % Sources for the historical background: \cite{mackey74}(chapter 1.
+  % Introduction) \cite{Zimmer84}(chapter 1. Introduction)
 
-  The theorem itself does not directly involve ergodicity, but is instead
-  used to prove ergodicity.
-
-  The theorem itself is rather simple to state:
-
-  {[}{[}Moore's Ergodicity Theorem{]}{]}
-
-  To clarify some points, note that we have specified non-compact groups.
-  This allows us to talk about ``infinity'' at all. Next, what is an
-  invariant vector? Simply, for all $g\in G$, and a vector $v$, we
-  have that $\pi(g)v = v$, or, that $v$ is preserved by any linear map
-  given by the representation.
 
 
 
@@ -247,15 +257,23 @@
 
 \hypertarget{introduction}{\section{Introduction}\label{sec:introduction}}
 
+  We should, at this point, introduce the theorem we would like to present.
 
-  % TODO:  (remove this section once implemented)
-  \begin{itemize}
-    \item historical context -\textgreater{} up in first section. maybe move down
-    \item where this theorem comes from -\textgreater{} \cite{howe79}
-    \item what it does
-    \item why we care
-    \item how we're gonna go about it
-  \end{itemize}
+    In \cite{Zimmer84} it's Theorem 2.2.20, originally from \cite{howe79}.
+  \begin{thm}[Howe-Moore's Ergodicity Theorem]
+    \label{thm:main-thm}
+    Let $G_i$ be connected non-compact simple Lie groups, $G = \prod G_i$ and $\pi$ a unitary representation of \G .
+    Then all matrix coefficients $f(g) = \inn{\pi(g)v,w}$ vanish at infinity. I.e. $f(g) \rightarrow 0$ as $g$ leaves compact subsets of \G.
+  \end{thm}
+
+  This theorem seems, at first glance, completely unrelated to anything mentioned so far.
+  That 
+
+  To clarify some points, note that we have specified non-compact groups.
+  This allows us to talk about ``infinity'' at all. Next, what is an
+  invariant vector? Simply, for all $g\in G$, and a vector $v$, we
+  have that $\pi(g)v = v$, or, that $v$ is preserved by any linear map
+  given by the representation.
 
   \hypertarget{question-when-is-an-action-ergodic}{%
   \subsection{question: when is an action
@@ -452,6 +470,9 @@
 
   A \emph{lattice} is a discrete subgroup $\Gamma$ of a locally compact group $G$
   such that there exists a finite measure on the quotient space $G/\Gamma$.
+
+
+  % TODO: Iwasawa decomp here? sure why not.
 
 
   \hypertarget{group-actions}{
@@ -761,15 +782,51 @@
   \end{thm}
 
   \begin{pf}
-    We identify $N$ with \bbr via the map $\ipmatrix{1 & x \\ 0 & 1} \mapsto x$ 
      % TODO: fill in
+    The subgroup $N$ is isomorphic to \bbr, so we can apply theorem \autoref{thm:2.3.4}
+    to identify $N$ with $\hat{N} \cong \hat{\bbr}$ and the representation \mpi with $\pi_{\mu, \hat{\bbr}}$.
+    To spell it out $\pi|N \cong \pi_{\mu, \hat{\bbr}}: N \rightarrow \mathcal{U}(L^2(\hat{\bbr}, \mu, \hilb_{\lambda}))$.
+
+    A section of this space can be written as $f: \lambda \mapsto v_{\lambda}$ for $v_{\lambda} \in \hilb_{\lambda}$.
+    By construction of $\pi_{\mu, \hilb_{\lambda}}$ we have an explicit formula $\lambda(t)f(\lambda)$, where $\lambda(t) \in S^1$ and $f(\lambda)$ in some complex Hilbert space.
+    For a representation to be invariant, we need that $\lambda(t)f(\lambda) = f(\lambda)$ for all $t$ and almost all $\lambda$ ($\mu$ almost everywhere).
+    The only choice for $\lambda$ is $\lambda_0(t) := e^{i \cdot 0 \cdot t} = 1$ for all $t$.
+    So all of $\hilb_0$ will remain invariant.
+    If $\mu(\{0\}) = 0$, then all these will be equivalent under the equivalence class on $L^2(\hat{\bbr})$ to the trivial vector.
+    So for $v$ to be a non-trivial vector, we need $\mu(\{0\}) > 0$.
+
+    Next, we want to show that for any vectors $f, g \in L^2(\hat{\bbr})$ we get $\lim_{g\to\infty} \inn{\pi(g)f,g} = 0$.
+    We move the problem to compact sets in $\hat{\bbr}$.
+    Because $f,g$ are in a square integrable function space, we can find compact sets $E, F \in \hat{\bbr}$ such that $\abs{\chi_Ef - f} < \varepsilon$ and $\abs{\chi_Fg -g} < \varepsilon$, $\forall \varepsilon > 0$.
+
+    % TODO: this doesn't work.
+
+  \end{pf}
+
+  % TODO: fill in 
+
+  \begin{cor}
+    \label{cor:2.3.7}
+    For \mpi a unitary representation of $P$, any $A$-invariant vector is also $P$-invariant.
+  \end{cor}
+
+  \begin{pf}
+    If \mpi is a representation on \hilb, let $W=\{v \in \hilb|v \text{ is } \pi(N)\text{-invariant}\}$.
+    Since $N$ is normal, $W$ is a $P$-invariant subspace, and so is $W^{\perp}$. 
+    Since $W^{\perp}$ has no $N$-invariant vectors, we are in the second case
+    in the above theorem for the representation on $W^{\perp}$, and in
+    particular, there are no $A$-invariant vectors in $W^{\perp}$. Since the
+    projection onto $W^{\perp}$ of an $A$-invariant vector in \hilb is also
+    $A$-invariant, this shows that all $A$-invariant vectors are in $W$, and
+    hence that all $A$-invariant vectors are $P$-invariant.
   \end{pf}
 
 
-  % TODO:  (this drops out of nowhere) -> schur decomp
-  % TODO: Schur decomp
-  All the irreducible unitary
-  representations of $\mathbb{R}^n$ are one-dimensional.
+  % todo:  (this drops out of nowhere) -> schur decomp
+  % todo: Schur decomp -> not so. Schur's lemma
+  All the irreducible unitary representations of \bbr are one-dimensional.
+  This is a corollary of Schur's lemma, which states that every complex
+  irreducible representation of an abelian group is one-dimensional.
 
   It turns out that the group unitary representations on $\mathbb{R}^n$
   are isomorphic to $\mathbb{R}^n$. So we define a map from
@@ -794,6 +851,7 @@
   relevant other than to further the understanding of the above definition.
   Note here that $\text{lambda}$ denotes the programming term of a lambda
   function, an unfortunate notation collision.
+  The conceptual problem here is that we have a hidden stack of expressions; we give a very concrete definition, $\lambda(t)f(\lambda)$ for a very abstract object $\pi_{\mu, \hat{\bbr}^n}$, with the layers in between not being immediately obvious.
   \begin{align*}
   & \text{func }\ \pi_{\mu,\mathscr{H}_{\lambda}}(t: \mathbb{R}^n) \rightarrow \mathcal{U}(L^2(\hat{\mathbb{R}}^n)) \ \{ \\
   & \qquad \text{return lambda}(f:\ L^2(\hat{\mathbb{R}}^n)) \rightarrow L^2(\hat{\mathbb{R}}^n) \ \{ \\
@@ -804,37 +862,47 @@
   & \} \\
   \end{align*}
 
+  This shows that the objects inbetween are defined.
+
+
   \hypertarget{the-connection-between-ergodicity-and-unitary-representations}{%
   \subsection{The Connection between Ergodicity and Unitary Representations}\label{the-connection-between-ergodicity-and-unitary-representations}}
 
-  approach: - char func - char func in L2(S) and non-trivial - if A
-  invariant then char func invariant as a vector in L2(S) - due diligence:
-  make sure measure works
+  approach: 
+    - char func 
+    - char func in L2(S) and non-trivial 
+    - if A invariant then char func invariant as a vector in L2(S) 
+    - due diligence: make sure measure works
 
   To see why we care about unitary representations at all if we really
-  want ergodicity, we neeedd to make the folllowing connection. We use the
+  want ergodicity, we need to make the folllowing connection. We use the
   characteristic function of a set to connect the set to a vector in
   $L^2(S)$. The characteristic function of a subset $A\subset S$, is
   defined as $\chi_A(x) = 1$ for $x \in A$ and $0$ otherwise.
 
   This representation allows us to pass from talking about sets to talking
-  about vectors, while retaining the properties we care about.
+  about vectors (in function spaces), while retaining the properties we care
+  about.
 
   \begin{thm}[Zimmer 2.2.17]
     \label{thm:2.2.17}
-    An action $G\curvearrowright S$, with **finite** invariant measure is ergodic
-    on $S$ if and only if the restriction of the above representation to  in
-    $L^2(S) \ominus \mathbb{C}$ has no invariant vectors.
+    An action $G\curvearrowright S$, with \emph{ finite } invariant measure is
+    ergodic on $S$ if and only if the restriction of the above representation
+    to $L^2(S) \ominus \mathbb{C}$ has no invariant vectors.
   \end{thm}
     
   Since $S$ has finite measure, assume $\mu(S) =1$.
 
   \begin{pf}
-    "$\Leftarrow$": Proof by contrapositive: If $A\subset S$ is $G$-invariant
+
+    "$\Leftarrow$": Proof by contrapositive:
+    If $A\subset S$ is $G$-invariant
     with measure $0 < \mu(A) < \mu(S) = 1$ then $\chi_A$ is also $G$-invariant
     in $L^2(S)$ as well as the projection $\chi_A - \mu(A)\cdot 1$ in
     $L^2(S)\ominus \mathbb{C}$. Therefore there exists an invariant vector in
-    $L^2(S)\ominus \mathbb{C}$. "$\Rightarrow$": (\cite{Kerr16}(Prop 2.7))
+    $L^2(S)\ominus \mathbb{C}$.
+
+    "$\Rightarrow$": \cite{Kerr16}(Prop 2.7)
     Suppose the action is ergodic and $f\in L^2(S)\ominus \mathbb{C}$ is
     $G$-invariant. We can find a measurable set $D\subset \mathbb{C}$ such that
     $0<\mu(f^{-1}(D)) < 1$ and denote $\widetilde{A} = f^{-1}$. Now we verify
@@ -848,11 +916,14 @@
   $A$ of infinite measure the statement is no longer true as $\chi_A$
   will no longer be in $L^2$.
 
-  % TODO: This is of course fine, because we care about the special case where the space $S$ in question is the quotient of a lattice $G/\Gamma$, which has finite measure by definiton. So this restriction is not only acceptable but desired.
+  % TODO:do we have the nec stuff in the intro?
+  This is of course fine, because we care about the special case where the
+  space $S$ in question is the quotient of a lattice $G/\Gamma$, which has
+  finite measure by definiton. So this restriction is not only acceptable but
+  desired.
 
   If $A\subset S$ is $G$-invariant then $\chi_A\in L^2(S)$ will also
   be $G$-invariant. 
-  % TODO:  (is ominus actually a valid op here? yes, see Kerr Li prop 2.7)
   For $A$ neither null nor conull then
   $\chi_A$, $f_A \neq 0$, where $f_A$ is the projection of
   $\chi_A$ onto $L^2(S) \ominus \mathbb{C}$.
@@ -876,7 +947,7 @@
 
   We're going to use the following decomposition, which we take for
   granted 
-  % TODO:  (find reference for Iwasawa decomposition).
+  % TODO:  (find reference for Iwasawa decomposition). ->
   The so called Iwasawa decomposition of $SL(2, \mathbb{R})$ into three
   matrices $K$, $A$, and $N$, defined as
   \begin{align}
@@ -942,29 +1013,25 @@
 
 
   % TODO: various decompositions for how we want to look at sl2r for 
-
-  \hypertarget{theorem-for-cartan-decomposition}{%
-  \subsection{Theorem for Cartan
-  decomposition}\label{theorem-for-cartan-decomposition}}
-
-  \hypertarget{polar-decomposition-to-cartan}{%
-  \subsection{Polar decomposition to Cartan}
-  \label{polar-decomposition-to-cartan}}
-
-  $T = US$ for some unitary $U$ and a sym pos def $S$. $S$ can be
-  diagonalized into $U_0 D U_0^{-1}$ so we can write
-  $T = U U_0 D U_0^{-1} = U_1 D U_2$ for $U_i \in SO(2, \mathbb{R})$.
+  % TODO: bad intro sentence:
+  Recall the polar decomposition. we'll need it for the next lemma, which will do a lot of heavy lifting.
+  Let $T \in \slnr$ be a matrix. We can decompose $T$ as follows:
+  $T = US$ for some unitary $U$ and a symmetric positive definite $S$. $S$ can be
+  diagonalized, because it has an orthonormal basis of eigenvectors, into $U_0 A U_0^{-1}$ so we can write
+  $T = U U_0 D U_0^{-1} = U_1 A U_2$ for $U_i \in SO(2, \mathbb{R})$.
   Then $SL(2, \mathbb{R}) = KAK$ for $K = SO_2$ and $A$ the diagonal
   group. This is the Cartan decomposition.
 
-
-
+  The advantage this decomposition provides us is that we have neatly split the group $G$ into compact and non-compact parts.
+  Additionally the non-compact part is particularly easy to handle, as diagonal matrices are easy to think about.
+  The lemma we are about to present, shows how useful this distinction is. It states that we only need to verify that matrix coefficients vanish on $A$.
+  Intuitively, this tells us that the behavior of matrix coefficients at infinity has nothing to do with compact components.
 
 
   \begin{lem}
     \label{lemma}
     If $\pi$ is a unitary representation of a Group $G$ (which is assumed to be second countable) and we can write $G =
-    KAK$, with $K$ compact, then it suffices to check that the matrix
+    KAK$, with $K$ compact (and second countable), then it suffices to check that the matrix
     coefficients vanish on A as $g \rightarrow \infty$.
   \end{lem}
 
@@ -980,7 +1047,7 @@
     $n \rightarrow \infty$ with
     $|\langle \pi(g_n) v | w \rangle | \geq \varepsilon$ for some $\varepsilon > 0$.
 
-    Because $G$, and therefore $K$ is second countable and compact, it is also sequentially compact.
+    Because $G$, and therefore $K$ is second countable and compact, it is also sequentially compact\footnote{A topological space is called \emph{sequentially compact} if every sequence of points has a convergent subsequence.}.
     So we can suppose $k_{1,n} \rightarrow k$ and $k_{2,n}^{-1} \rightarrow k'$.
     Then, for $n$ sufficiently large, $|\langle \pi(a_n)\pi(k)v | \pi(k') w \rangle | \geq \varepsilon/2$.
     This follows from the following estimation, where we ommit the representation $\pi$ for legibility:
@@ -999,19 +1066,8 @@
     coefficient in $\pi | A$ that fails to vanish at infinity.
   \end{pf}
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\hypertarget{proof-for-slnr}{%
-  \section{Proof for \texorpdfstring{$SL(n, \mathbb{R})$}{SL(n, R)}}
-\label{proof-for-slnr}}
-
-
-% old stuff
-
   \hypertarget{theorem-for-sl2-r}{%
-    \subsection{Theorem for \texorpdfstring{$SL(2, \mathbb{R})$}{SN(2, R)})}\label{theorem-for-sl2-r}}
+  \subsection{Theorem for \texorpdfstring{$SL(2, \mathbb{R})$}{SN(2, R)})}\label{theorem-for-sl2-r}}
 
   If $\pi$ is a unitary representation of $G = SL(2, \mathbb{R})$ with no
   invariant vectors, then all matrix coefficients of $\pi$ vanish at $\infty$.
@@ -1077,7 +1133,13 @@
   \end{pf}
 
 
-%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hypertarget{proof-for-slnr}{%
+  \section{Proof for \texorpdfstring{$SL(n, \mathbb{R})$}{SL(n, R)}}
+\label{proof-for-slnr}}
+
+
 
 
   In this section we'll prove the statement for $G = \slnr$ and later show how
@@ -1085,78 +1147,87 @@
   applying \hyperref[lemma]{lemma} \ref{lemma}. Thus it suffices to show that
   matrix coefficients vanish on $A \subset G$ to imply that they vanish on \G.
 
+  Let $A \subset G$ be the subgroup of diagonal matrices. We denote the elements
 
-  \begin{math}
-    \begin{pmatrix}
+  $$
+  A \ni a := \begin{pmatrix}
+    a_1 & & \\
+        & \ddots & \\
+        & & a_n
+  \end{pmatrix}
+  $$
+
+  by $(a_1, \dots, a_n)$.
+
+  To get an equivalent to the group $N$ from the earlier proof, we first define the group $B$, which has $1$ on the diagonal and $0$ everywhere but the first row.
+
+  $$
+    B \ni b := \begin{pmatrix}
       1 & b_{1,2} & & \cdots & & b_{1,n} \\
       0 & & &  & \\
       \vdots & & & \Id_{n-1} & \\
       0 & & & & \\
     \end{pmatrix}
-  \end{math}
+  $$
 
-  Note: in the case of $n = 2$, which reduces this to \sltr and the above matrix to $N$ from the previous proof.
+  and write $b = (1, b_2, \dots, b_n)$, specifying only the first row.
+  We now have analogues for $A$, $N$ and we set $H:=AB$. We will replicate the proof for \sltr on this group.
+  In the case of $n = 2$, this reduces to \sltr and the above matrix to $N$ from the previous proof.
 
+  Observe $B \cong \bbr^n$.
+  These one-row spaces like $B$ are actually abelian normal subgroups.
+  To see abelianness, decompose the matrix into $(\Id + b)(\Id +b') = \Id + \Id\cdot b + \Id\cdot b' + b\cdot b'$.
+  Note that a b are nilpotent and by choosing the same row for our entries they
+  ``miss'' each other during multiplication and so $b\cdot b' =0$. The rest then commutes
+  due to commutativity of matrix addition.
+  Similarly, we get that $A$ normalizes $B$: $aBa^{-1} = a(\Id + b)a^{-1} = \Id + aba^{-1}$.
+  The last term will again be entirely in the first row and therefore the entire expression will be in $B$.
+  Calculation shows $aba^{-1} = (1, a_1a_2^{-1}b_2, \dots, a_1a_n^{-1}b_n)$.
 
+  The adjoint action on $\hat{\bbr}^{n-1}$ will be given by the same expression,
+  replacing $b_i$ by the dual variables $\lambda_i$, $i = 2, \dots , n$.
+  Therefore, if $E,\ F \subset \hat{\bbr}^{n-1}$ are
+  compact subsets which are disjoint from the union of the hyperplanes $\lambda_i = 0$,
+  $i = 2, \dots , n$ then for $a\in A$ outside a sufficiently large compact set, we have
+  $a\cdot E \cap F = 0$.
 
+  Therefore, as in \thref{thm:2.3.6} if $\mu$ assigns measure $0$ to the union of the hyperplanes $\lambda_i =0$ then all matrix coefficients vanish along $A$, which proves the theorem.
 
+  It remains to analyse the case $\mu(\{\lambda_i=0\}) > 0$ and show that this is impossible.
 
-  % TODO: unoriginal
-   Following our remark in the preface, we shall
-  prove this in detail for G = SL(n, IR), and then indicate how the proof
-  carries over to general G. Let A c SL(n, IR) be the group of diagonal
-  matrices. We denote an element aEA by (at, \ldots{} , an), where these
-  are to be interpreted as the diagonal elements of a matrix. We note Ila;
-  = 1. Let B be the set of matrices (cii) with cu = 1, and cii = 0 fori
-  =f.~j and i \textasciitilde{} 2. We denote an element bEB by b = (1, b 2
-  , •.• , bn) where this is to be interpreted as the first row of the
-  corresponding matrix. Then30 Ergodic theory and semisimple groups aBa- 1
-  = B for aEA, and hence H = AB is a subgroup of G, and B c H is normal.
-  We observe B \textasciitilde{} IRn- 1 . As with SL(2, IR), by Lemma
-  2.4.1, it suffices to show that the matrix coefficients of n: IA vanish
-  at oo. For SL(2, IR) we obtained this using knowledge of the
-  representation of P. In our more general situation, we will examine the
-  representation of H. (Note that H = P for n = 2.) Express n: IB
-  \textasciitilde{} n:\textless\textasciitilde.x .) (by 2.3.3) via the
-  above identification of B with IRn- 1 . Matrix multiplication shows that
-  for aEA, bEB, aba- 1 = (1, a 1 ai 1 b2, \ldots{} , a 1 a;; 1 bn)EB. The
-  adjoint action on !Rn- 1 will be given by the same expression, replacing
-  b; by the dual variables h i = 2, \ldots{} , n.~Therefore, if E, F c
-  !Rn- 1 are compact subsets which are disjoint from the union of the
-  hyperplanes ).; = 0, i = 2, \ldots{} , n then for aEA outside a
-  sufficiently large compact set, we have a· En F = 0. Therefore, arguing
-  exactly as in the proof of Theorem 2.3.6, we deduce that if f.J. assigns
-  measure 0 to the union of the hyperplanes A.; = 0, then all matrix
-  coefficients vanish along A, and by our comments above, this suffices to
-  prove the theorem. Therefore, it remains to show that f.J.(\{A.; = 0\})
-  \textgreater{} 0 is impossible. If f.J.(\{J.; = 0\}) \textgreater{} 0,
-  then by definition of f.J.\textless{} 11 .x,J, the subgroup B; c B, B; =
-  \{bEBibi = 0 fori \#j\} leaves non-trivial vectors invariant (namely,
-  the subspace .\#p.;=o 1.) However B; c H; c G where H; \textasciitilde{}
-  SL(2, IR) and is defined as follows H; = \{(cik)ESL(n, IR)Icjj = 1 for j
-  \# 1, i, and for j \# k and \{1, i\} \# \{j, k\}, Cjk = 0\}. From the
-  vanishing of matrix coefficients for SL(2, IR), (2.4.2), the existence
-  of a B;-invariant vector implies the existence of a H;-invariant vector
-  (since B; is clearly non-compact). In particular, A;= H; n A has
-  non-trivial invariant vectors. Let W= \{vEYl'ln:(a)v =
-  vforallaEA;\}.Itsufficestoshowthat WisG-invariant. For then the
-  representation n:w ofG on Whas kernel (n:w) ::::J A; which by simplicity
-  of G implies that kernel(n:w) = G, so that G itself leaves all vectors
-  in W fixed, contradicting our assumptions. (For the analogous argument
-  in the semisimple case the fact that dim(kernel n:w) \textgreater{} 0
-  contradicts the assumption that no simple factor of G leaves vectors
-  invariant.) We now turn to G-invariance of W. For k \# j, let Bki c G be
-  the one- dimensional subgroup defined by Bki = \{(c,.)lc,, = 1, and for
-  r \#sand (r, s) \# (k, j), c,. = 0\}. We consider two possibilities. (i)
-  k \# i or 1 andj \# i or 1. Then Bki commutes with A;, and hence Bki
-  leaves W invariant. (ii) If \{ k, j\} n \{ i, 1\} \# 0 then A;
-  normalizes Bki· Hence A;Bki is a 2-dimensional subgroup and is
-  isomorphic to P in such a way that A;+-+(diagonal matricesMoore's
-  ergodicity theorem 31 in P), Bki- N. By Corollary 2.3.7, all
-  A;-invariant vectors are also Bki invariant. Hence in this case, too,
-  Bki leaves W invariant. Finally, we remark that since A; c A, A abelian,
-  A also leaves W invariant. However, A and all Bki together generate G.
-  Therefore G leaves W invariant, completing the proof.
+  If $\mu(\{\lambda_i=0\}) > 0$, then the subgroup $B_i \subset B$, $B_i := \{b \in B\ |\ b_j=0 \text{ for } i\neq j\}$ leaves non-trivial vectors invariant.
+
+  However $B_i \subset H_i \subset G$ where $H_i \cong \sltr$ as follows: the matrices in $H_i$ are those that have ones on the diagonal and zero elsewhere except for the index combinations $(1,1),\ (1,i),\ (i,1),\ (i,i)$.
+
+  $$
+  H_i = \begin{pmatrix}
+    c_{11} & & c_{1i} & \\
+           & \ddots & & \\
+    c_{i1} & & c_{ii}&  \\
+           & & & \ddots
+  \end{pmatrix}
+  $$
+
+  From the proof for \sltr we know that $B_i$-invariant vectors imply $H_i$ invariant vectors. In particular $A_i = A \cap H_i$ has non-trivial invariant vectors.
+
+  Let $W = \{v \in \hilb | \pi(a)v=v\}$. We show that \G leaves $W$ invariant.
+  First, since $A_i \subset A$, $A$ abelean, $A$ leaves $W$ invariant. Now
+  consider matrices $B_{kj}$ which have 1 along the diagonal and 0 elsewhere,
+  except for the coefficient $(b_{kj})$. If $k\neq j$ and $j\neq i$ or $1$ then
+  $B_{kj}$ commutes with $A_i$ and therefore leaves $W$ invariant. If
+  $\{k,j\}\cap \{1,i\} \neq \emptyset$ then $A_i$ normaliyes $B_{kj}$.
+  Therefore $A_iB_{kj}$ is isomorphic to $P$ such that $A_i$ corresponds to the
+  diagonal matrices in $P$ and $B_{kj}$ corresponds to $N$. By
+  \thref{cor:2.3.7} this case as well, leaves $W$ invariant.
+
+  The proof finishes with the argument that if $W$ is \G-invariant, then the
+  representation $\pi_W$ has $A_i \subset \text{kernel}(\pi_W)$. And because \G
+  is simple this implies that $\text{kernel}(\pi_W) = G$, so that \G leaves all
+  vectors in $W$ fixed, contradicting our assumptions.
+
+  For the last paragraph, note that if \G is semisimple, the fact that
+  $\dim(\text{kernel}(\pi_W)) >0$ contradicts the assumption that no simple
+  factor of \G leaves bectors invariant.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1166,35 +1237,34 @@
 \section{Proof for a general \texorpdfstring{$G$}{G}}\label{proof-for-a-general-G}}
 
 
-  % TODO: unoriginal
-   In concluding this section, we indicate the
-  modifications necessary in the above argument for a general semisimple
-  G. Let A c G be a maximal IR-split torus. Then A c G' c G where G' is
-  semisimple and split over IR, and A is the maximal IR-split torus of G'.
-  Choose a maximal linearly independent set S of positive roots of G'
-  relative to A such that for a, \{3ES, a+ \{3 is not a root. Then the
-  direct sum of the root spaces is the Lie algebra of an abelian subgroup
-  B c G', with dim B =dim A, and B is normalized by A. The representations
-  of AB can be analyzed exactly as in the case of SL(n, IR), and since the
-  relevant copies of s1(2, IR) are present, we deduce that either we are
-  done, or some one-dimensional subgroup A 0 c A leaves a non-trivial
-  vector fixed. (Actually to obtain this we may need to use the universal
-  covering G of SL(2, IR) rather than SL(2, IR) itself. Namely, we need
-  that for N c SL(2, IR) as in the proof of2.4.2, N c G the connected
-  component of the lift of N to G (so that N \textasciitilde{} N ), that N
-  invariant vectors are G-invariant. However, this follows by elementary
-  covering space arguments applied to the picture in the proof of 2.4.2.
-  If G is algebraic, which will be our main concern, consideration of
-  SL(2, IR) suffices.) The proof then proceeds as in the case of SL(n,
-  IR); G is generated by elements that either commute with Ao or lie in a
-  suitable copy of the group P.
-
+  % % TODO: unoriginal
+  %  In concluding this section, we indicate the
+  % modifications necessary in the above argument for a general semisimple
+  % G. Let A c G be a maximal IR-split torus. Then A c G' c G where G' is
+  % semisimple and split over IR, and A is the maximal IR-split torus of G'.
+  % Choose a maximal linearly independent set S of positive roots of G'
+  % relative to A such that for a, \{3ES, a+ \{3 is not a root. Then the
+  % direct sum of the root spaces is the Lie algebra of an abelian subgroup
+  % B c G', with dim B =dim A, and B is normalized by A. The representations
+  % of AB can be analyzed exactly as in the case of SL(n, IR), and since the
+  % relevant copies of s1(2, IR) are present, we deduce that either we are
+  % done, or some one-dimensional subgroup A 0 c A leaves a non-trivial
+  % vector fixed. (Actually to obtain this we may need to use the universal
+  % covering G of SL(2, IR) rather than SL(2, IR) itself. Namely, we need
+  % that for N c SL(2, IR) as in the proof of2.4.2, N c G the connected
+  % component of the lift of N to G (so that N \textasciitilde{} N ), that N
+  % invariant vectors are G-invariant. However, this follows by elementary
+  % covering space arguments applied to the picture in the proof of 2.4.2.
+  % If G is algebraic, which will be our main concern, consideration of
+  % SL(2, IR) suffices.) The proof then proceeds as in the case of SL(n,
+  % IR); G is generated by elements that either commute with Ao or lie in a
+  % suitable copy of the group P.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \hypertarget{outro}{%
-\section{Outro}\label{outro}}
+\section{Conclusion}\label{outro}}
 
 
   Now that we've proven the theorem, it's natural to ask what we do with it now.
@@ -1235,7 +1305,10 @@
 
   \begin{thm}[Zimmer 2.2.15]
     \label{thm:2.2.15}
-     
+    Let $G = \prod G_i$ be a finite product where each $G_i$ is a connected
+    non-compact simple Lie group with finite center. Suppose $S$ is an
+    irreducible ergodic \G-space with finite invariant measure. If $H \subset
+    G$ is a closed non-compact subgroup, then $H$ is ergodic on $S$.
   \end{thm}
 
   \begin{pf}
@@ -1244,9 +1317,10 @@
 
   \begin{thm}[Zimmer 2.2.6, Moore's Ergodicity Theorem]
     \label{thm:2.2.6}
-    \G as usual.
-    Let $\Gamma \subset G$ be an irreducible Lattice. % TODO: irreducible?
-    If $H \subset G$ is a closed subgroup and $H$ is not compact, then $H$ is ergodic on $G/\Gamma$
+    Let $G = \prod G_i$ be a finite product where each $G_i$ is a connected
+    non-compact simple Lie group with finite center. Let $\Gamma \subset G$ be
+    an irreducible lattice. If $H \subset G$ is a closed subgroup and $H$ is
+    not. compact, then H is ergodic on $G/\Gamma$.
   \end{thm}
 
   \begin{pf}
@@ -1255,12 +1329,10 @@
 
   % TODO: cor 2.2.4
 
+  \begin{cor}
+  \end{cor}
+
   % TODO: mat coeff vanish > no invv means H cpct > no invv iff H erg in L^2 - C > H closed non-cpct impl H erg > S=G/Gamma > original problem
-
-
-  \hypertarget{return-of-the-initial-example}{%
-  \subsection{The return of the initial example
-  }\label{return-of-the-initial-example}}
 
 
   Looking back at the initial example, the case becomes clear.
@@ -1291,7 +1363,7 @@
 \end{prop}
 
 \begin{pf}
-  no proof % TODO: where??
+  no proof % TODO: where?? Munkress uses metrizable spaces, willard leaves it as an exercise. should be fine
 \end{pf}
 
 \section{List of Theorems}
