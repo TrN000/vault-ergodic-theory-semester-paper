@@ -108,6 +108,11 @@
 \newcommand{\sltr}{\ensuremath{SL(2, \mathbb{R})}\xspace}
 \newcommand{\slnr}{\ensuremath{SL(n, \mathbb{R})}\xspace}
 
+\newcommand{\frg}{\ensuremath{\mathfrak{g}}\xspace}
+\newcommand{\frk}{\ensuremath{\mathfrak{k}}\xspace}
+\newcommand{\fra}{\ensuremath{\mathfrak{a}}\xspace}
+\newcommand{\frnn}{\ensuremath{\mathfrak{n}}\xspace}
+
 % inline matrix. why was this removed??
 \newcommand{\ipmatrix}[1]{%% make inline smallmatrix with parens. suited for 2x2 matrices.
 \ensuremath{\big(\begin{smallmatrix} #1 \end{smallmatrix}\big)}\xspace}
@@ -140,13 +145,12 @@
 % ↓ declaration of originality
 
 \usepackage{pdfpages}
-% \includepdf[pages={-}]{declaration-of-originality.pdf} <- TODO: put before end document
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ↓ document
 
-\usepackage{lineno}
-\linenumbers
+% \usepackage{lineno}
+% \linenumbers
 
 
 \hypersetup{
@@ -259,7 +263,8 @@
 
   We should, at this point, introduce the theorem we would like to present.
 
-    In \cite{Zimmer84} it's Theorem 2.2.20, originally from \cite{howe79}.
+  In \citeauthor{Zimmer84}\cite{Zimmer84} it is Theorem 2.2.20, and originally from \citeauthor{howe79}\cite{howe79}.
+
   \begin{thm}[Howe-Moore's Ergodicity Theorem]
     \label{thm:main-thm}
     Let $G_i$ be connected non-compact simple Lie groups, $G = \prod G_i$ and $\pi$ a unitary representation of \G .
@@ -281,12 +286,12 @@
 
   Instead of verifying ergodicity for any given action, space and measure
   individually, can we find criteria for ergodicity that are easier to
-  evaluate? The Moore's theorem sits in the middle of an argument that
+  evaluate? Moore's theorem sits in the middle of an argument that
   answers the following questions.
 
-  % TODO: For example, consider a group \G, a lattice $\Gamma \subset G$ and a closed subgroup $H \subset G$.
-  % this is of course, a priori, a bit of a contrived example, but consider that lattices in Lie groups are a considerable field of study.
-  % The previously mentioned Theorem by \cite{margulis91} concerns itself with lattices.
+  For example, consider a group \G, a lattice $\Gamma \subset G$ and a closed subgroup $H \subset G$.
+  this is of course, a priori, a bit of a contrived example, but consider that lattices in Lie groups are a considerable field of study.
+  The previously mentioned Theorem by \citeauthor{margulis91}\cite{margulis91} concerns itself with lattices.
 
 
   \begin{problem}[When do closed subgroups act ergodically]
@@ -298,46 +303,43 @@
   \end{problem}
 
 
-  % TODO:  (fill out) Why would we care? -\textgreater{} boundary
-  action, lattices in ss groups, asymptotic behavior in non-compact groups
-  \cite{howe79}
   Now that we have a concrete question, let us try to get our hands dirty
   on an example. We'll use the action of fractional linear transforms on
-  the upper half plane, which is nice, because we can look at hyperbolic
-  geometry and draw meaningful pictures of the maps and spaces involved.
+  the upper half plane
   It'll bring intuition about the question and why one would care to
   answer the question.
 
-  I get the first map now. The action, let's name it for now,
-  $\alpha : SL(2, \mathbb{R}) \curvearrowright \mathbb{H} \rightarrow \mathbb{H}$,
-  wich acts by fractional linear transform. \#\# Lemma 1.
-  $K:= SO(2, \mathbb{R})$ is the stabilizer of $i \in \mathbb{H}$. 2.
-  therefore, $G/K \cong AN$ with $KAN \cong G$ being the Iwasawa
-  decomp.
+  Let $X = \{z \in \bbc  | Im(z) >0\}$ be the upper half plane, and $G = \sltr$.
+  \G acts on $X$ via fractional linear transformations, i.e.
+  $$
+  g \cdot y = (ay + b)/(cy +d) \text{ where } g= \begin{pmatrix}
+    a & b \\
+    c & d 
+  \end{pmatrix}
+  $$
 
-  \begin{pf}\label{pf:miyake}
-  \begin{enumerate}
-  \def\labelenumi{\arabic{enumi}.}
-  \tightlist
-  \item
-    from \cite{Miyake89}(Theorem 1.1.3) map to Klein disk; use Schwarz
-    lemma; map back.
-  \end{enumerate}
-  \end{pf}
+  We would like to understand the actions of a lattice in \G on $X$.
 
-  How does the second map work? Using the same fractional linear transform
-  but we take a real value instead of a complex one. It is easy to
-  visualize as a regular matrix product with
-  $\begin{pmatrix}x \\ 1\end{pmatrix}$ and projecting it to the
-  projective line. \[
-  \begin{pmatrix}a & b \\ c & d\end{pmatrix}\begin{pmatrix}x \\ 1\end{pmatrix} =
-  \begin{pmatrix}ax + b \\ cx + d\end{pmatrix} \quad \rightarrow \quad
-  \begin{pmatrix}\frac{ax + b}{cx + d} \\ 1\end{pmatrix}
-  \] 
-  % TODO: create images for: the one I've already made for this on the other pc.
+  We introduce the following lemma first.
 
-  next we care about the behavior of a lattice $\Gamma \subset G$. If
-  $G$ acts transitively on a space $X$, then there is an isomorphism
+  \begin{lem}
+    $K:= SO(2, \mathbb{R})$ is the stabilizer of $i \in \mathbb{H}$.
+\end{lem}
+
+    for a proof, see \cite{Miyake89}(Theorem 1.1.3). The idea of the proof is to use a map to the Klein disk, use Schwarz' lemma and map back.
+
+  % How does the second map work? Using the same fractional linear transform
+  % but we take a real value instead of a complex one. It is easy to
+  % visualize as a regular matrix product with
+  % $\begin{pmatrix}x \\ 1\end{pmatrix}$ and projecting it to the
+  % projective line. \[
+  % \begin{pmatrix}a & b \\ c & d\end{pmatrix}\begin{pmatrix}x \\ 1\end{pmatrix} =
+  % \begin{pmatrix}ax + b \\ cx + d\end{pmatrix} \quad \rightarrow \quad
+  % \begin{pmatrix}\frac{ax + b}{cx + d} \\ 1\end{pmatrix}
+  % \] 
+
+  Suppose now $\Gamma \in G$ is a lattice. 
+  If $G$ acts transitively on a space $X$, then there is an isomorphism
   of $G$-spaces $G/G_x \rightarrow X$, where $G_x = Stab_G (x)$ for
   $x \in X$, given by the map $gG_x \mapsto gx$. In the case of our
   example $G = SL(2, \mathbb{R})$, and, as we've shown in the preceding
@@ -345,34 +347,25 @@
   where we want to go We want to show that the action of $\Gamma$ on
   $\bar{\mathbb{R}}$ is ergodic
 
-  \begin{defn}{Ergodicity}
-  For a group $G$, a measurable separable space $S$, and a $G$-invariant measure $\mu$. An action is called ergodic if all $G$-invariant subsets $A\subset S$ are either null or conull. Which means 
+  \begin{defn}[Ergodicity]
+  For a group $G$, a measurable separable space $S$, and a $G$-invariant
+  measure $\mu$. An action is called ergodic if all $G$-invariant subsets
+  $A\subset S$ are either null or conull. Which means 
   $$
   \forall g\in G:\ gA = A \quad \Rightarrow \quad \mu(A)=0 \text{ or } \mu(S\setminus A)=0
   $$
   \end{defn}
 
-  \hypertarget{from-book}{%
-  \subsection{from book}\label{from-book}}
   % TODO: unoriginal
 
-  \href{Zimmer\%20p.4}{{[}unoriginal{]}} To see why ergodicity is
-  relevant, and in fact to say a word about what it is, let us consider a
-  classical example. Let $G = SL(2, \mathbb{R})$, and let $X$ be the
-  upper half plane, $X= \{z \in \mathbb{C} | lm(z) > 0\}$. As is well
-  known\href{upper\%20half\%20plane,\%20möbius\%20transforms,\%20give\%20reference\%20to\%20misc\%20things.\%20and\%20figure\%20out\%20what\%20the\%20actual\%20example\%20is.\%20figure\%20out\%20what\%20the\%20theorem\%20tries\%20to\%20answer.}{{[}todo{]}},
-  G acts on X via fractional linear transformations, i.e., \[
-  g \cdot z=\frac{(az+b)}{(cz+d)}
-  \quad
-  \text{ where }g=
-  \begin{pmatrix}a & b \\ c & d\end{pmatrix}
-  \] Suppose now that $\Gamma \subset G$ is a lattice, which we assume
-  to be torsion free for simplicity. Since the action of $G$ on $X$
+  Since the action of $G$ on $X$
   allows an identification of $X$ with $G/K$, where $K = SO(2)$ (the
   stabilizer of $i \in X$), and $K$ is compact, it follows that the
   action of $\Gamma$ on $X$ is properly discontinuous, and so
   $\Gamma\backslash X$ will be a manifold, in fact a finite volume
-  Riemann surface. On the other hand, via the same fractional linear
+  Riemann surface.
+
+  On the other hand, via the same fractional linear
   formula, $G$ acts on
   $\bar{\mathbb{R}} = \mathbb{R} \cup \{ \infty \}$, and
   $\bar{\mathbb{R}}$ can be identified with $G/P$, where $P$ is the
@@ -386,18 +379,8 @@
   $\bar{\mathbb{R}}$ provides a natural compactification of $X$, and
   in fact $\bar{\mathbb{R}}$ can be identified with asymptotic
   equivalence classes of geodesics in $X$, where $X$ has the
-  essentially unique $G$-invariant metric. Thus, it is certainly
-  reasonable to expect the action of $\Gamma$ on $\bar{\mathbb{R}}$ to
-  yield useful information. However, a thorough understanding requires us
-  to come to grips with actions in which the orbits are very complicated
-  (e.g.~dense) sets. Ergodic theory is (in large part) the study of
-  complicated orbit structure in the presence of a measure. Not only are
-  there no non-constant $\Gamma$-invariant continuous real-valued
-  functions on $\bar{\mathbb{R}}$, but the same is true for measurable
-  functions. This is embodied in the following definition.
+  essentially unique $G$-invariant metric.
 
-  \hypertarget{definition}{%
-  \subsection{Definition}\label{definition}}
 
   \begin{defn}
     Suppose $G$ acts on a measure space $(S, \mu)$ so that the action
@@ -603,8 +586,6 @@
     implies $\chi_S$ is constant, meaning either constant $0$ or constant $1$,
     which implies ergodicity.
   \end{ex}
-  definition; explanation of definition; Examples; why the prerequisites
-  come in, like quasi-invariance; clarify edge cases of properly ergodic.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -643,14 +624,6 @@
   by being again a Hilbert space by integration
   $\langle f, g\rangle = \int_M\langle f(x), g(x)\rangle$.
 
-  \begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{./direct-integral-graphic-1.png}
-  \caption{aa}
-  \end{figure}
-
-
-
   % TODO:  (doesn't mention measurablity)
 
   The next step towards locality is to use two function, by defining
@@ -659,18 +632,12 @@
   $\mathscr{H}_i$.
 
 
-  % TODO:  (show the decomp in the fin dim case to make matrix rep clear. and say that the intuition works the same later on)
-
   Suppose we have a measure space $M$, and for each $x \in M$ a
   Hilbert space $\mathscr{H}_x$ such that $x \mapsto \mathscr{H}_x$ is
   piecewise constant, that is, we have a disjoint decomposition of $M$
   into $\cup_{i=1}^{\infty} M_i$ such that for $x,y \in M_i$,
   $\mathscr{H}_x = \mathscr{H}_y$. 
   % TODO:  (fix with info)
-  Interesting aside: the condition that the assignment
-  $x \mapsto \mathscr{H}_x$ be piecewise constant is not necessary. We
-  can allow the Hilbert spaces to be arbitrary, and in fact uncountably
-  infinite. Short answer: magic; slightly less short answer: von Neumann.
   A \emph{section} on $M$ is an assignment $x \mapsto f(x)$, where
   $f(x) \in \mathscr{H}_x$. Since $\mathscr{H}_x$ is piecewise
   constant, the notion of measurability carries over in an obvious manner,
@@ -693,31 +660,77 @@
     \label{rem:integral-notation}
     The above notation of $\pi_{\mu, \hilb}$ is generally fine, but putting an
     already hard to read typeface in a small font size into the subscript is
-    hard to read. We have introduced it as is to conform with the notation in
+    hard to read. We have introduced it as-is to conform with the notation in
     the literature, but in the next section we will encounter a number of
     operations that manipulate these subscripts. For that reason we'll write
     them also in square brackets like so:
     $$
     \pi[\mu, \hilb]
     $$
-    meaning the same thing as the subscript notation.
+    meaning the same thing as the subscript notation, but more legible.
   \end{rk}
 
-  \hypertarget{unitary-representations}{%
-  \subsection{Unitary Representations}\label{unitary-representations}}
 
 
-  % TODO:  (un-garbage intro) We need some more information about
-  irreducible unitary representations to understand the action(s) of
-  $SL(n, \mathbb{R})$.
+  \hypertarget{representation-of-rn}{%
+  \subsection{Representation of \texorpdfstring{$\bbr^n$}{R\^{}n}}\label{representation-of-rn}}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  In this section we'll introduce several theorems on the representations of
+  groups that contain $\bbr^n$ as a normal subgroup.
 
+  We begin by discussing $\bbr^n$ and its representations, as we need this understanding to analyze the cases when $\bbr^n$ is a subgroup.
 
-\hypertarget{representation-of-rn}{%
-\section{Representation of \texorpdfstring{$\bbr^n$}{R\^{}n}}\label{representation-of-rn}}
+  All the irreducible unitary representations of \bbr are one-dimensional.
+  This is a corollary of Schur's lemma, which states that every complex
+  irreducible representation of an abelian group is one-dimensional.
 
+  It turns out that the group of unitary representations on $\mathbb{R}^n$
+  are isomorphic to $\mathbb{R}^n$.
+  We define a map from $\mathbb{R}^n$ to $\mathcal{U}(\mathbb{C})$ and show that it's in
+  fact bijective. Let $\theta$, $t$ be in $\mathbb{R}^n$ and let
+  $\lambda_{\theta}(t) = e^{i\langle \theta | t \rangle}$. This is in
+  fact a unitary automorphism on $\mathbb{C}$ by multiplication. To
+  clarify, for every $\theta \in \mathbb{R}^n$ we have a representation
+  given by
+  \begin{align*}
+    \lambda_{\theta}:\ & \mathbb{R}^n \rightarrow \mathcal{U}(\mathbb{C}) \\
+    & t \mapsto e^{i \langle \theta | t \rangle}
+  \end{align*}
+  We denote the group of representations by $\hat{\mathbb{R}}^n$. It
+  is in fact a group under pointwise multiplication.
+
+  Now let $\mu$ be a ($\sigma$-finite) measure on $\hat{\bbr}^n$ and
+  $\{\hilb_{\lambda}\}$ a piecewise constant assigment of Hilbert spaces. They
+  form the Hilbert space $L^2(\hat{\bbr}^n, \mu, \{\hilb_{\lambda}\})$.
+
+  We define a unitary representation $\pi_{(\mu, \hilb_{\lambda})}$ on this space by
+  $$
+    [\pi_{(\mu, \hilb_{\lambda})} f](\lambda) = \lambda(t)f(\lambda)
+  $$
+
+  This definition is maybe a bit dense, so here is the assignment formatted in
+  pseudo code. This might help some reader more familiar with programming than
+  mathematics. The more mathematically inclined may ignore it. It is not
+  relevant other than to further the understanding of the above definition.
+
+  The conceptual problem here is that we have a hidden stack of expressions; we
+  give a very concrete definition, $\lambda(t)f(\lambda)$ for a very abstract
+  object $\pi_{\mu, \hat{\bbr}^n}$, with the layers in between not being
+  immediately obvious.
+  \begin{align*}
+  & \text{func }\ \pi_{\mu,\mathscr{H}_{\lambda}}(t: \mathbb{R}^n) \rightarrow \mathcal{U}(L^2(\hat{\mathbb{R}}^n)) \ \{ \\
+  & \qquad \text{return lambda}(f:\ L^2(\hat{\mathbb{R}}^n)) \rightarrow L^2(\hat{\mathbb{R}}^n) \ \{ \\
+  & \qquad \qquad \text{return lambda}(\lambda:\ \hat{\mathbb{R}}^n) \rightarrow \mathscr{H}_{\lambda} \ \{ \\
+  & \qquad \qquad \qquad \text{return }\lambda(t)f(\lambda) \\
+  & \qquad \qquad \} \\
+  & \qquad \} \\
+  & \} \\
+  \end{align*}
+
+  This shows that the objects inbetween are defined.
+
+  The following theorem summarizes the representation theory of $\bbr^n$:
 
   \begin{thm}[Zimmer 2.3.3]
     \label{thm:2.3.3}
@@ -734,22 +747,30 @@
     \end{itemize}
   \end{thm}
 
-  \begin{pf}
-    \label{pf2.3.3}
-  \end{pf}
+  We now turn to groups which contain $\bbr^n$ as a normal subgroup.
+
+  Let $A:\bbr^n \rightarrow \bbr^n$ be a continuous group automorphism. Let
+  $\alpha$ be the adjoint automorphism $\alpha:\bbr^n \rightarrow \bbr^n$ given
+  by $\alpha(\lambda)(t) = \lambda(A^{-1}(t))$. If \mpi is any unitary representation of $\bbr^n$, we let $\alpha(\pi)$  be the unitary representation $[\alpha(\pi)](t) = \pi(A^{-1}(t))$.
+
 
   \begin{thm}[Zimmer 2.3.4]
     \label{thm:2.3.4}
     Let $\pi = \pi_{\mu, \hilb_{\lambda}}$, $A\in  \Aut(\bbr^n)$, $\alpha$ the
     adjoint automorphism of $\hat{\bbr}^n$. Then
     \begin{itemize}
-      \item $\alpha(\pi)$ is unitarily equivalent to $\pi[\alpha_*\mu]$
+      \item $\alpha(\pi)$ is unitarily equivalent to $\pi[\alpha_*\mu, \hilb_{\alpha^{-1}(\lambda)}]$. (By $\hilb_{\alpha^{-1}(\lambda)}$ we mean the assignment $\lambda \rightarrow \hilb_{\alpha^{-1}(\lambda)}$)
+      \item If $V:L^2(\hat{\bbr}^n, \mu, \{\hilb_{\lambda}\}) \rightarrow L^2(\hat{\bbr}^n, \alpha_*\mu, \{\hilb_{\alpha^{-1}(\lambda)}\})$ is any unitary equivalence between $\alpha(\pi)$ and $\pi[\alpha_*\mu, \hilb_{\alpha^{-1}(\lambda)}]$, then for any Borel set $E \subset \hat{\bbr}^n$, we have
+        $$
+        V(L^2(E, \mu, \{\hilb_{\lambda}\})) = L^2(\alpha(E), \alpha_*\mu, \{\hilb_{\alpha^{-1}(\lambda)}\})
+        $$
     \end{itemize}
   \end{thm}
 
-  \begin{pf}
-    \label{pf:2.3.4}
-  \end{pf}
+  This essentially states that the construction of $\pi_{\mu, \hilb}$ plays
+  nicely with automorphisms. this is of particular interest in light of the
+  next theorem, which treats groups with $\bbr^n$ as normal subgroups. Given
+  that $\bbr^n$ is normal we get an automorphism by conjugation with \G.
 
   \begin{thm}[Zimmer 2.3.5, from \Citeauthor{mackey76} \cite{mackey76}]
     \label{thm:2.3.5}
@@ -758,7 +779,7 @@
     $(\mu, \mathscr{H}_{\lambda})$ by 2.3.3. Then  
     \begin{itemize}
       \item $\mu$ is quasi-invariant under the action of $G$ on $\hat{\mathbb{R}}^n$. 
-      \item If $E \subset \mathbb{R}^n$ is measurable, let
+      \item If $E \subset \hat{\mathbb{R}}^n$ is measurable, let
         $\mathscr{H}_E = L^2(E, \mu, \{\mathscr{H}_{\lambda}\})$.
         Then $\pi(g)\mathscr{H}_E = \mathscr{H}_{g \cdot E}$
       \item If $\pi$ is irreducible, then $\mu$ is ergodic and $dim\mathscr{H}_{\lambda}$ is
@@ -766,188 +787,14 @@
     \end{itemize}
   \end{thm}
 
-  \begin{pf}
-    % TODO: finish proof lmao
-  \end{pf}
+  The following theorem will be necessary later on, when we begin the proof for
+  the central theorem. With the established information we can make a statement
+  about vanishing matrix coefficients for the group $P$ of upper triangular
+  matrices in \sltr.
 
-  % TODO: this was planted here so I could refer to it later on.
-  \begin{thm}[Zimmer 2.3.6]
-    \label{thm:2.3.6}
-    Let \mpi be  a unitary representation of $P = AN$.
-    \begin{itemize}
-      \item either $\pi|N$ has non-trivial invariant vectors or
-      \item or for $g \in A$ and any vectors, $v$, $w$, the matrix coefficients
-        $\langle \pi(g)v, w \rangle \rightarrow 0$ as $g \rightarrow \infty$.
-    \end{itemize}
-  \end{thm}
-
-  \begin{pf}
-     % TODO: fill in
-    The subgroup $N$ is isomorphic to \bbr, so we can apply theorem \autoref{thm:2.3.4}
-    to identify $N$ with $\hat{N} \cong \hat{\bbr}$ and the representation \mpi with $\pi_{\mu, \hat{\bbr}}$.
-    To spell it out $\pi|N \cong \pi_{\mu, \hat{\bbr}}: N \rightarrow \mathcal{U}(L^2(\hat{\bbr}, \mu, \hilb_{\lambda}))$.
-
-    A section of this space can be written as $f: \lambda \mapsto v_{\lambda}$ for $v_{\lambda} \in \hilb_{\lambda}$.
-    By construction of $\pi_{\mu, \hilb_{\lambda}}$ we have an explicit formula $\lambda(t)f(\lambda)$, where $\lambda(t) \in S^1$ and $f(\lambda)$ in some complex Hilbert space.
-    For a representation to be invariant, we need that $\lambda(t)f(\lambda) = f(\lambda)$ for all $t$ and almost all $\lambda$ ($\mu$ almost everywhere).
-    The only choice for $\lambda$ is $\lambda_0(t) := e^{i \cdot 0 \cdot t} = 1$ for all $t$.
-    So all of $\hilb_0$ will remain invariant.
-    If $\mu(\{0\}) = 0$, then all these will be equivalent under the equivalence class on $L^2(\hat{\bbr})$ to the trivial vector.
-    So for $v$ to be a non-trivial vector, we need $\mu(\{0\}) > 0$.
-
-    Next, we want to show that for any vectors $f, g \in L^2(\hat{\bbr})$ we get $\lim_{g\to\infty} \inn{\pi(g)f,g} = 0$.
-    We move the problem to compact sets in $\hat{\bbr}$.
-    Because $f,g$ are in a square integrable function space, we can find compact sets $E, F \in \hat{\bbr}$ such that $\abs{\chi_Ef - f} < \varepsilon$ and $\abs{\chi_Fg -g} < \varepsilon$, $\forall \varepsilon > 0$.
-
-    % TODO: this doesn't work.
-
-  \end{pf}
-
-  % TODO: fill in 
-
-  \begin{cor}
-    \label{cor:2.3.7}
-    For \mpi a unitary representation of $P$, any $A$-invariant vector is also $P$-invariant.
-  \end{cor}
-
-  \begin{pf}
-    If \mpi is a representation on \hilb, let $W=\{v \in \hilb|v \text{ is } \pi(N)\text{-invariant}\}$.
-    Since $N$ is normal, $W$ is a $P$-invariant subspace, and so is $W^{\perp}$. 
-    Since $W^{\perp}$ has no $N$-invariant vectors, we are in the second case
-    in the above theorem for the representation on $W^{\perp}$, and in
-    particular, there are no $A$-invariant vectors in $W^{\perp}$. Since the
-    projection onto $W^{\perp}$ of an $A$-invariant vector in \hilb is also
-    $A$-invariant, this shows that all $A$-invariant vectors are in $W$, and
-    hence that all $A$-invariant vectors are $P$-invariant.
-  \end{pf}
-
-
-  % todo:  (this drops out of nowhere) -> schur decomp
-  % todo: Schur decomp -> not so. Schur's lemma
-  All the irreducible unitary representations of \bbr are one-dimensional.
-  This is a corollary of Schur's lemma, which states that every complex
-  irreducible representation of an abelian group is one-dimensional.
-
-  It turns out that the group unitary representations on $\mathbb{R}^n$
-  are isomorphic to $\mathbb{R}^n$. So we define a map from
-  $\mathbb{R}^n$ to $\mathcal{U}(\mathbb{C})$ and show that it's in
-  fact bijective. Let $\theta$. $t$ be in $\mathbb{R}^n$ and let
-  $\lambda_{\theta}(t) = e^{i\langle \theta | t \rangle}$. This is in
-  fact a unitary automorphism on $\mathbb{C}$ by multiplication. To
-  clarify, for every $\theta \in \mathbb{R}^n$ we have a representation
-  given by
-  \begin{align*}
-    \lambda_{\theta}:\ & \mathbb{R}^n \rightarrow \mathcal{U}(\mathbb{C}) \\
-    & t \mapsto e^{i \langle \theta | t \rangle}
-  \end{align*}
-  We denote the group of representations by $\hat{\mathbb{R}}^n$. It
-  is in fact a group under pointwise multiplication.
-
-
-  % TODO:  (this sort of drops out of nowhere)
-  This definition is maybe a bit dense, so here is the assignment formatted in
-  pseudo code. This might help some reader more familiar with programming than
-  mathematics. The more mathematically inclined may ignore it. It is not
-  relevant other than to further the understanding of the above definition.
-  Note here that $\text{lambda}$ denotes the programming term of a lambda
-  function, an unfortunate notation collision.
-  The conceptual problem here is that we have a hidden stack of expressions; we give a very concrete definition, $\lambda(t)f(\lambda)$ for a very abstract object $\pi_{\mu, \hat{\bbr}^n}$, with the layers in between not being immediately obvious.
-  \begin{align*}
-  & \text{func }\ \pi_{\mu,\mathscr{H}_{\lambda}}(t: \mathbb{R}^n) \rightarrow \mathcal{U}(L^2(\hat{\mathbb{R}}^n)) \ \{ \\
-  & \qquad \text{return lambda}(f:\ L^2(\hat{\mathbb{R}}^n)) \rightarrow L^2(\hat{\mathbb{R}}^n) \ \{ \\
-  & \qquad \qquad \text{return lambda}(\lambda:\ \hat{\mathbb{R}}^n) \rightarrow \mathscr{H}_{\lambda} \ \{ \\
-  & \qquad \qquad \qquad \text{return }\lambda(t)f(\lambda) \\
-  & \qquad \qquad \} \\
-  & \qquad \} \\
-  & \} \\
-  \end{align*}
-
-  This shows that the objects inbetween are defined.
-
-
-  \hypertarget{the-connection-between-ergodicity-and-unitary-representations}{%
-  \subsection{The Connection between Ergodicity and Unitary Representations}\label{the-connection-between-ergodicity-and-unitary-representations}}
-
-  approach: 
-    - char func 
-    - char func in L2(S) and non-trivial 
-    - if A invariant then char func invariant as a vector in L2(S) 
-    - due diligence: make sure measure works
-
-  To see why we care about unitary representations at all if we really
-  want ergodicity, we need to make the folllowing connection. We use the
-  characteristic function of a set to connect the set to a vector in
-  $L^2(S)$. The characteristic function of a subset $A\subset S$, is
-  defined as $\chi_A(x) = 1$ for $x \in A$ and $0$ otherwise.
-
-  This representation allows us to pass from talking about sets to talking
-  about vectors (in function spaces), while retaining the properties we care
-  about.
-
-  \begin{thm}[Zimmer 2.2.17]
-    \label{thm:2.2.17}
-    An action $G\curvearrowright S$, with \emph{ finite } invariant measure is
-    ergodic on $S$ if and only if the restriction of the above representation
-    to $L^2(S) \ominus \mathbb{C}$ has no invariant vectors.
-  \end{thm}
-    
-  Since $S$ has finite measure, assume $\mu(S) =1$.
-
-  \begin{pf}
-
-    "$\Leftarrow$": Proof by contrapositive:
-    If $A\subset S$ is $G$-invariant
-    with measure $0 < \mu(A) < \mu(S) = 1$ then $\chi_A$ is also $G$-invariant
-    in $L^2(S)$ as well as the projection $\chi_A - \mu(A)\cdot 1$ in
-    $L^2(S)\ominus \mathbb{C}$. Therefore there exists an invariant vector in
-    $L^2(S)\ominus \mathbb{C}$.
-
-    "$\Rightarrow$": \cite{Kerr16}(Prop 2.7)
-    Suppose the action is ergodic and $f\in L^2(S)\ominus \mathbb{C}$ is
-    $G$-invariant. We can find a measurable set $D\subset \mathbb{C}$ such that
-    $0<\mu(f^{-1}(D)) < 1$ and denote $\widetilde{A} = f^{-1}$. Now we verify
-    ergodicity. For every $g\in G$ the symmetric difference $g\widetilde{A}
-    \Delta \widetilde{A}$, for which all points are in the set $\{x \in X | \
-    |f(x)-sf(x)| > 0\}$, which has measure zero because $\|f- sf\|_2=0$.
-    Therefore the action fails to be ergodic.
-  \end{pf}
-
-  The adjective ``finite'' on the measure is necessary, because for a set
-  $A$ of infinite measure the statement is no longer true as $\chi_A$
-  will no longer be in $L^2$.
-
-  % TODO:do we have the nec stuff in the intro?
-  This is of course fine, because we care about the special case where the
-  space $S$ in question is the quotient of a lattice $G/\Gamma$, which has
-  finite measure by definiton. So this restriction is not only acceptable but
-  desired.
-
-  If $A\subset S$ is $G$-invariant then $\chi_A\in L^2(S)$ will also
-  be $G$-invariant. 
-  For $A$ neither null nor conull then
-  $\chi_A$, $f_A \neq 0$, where $f_A$ is the projection of
-  $\chi_A$ onto $L^2(S) \ominus \mathbb{C}$.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\hypertarget{proof-for-sl2r}{%
-\section{Proof for \texorpdfstring{$SL(2, \mathbb{R})$}{SL(2, R)}}\label{proof-for-sl2r}}
-
-
-  We start here because it is an easy example of the theorem and a general
-  group $G$ has many subgroups locally isomorphic to
-  $SL(2, \mathbb{R})$. Later we extend the proof, first to
-  $SL(n, \mathbb{R})$ and then to a general $G$.
-
-  To state our intentions: we first show that either the matrix
-  coefficients vanish as we want, or there exist invariant vectors. Then
-  we show that there are no invariant vectors, completing the statement.
 
   We're going to use the following decomposition, which we take for
-  granted 
-  % TODO:  (find reference for Iwasawa decomposition). ->
+  granted. (See \citeauthor{Hilgert2012}\cite{Hilgert2012} chapter 13 for a detailed treatment.)
   The so called Iwasawa decomposition of $SL(2, \mathbb{R})$ into three
   matrices $K$, $A$, and $N$, defined as
   \begin{align}
@@ -1011,9 +858,139 @@
     multiplication with $a^2$.
   \end{pf}
 
+  \begin{thm}[Zimmer 2.3.6]
+    \label{thm:2.3.6}
+    Let \mpi be  a unitary representation of $P = AN$.
+    \begin{itemize}
+      \item either $\pi|N$ has non-trivial invariant vectors or
+      \item or for $g \in A$ and any vectors, $v$, $w$, the matrix coefficients
+        $\langle \pi(g)v, w \rangle \rightarrow 0$ as $g \rightarrow \infty$.
+    \end{itemize}
+  \end{thm}
 
-  % TODO: various decompositions for how we want to look at sl2r for 
-  % TODO: bad intro sentence:
+  \begin{pf}
+     % TODO: fill in
+    The subgroup $N$ is isomorphic to \bbr, so we can apply theorem \thref{thm:2.3.4}
+    to identify $N$ with $\hat{N} \cong \hat{\bbr}$ and the representation \mpi with $\pi_{\mu, \hat{\bbr}}$.
+    To spell it out $\pi|N \cong \pi_{\mu, \hat{\bbr}}: N \rightarrow \mathcal{U}(L^2(\hat{\bbr}, \mu, \hilb_{\lambda}))$.
+
+    A section of this space can be written as $f: \lambda \mapsto v_{\lambda}$ for $v_{\lambda} \in \hilb_{\lambda}$.
+    By construction of $\pi_{\mu, \hilb_{\lambda}}$ we have an explicit formula $\lambda(t)f(\lambda)$, where $\lambda(t) \in S^1$ and $f(\lambda)$ in some complex Hilbert space.
+    For a representation to be invariant, we need that $\lambda(t)f(\lambda) = f(\lambda)$ for all $t$ and almost all $\lambda$ ($\mu$ almost everywhere).
+    The only choice for $\lambda$ is $\lambda_0(t) := e^{i \cdot 0 \cdot t} = 1$ for all $t$.
+    So all of $\hilb_0$ will remain invariant.
+    If $\mu(\{0\}) = 0$, then all these will be equivalent under the equivalence class on $L^2(\hat{\bbr})$ to the trivial vector.
+    So for $v$ to be a non-trivial vector, we need $\mu(\{0\}) > 0$.
+
+    Next, we want to show that for any two unit vectors $f, g \in L^2(\hat{\bbr})$ we get $\lim_{g\to\infty} \inn{\pi(g)f,g} = 0$.
+    We move the problem to compact sets in $\hat{\bbr}$.
+    Because $f,g$ are in a square integrable function space, we can find
+    compact sets $E, F \in \hat{\bbr}\setminus \{0\}$ such that $\abs{\chi_Ef -
+    f} < \varepsilon$ and $\abs{\chi_Fg -g} < \varepsilon$, $\forall
+    \varepsilon > 0$.
+
+    Then
+    $$
+    \abs{\inn{\pi(g)f, h}} \leq 2\varepsilon + \abs{\inn{\pi(g)(\chi_E\cdot f), (\chi_F \cdot g)}}
+    $$
+    But $\pi(g)(\chi_E\cdot f) \in \hilb_{gE}$, by \thref{thm:2.3.5}, choosing $g$ outside a sufficiently large compact subset of $A$ we can ensure $\hilb_{gE}\perp \hilb_{F}$ and therefore $\abs{\inn{\pi(g)f, g}} \leq 2\varepsilon$.
+
+    This completes the proof.
+
+  \end{pf}
+
+  \begin{cor}
+    \label{cor:2.3.7}
+    For \mpi a unitary representation of $P$, any $A$-invariant vector is also $P$-invariant.
+  \end{cor}
+
+  \begin{pf}
+    If \mpi is a representation on \hilb, let $W=\{v \in \hilb|v \text{ is } \pi(N)\text{-invariant}\}$.
+    Since $N$ is normal, $W$ is a $P$-invariant subspace, and so is $W^{\perp}$. 
+    Since $W^{\perp}$ has no $N$-invariant vectors, we are in the second case
+    in the above theorem for the representation on $W^{\perp}$, and in
+    particular, there are no $A$-invariant vectors in $W^{\perp}$. Since the
+    projection onto $W^{\perp}$ of an $A$-invariant vector in \hilb is also
+    $A$-invariant, this shows that all $A$-invariant vectors are in $W$, and
+    hence that all $A$-invariant vectors are $P$-invariant.
+  \end{pf}
+
+
+
+  \hypertarget{the-connection-between-ergodicity-and-unitary-representations}{%
+  \subsection{The Connection between Ergodicity and Unitary Representations}\label{the-connection-between-ergodicity-and-unitary-representations}}
+
+  To see why we care about unitary representations at all if we really
+  want ergodicity, we need to make the folllowing connection. We use the
+  characteristic function of a set to connect the set to a vector in
+  $L^2(S)$. The characteristic function of a subset $A\subset S$, is
+  defined as $\chi_A(x) = 1$ for $x \in A$ and $0$ otherwise.
+
+  This representation allows us to pass from talking about sets to talking
+  about vectors (in function spaces), while retaining the properties we care
+  about.
+
+  \begin{thm}[Zimmer 2.2.17]
+    \label{thm:2.2.17}
+    An action $G\curvearrowright S$, with \emph{ finite } invariant measure is
+    ergodic on $S$ if and only if the restriction of the above representation
+    to $L^2(S) \ominus \mathbb{C}$ has no invariant vectors.
+  \end{thm}
+    
+  Since $S$ has finite measure, assume $\mu(S) =1$.
+
+  \begin{pf}
+
+    "$\Leftarrow$": Proof by contrapositive:
+    If $A\subset S$ is $G$-invariant
+    with measure $0 < \mu(A) < \mu(S) = 1$ then $\chi_A$ is also $G$-invariant
+    in $L^2(S)$ as well as the projection $\chi_A - \mu(A)\cdot 1$ in
+    $L^2(S)\ominus \mathbb{C}$. Therefore there exists an invariant vector in
+    $L^2(S)\ominus \mathbb{C}$.
+
+    "$\Rightarrow$": \cite{Kerr16}(Prop 2.7)
+    Suppose the action is ergodic and $f\in L^2(S)\ominus \mathbb{C}$ is
+    $G$-invariant. We can find a measurable set $D\subset \mathbb{C}$ such that
+    $0<\mu(f^{-1}(D)) < 1$ and denote $\widetilde{A} = f^{-1}$. Now we verify
+    ergodicity. For every $g\in G$ the symmetric difference $g\widetilde{A}
+    \Delta \widetilde{A}$, for which all points are in the set $\{x \in X | \
+    |f(x)-sf(x)| > 0\}$, which has measure zero because $\|f- sf\|_2=0$.
+    Therefore the action fails to be ergodic.
+  \end{pf}
+
+  The adjective ``finite'' on the measure is necessary, because for a set
+  $A$ of infinite measure the statement is no longer true as $\chi_A$
+  will no longer be in $L^2$.
+
+  % TODO:do we have the nec stuff in the intro?
+  This is of course fine, because we care about the special case where the
+  space $S$ in question is the quotient of a lattice $G/\Gamma$, which has
+  finite measure by definiton. So this restriction is not only acceptable but
+  desired.
+
+  If $A\subset S$ is $G$-invariant then $\chi_A\in L^2(S)$ will also
+  be $G$-invariant. 
+  For $A$ neither null nor conull then
+  $\chi_A$, $f_A \neq 0$, where $f_A$ is the projection of
+  $\chi_A$ onto $L^2(S) \ominus \mathbb{C}$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\hypertarget{proof-for-sl2r}{%
+\section{Proving the Theorem}\label{proof-for-sl2r}}
+
+
+  We start here because it is an easy example of the theorem and a general
+  group $G$ has many subgroups locally isomorphic to
+  $SL(2, \mathbb{R})$. Later we extend the proof, first to
+  $SL(n, \mathbb{R})$ and then to a general $G$.
+
+  To state our intentions: we first show that either the matrix
+  coefficients vanish as we want, or there exist invariant vectors. Then
+  we show that there are no invariant vectors, completing the statement.
+
   Recall the polar decomposition. we'll need it for the next lemma, which will do a lot of heavy lifting.
   Let $T \in \slnr$ be a matrix. We can decompose $T$ as follows:
   $T = US$ for some unitary $U$ and a symmetric positive definite $S$. $S$ can be
@@ -1078,65 +1055,62 @@
   theorem \ref{thm:2.3.6} and the preceeding lemma \ref{lemma} does the bulk of
   the heavy lifting here.
 
+  By assumption, \G has no invariant vectors. By theorem \ref{thm:2.3.6},
+  There are two possible cases. Either $N$ has non-zero invariant vectors,
+  or the matrix coefficients vanish along $A$.
 
-  \begin{pf}
-    By assumption, \G has no invariant vectors. By theorem \ref{thm:2.3.6},
-    There are two possible cases. Either $N$ has non-zero invariant vectors,
-    or the matrix coefficients vanish along $A$.
+  Should there be no non-zero invariant vectors, as we'll show, then
+  the matrix coefficients vanish along $A$, and, by lemma \ref{lemma},
+  vanishing along $A$ implies vanishing along \G.
 
-    Should there be no non-zero invariant vectors, as we'll show, then
-    the matrix coefficients vanish along $A$, and, by lemma \ref{lemma},
-    vanishing along $A$ implies vanishing along \G.
+  To see that there are no $N$-invariant vectors, we assume towards a contradiction
+  that there are $N$-invariant vectors and show that these must be \G-invariant as well,
+  which contradicts our assumption.
 
-    To see that there are no $N$-invariant vectors, we assume towards a contradiction
-    that there are $N$-invariant vectors and show that these must be \G-invariant as well,
-    which contradicts our assumption.
+  Suppose there is a vector $v$ that is \Ninv, meaning $\pi(n)v = v$ for all $n \in N$.
+  As a shorthand, define the function $f(g) = \langle \pi(g)v,v\rangle$.
+  This defines a continuous bi-\Ninv function on $G$.
 
-    Suppose there is a vector $v$ that is \Ninv, meaning $\pi(n)v = v$ for all $n \in N$.
-    As a shorthand, define the function $f(g) = \langle \pi(g)v,v\rangle$.
-    This defines a continuous bi-\Ninv function on $G$.
+  This is because $f(gn) = \langle \pi(gn)v,v,\rangle = \langle \pi(g)\pi(n)v,v\rangle = \langle \pi(g)v,v\rangle = f(g)$,
+  and $f(ng) = \langle \pi(n)\pi(g)v,v\rangle \xrightarrow{unitary} \langle \pi(g)v, \pi(n)^{-1}v\rangle = f(g)$.
 
-    This is because $f(gn) = \langle \pi(gn)v,v,\rangle = \langle \pi(g)\pi(n)v,v\rangle = \langle \pi(g)v,v\rangle = f(g)$,
-    and $f(ng) = \langle \pi(n)\pi(g)v,v\rangle \xrightarrow{unitary} \langle \pi(g)v, \pi(n)^{-1}v\rangle = f(g)$.
+  Thus $f$ lifts from a continuous bi-\Ninv function on $G/N$.
 
-    Thus $f$ lifts from a continuous bi-\Ninv function on $G/N$.
+  \G acts transitively on $\bbr^2\setminus \{0\}$ by matrix multiplication,
+  and, using the fact that $N$ is exactly the stabilizer of $\ipmatrix{1 \\
+  0}$, we get an isomorphism $G/N \cong \bbr^2\setminus \{0\}$ \footnote{This
+  is due to the fact that for a transitive action $G\curvearrowright X$ there
+  is an isomorphism $G/Stab_G(x) \rightarrow X$ sending $g\cdot Stab_G(x)
+  \mapsto gx$.}.
 
-    \G acts transitively on $\bbr^2\setminus \{0\}$ by matrix multiplication,
-    and, using the fact that $N$ is exactly the stabilizer of $\ipmatrix{1 \\
-    0}$, we get an isomorphism $G/N \cong \bbr^2\setminus \{0\}$ \footnote{This
-    is due to the fact that for a transitive action $G\curvearrowright X$ there
-    is an isomorphism $G/Stab_G(x) \rightarrow X$ sending $g\cdot Stab_G(x)
-    \mapsto gx$.}.
+  Calculating the orbits of this action we have $\ipmatrix{1 & x \\ 0 &
+  1}\ipmatrix{a \\ b} = \ipmatrix{a +bx \\ b}$. So there exist two kinds of
+  orbits: for $b \neq 0$. the orbit is the horizontal line at height $b$ and
+  for $b=0$ every individual point $(a\ 0)$ on the $x$-axix. (See Figure~\ref{fig:n-orbits-in-r2}). As $f$ is \Ninv,
+  $f$ will be constant along these orbits. Because $f$ is continuous, $f$ will
+  also be constant along the $x$-axis.
 
-    Calculating the orbits of this action we have $\ipmatrix{1 & x \\ 0 &
-    1}\ipmatrix{a \\ b} = \ipmatrix{a +bx \\ b}$. So there exist two kinds of
-    orbits: for $b \neq 0$. the orbit is the horizontal line at height $b$ and
-    for $b=0$ every individual point $(a\ 0)$ on the $x$-axix. (See Figure~\ref{fig:n-orbits-in-r2}). As $f$ is \Ninv,
-    $f$ will be constant along these orbits. Because $f$ is continuous, $f$ will
-    also be constant along the $x$-axis.
+  \begin{figure}
+    \begin{center}
+      \includegraphics[width=0.95\textwidth]{N-orbits-in-R2-1.png}
+    \end{center}
+    \caption{The orbits of $N$ on $G/N$ correspond either to the horizontal lines parallel to the x-axis or to the individual points on the x-axis. }
+    \label{fig:n-orbits-in-r2}
+  \end{figure}
 
-    \begin{figure}
-      \begin{center}
-        \includegraphics[width=0.95\textwidth]{N-orbits-in-R2-1.png}
-      \end{center}
-      \caption{The orbits of $N$ on $G/N$ correspond either to the horizontal lines parallel to the x-axis or to the individual points on the x-axis. }
-      \label{fig:n-orbits-in-r2}
-    \end{figure}
-
-    But we can also identify the $x$-axis with $P/N$ by $\ipmatrix{a & b \\ 0 &
-    a^{-1}}\ipmatrix{x \\ 0} = \ipmatrix{ax \\ 0}$. Therefore $f$ is also
-    constant on $P$. So it follows that $v$ is $P$-invariant. And as we've seen
-    in the \hyperref[sec:introduction]{intoduction}, we can identify $G/P$ with
-    the real projective line and $P$ has a dense orbit in $G/P$ so $f$ is
-    constant on $G$ and therefore $v$ is actually \G-invariant, contradicting our
-    assumption.
-  \end{pf}
+  But we can also identify the $x$-axis with $P/N$ by $\ipmatrix{a & b \\ 0 &
+  a^{-1}}\ipmatrix{x \\ 0} = \ipmatrix{ax \\ 0}$. Therefore $f$ is also
+  constant on $P$. So it follows that $v$ is $P$-invariant. And as we've seen
+  in the \hyperref[sec:introduction]{intoduction}, we can identify $G/P$ with
+  the real projective line and $P$ has a dense orbit in $G/P$ so $f$ is
+  constant on $G$ and therefore $v$ is actually \G-invariant, contradicting our
+  assumption.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \hypertarget{proof-for-slnr}{%
-  \section{Proof for \texorpdfstring{$SL(n, \mathbb{R})$}{SL(n, R)}}
+  \subsection{Proof for \texorpdfstring{$SL(n, \mathbb{R})$}{SL(n, R)}}
 \label{proof-for-slnr}}
 
 
@@ -1234,31 +1208,24 @@
 
 
 \hypertarget{proof-for-a-general-G}{%
-\section{Proof for a general \texorpdfstring{$G$}{G}}\label{proof-for-a-general-G}}
+\subsection{Proof for a general \texorpdfstring{$G$}{G}}\label{proof-for-a-general-G}}
 
 
-  % % TODO: unoriginal
-  %  In concluding this section, we indicate the
-  % modifications necessary in the above argument for a general semisimple
-  % G. Let A c G be a maximal IR-split torus. Then A c G' c G where G' is
-  % semisimple and split over IR, and A is the maximal IR-split torus of G'.
-  % Choose a maximal linearly independent set S of positive roots of G'
-  % relative to A such that for a, \{3ES, a+ \{3 is not a root. Then the
-  % direct sum of the root spaces is the Lie algebra of an abelian subgroup
-  % B c G', with dim B =dim A, and B is normalized by A. The representations
-  % of AB can be analyzed exactly as in the case of SL(n, IR), and since the
-  % relevant copies of s1(2, IR) are present, we deduce that either we are
-  % done, or some one-dimensional subgroup A 0 c A leaves a non-trivial
-  % vector fixed. (Actually to obtain this we may need to use the universal
-  % covering G of SL(2, IR) rather than SL(2, IR) itself. Namely, we need
-  % that for N c SL(2, IR) as in the proof of2.4.2, N c G the connected
-  % component of the lift of N to G (so that N \textasciitilde{} N ), that N
-  % invariant vectors are G-invariant. However, this follows by elementary
-  % covering space arguments applied to the picture in the proof of 2.4.2.
-  % If G is algebraic, which will be our main concern, consideration of
-  % SL(2, IR) suffices.) The proof then proceeds as in the case of SL(n,
-  % IR); G is generated by elements that either commute with Ao or lie in a
-  % suitable copy of the group P.
+
+   In concluding this section, we indicate the
+   To conclude the proof, we show how to extend the argument to a general semisimple group.
+
+   This follows essentially from the Iwasawa decomposition of a semisimple group.
+
+   For detailed proof of the facts we're going to use, see \citeauthor{Hilgert2012}\cite{Hilgert2012} chapter 13.3 and in particular theorem 13.3.8.
+   
+   Let \G be semisimple and $\mathfrak{g}$ its associated Lie algebra, then 
+   $$\frg = \frk + \fra + \frnn$$
+   Then $G =KAN$ with $K=exp_G(\frk)$, $A=exp_G(\fra)$ and $N=exp_G(\frnn)$
+   and there exists a basis of \frg such that the elements of $K$ are represented by orthogonal matrices, the elements of $A$ by diagonal matrices with positive entries, and the elements of $N$ are represented by unipotent matrices.
+
+   By the same argument we made for \thref{lemma}, we can focus on the subgroup $B=AN$ and analyze it in the same way as the case for \slnr.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1274,11 +1241,13 @@
 
   We have mentioned in the very beginning where we wanted to go with this, but let's recall it here.
 
-  The problem we posed at the beginning of the paper is the following:
+  The problem we posed at the beginning is the following:
 
   \begin{problem}[When do closed subgroups act ergodically]
     Let \G be a semisimple Lie group and $S$ an ergodic \G-space. If $H\subset G$ is a closed subgroup, when is $H$ ergodic on $S$.
   \end{problem}
+
+  We'll show how we can apply the theorem to this problem, mostly forgoing proofs.
 
   \begin{thm}[Zimmer 2.2.19, originally \citeauthor{Moore66}\cite{Moore66}]
     \label{thm:2.2.19}
@@ -1290,18 +1259,12 @@
   \end{thm}
 
   \begin{pf}
-     % TODO: fill in
+    This follows immediately from then theorem because if $\pi|H$ has an invariant vector $v$, then the matrix coefficient $\inn{\pi(g)v,v}$ is identically 1 along $H$, and therefore $H$ is compact.
   \end{pf}
 
 
-  % TODO: for the case of spaces with finite invariant measure the established condition is exactly necessary and sufficient for ergodicity.
-  \hyperref[thm:2.2.17]{invariant vec}
+  By the theorem \thref{thm:2.2.17}, this is equivalent to the following:
 
-  % TODO: Recall that the defition of a lattice specifies that the quotient $G/Gamma$ has finite measure. This means for actions on that space, searching for invariant vectors is exactly equivalent to establishing ergodicity.
-
-  % lemma 2.2.13
-  % leads to thm 2.2.15
-  % leads to thm 2.2.6 Moore's ergodicity theorem. find reference
 
   \begin{thm}[Zimmer 2.2.15]
     \label{thm:2.2.15}
@@ -1311,9 +1274,11 @@
     G$ is a closed non-compact subgroup, then $H$ is ergodic on $S$.
   \end{thm}
 
-  \begin{pf}
-     
-  \end{pf}
+  For the case of spaces with finite invariant measure the established condition is exactly necessary and sufficient for ergodicity.
+
+  Recall that the defition of a lattice specifies that the quotient $G/Gamma$ has finite measure. This means for actions on that space, searching for invariant vectors is exactly equivalent to establishing ergodicity.
+
+  In conclusion we can put our results into the following statement:
 
   \begin{thm}[Zimmer 2.2.6, Moore's Ergodicity Theorem]
     \label{thm:2.2.6}
@@ -1323,21 +1288,7 @@
     not. compact, then H is ergodic on $G/\Gamma$.
   \end{thm}
 
-  \begin{pf}
-     
-  \end{pf}
 
-  % TODO: cor 2.2.4
-
-  \begin{cor}
-  \end{cor}
-
-  % TODO: mat coeff vanish > no invv means H cpct > no invv iff H erg in L^2 - C > H closed non-cpct impl H erg > S=G/Gamma > original problem
-
-
-  Looking back at the initial example, the case becomes clear.
-  applying the \hyperref{thm:}[theorem] with $\G = \sltr$.
-  A lattice \Gamm in \G acts ergodically on $\bar{\bbr}$, since $\bar{\bbr} \cong \sltr / P$ and $P$ is not compact. %% Ex 2.2.8
 
   % TODO: def 2.2.4 needs to get in here somehow.
 
@@ -1353,18 +1304,6 @@
 
 \cleardoublepage
 
-\appendix
-
-\hypertarget{auxilliary-statements}{%
-\section{Auxilliary Statements}\label{auxilliary-statements}}
-
-\begin{prop}
-  In a second countable topological space, compactness and sequential compactness are equivalent.
-\end{prop}
-
-\begin{pf}
-  no proof % TODO: where?? Munkress uses metrizable spaces, willard leaves it as an exercise. should be fine
-\end{pf}
 
 \section{List of Theorems}
 \theoremlisttype{allname}
@@ -1377,5 +1316,6 @@
 \phantomsection
 \addcontentsline{toc}{section}{Bibliography}
 \printbibliography
+\includepdf[pages={-}]{decl-of-originality-signed.pdf}
 
 \end{document}
