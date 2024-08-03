@@ -171,11 +171,11 @@
 \maketitle
 
 \begin{abstract}
-  In this paper we'll showcase a theorem in ergodic theory by R. Howe and
-  C. Moore \cite{howe79}, as it is presented in the book by R. Zimmer in his
-  book "\citetitle{Zimmer84}" \cite{Zimmer84}
+  In this paper we will showcase a theorem in ergodic theory by R. Howe and
+  C.C. Moore \cite{howe79}, as it is presented in the book by R.J. Zimmer in his
+  book "\citetitle{Zimmer84}" \cite{Zimmer84}.
   % TODO: is this actually the right citation?
-  On the way there, we'll touch many different
+  On the way there, we will touch many different
   fields, from measure theory, over functional analysis, representation
   theory and of course ergodic theory.
 \end{abstract}
@@ -185,9 +185,9 @@
 \newpage
 
 
-  This paper is based on the book ``Ergodic Theory and semisimple Lie
-  Groups'' by Robert Zimmer \cite{Zimmer84}, in particular the first two
-  chapters, which contain the theorem itself (Theorem 2.2.20) and
+  This paper is based on the first two chapters in the book ``Ergodic Theory
+  and semisimple Lie Groups'' by Robert Zimmer \cite{Zimmer84}, which contain
+  the theorem itself (Theorem 2.2.20), which we will state shortly, and
   surrounding material concerning ergodic theory.
 
   The techniques of the proof show a nice interplay between fields and
@@ -195,45 +195,48 @@
   the reader to have an undergraduate level understanding of the
   prerequisites in algebra and representation theory, but will state
   foundational information regardless, and provide references in all
-  cases. We also take care to clarify notation before use.
+  cases. We also take care of clarifying notation before use.
 
-  The theorem, which we will state shortly, is historically at home in the
+  The theorem is historically at home in the
   development of ergodic theory, which in turn is a relatively new field
   of mathematics. The original definition of ergodicity was given in 1928
-  in a paper by P. Smith and G. Birkhoff on dynamical systems. The concept
+  in a paper by P. Smith and G.D. Birkhoff on dynamical systems. The concept
   gained importance in 1931 when von Neumann and Birkhoff nearly
   simultaneously proved the mean and pointwise ergodic theorems. These may
   be regarded as the starting point of the subject.
 
   The theory presented here is almost entirely due to a single mathematical
-  lineage. The root of this lineage is G.D. Birkhoff, who, on one side was the
-  (biological) father of G. Birkhoff, which in turn was the advisor of G. Mostow,
+  lineage. The root of this lineage is George David Birkhoff, who, on one side was the
+  (biological) father of Garrett Birkhoff, which in turn was the advisor of G. Mostow,
   known for his rigidity theory which was instrumental to G. Margulis' rigidity
   and arithmeticity theorem. These theorems are a central part of Zimmer's book,
-  although we will not cover them. On the other side, G.D. Birkhoff was advisor
-  to M.H. Stone who was advisor to Mackey, whose work on representations will
+  although we will not cover them. On the other side, G.D. Birkhoff was 
+  M.H. Stone's advisor who was G. Mackey's advisor, whose work on representations will
   feature prominently in the chapter \hyperlink{the-direct-integral-and-unitary-representations}{on unitary representations}.
-  And Mackey was the advisor of R. Zimmer, the author of our main reference, as
+  And Mackey was the advisor of R.J. Zimmer, the author of our main reference, as
   well as C.C. Moore, who, together with his student R. Howe, worked out the
   theorem we are talking about in this paper.
 
-  To give an extremely rough idea of the subject, ergodic throry concerns itself with (group) actions on some (measure) space
+  To give an extremely rough idea of the subject, classical ergodic theory concerns itself with (group) actions on some (measure) space
   describing long-term behavior of dynamical systems.
   The classical example comes from thermodynamics. Consider the motion of particles in an ideal gas.
   Ergodicity provides a framework for studying the common-sense notion that the particles would eventually mix completely (i.e. reach every possible configuration of the space),
   like smoke in an enclosed room would eventually fill the entire room completely.
 
-  The way this behavior is modelled is by a time evolution map $T:X \rightarrow X$ on some phase space $X$.
+  The way this behavior is modelled is by a time evolution map $T:X \rightarrow X$ on some phase space $X$,
   and ergodicity is expressed in the following way :
+
+  % TODO: Corr: you need to say what invariant means
 
   There is no true subset of $X$, $\emptyset \subsetneq A \subsetneq X$ that is also invariant with respect to some measure $\mu$.
   Equivalently, if $A$ is invariant then either $\mu(A) =0$ ($A$ is a null set) or $\mu(A) = \mu(X)$ ($A$ is dense in $X$).
+
+  % TODO: Corr: densitiy doesn't exist without a topology. i.e. only a measure space is not enough.
 
   Mathematicians found purely mathematical interest in this behavior and began studying it on its own,\
   dropping the phzsical notion of configuration space and time evolution and substituting the evolution map with group actions $G:X \rightarrow X$.
   Notably using topological groups such as Lie groups, as we will do in this paper.
 
-  %TODO: (this is uglily wrenched in here. find more elegant place for this)
   The main aim of the book by Zimmer is focused on two
   theorems by Mostow and Margulis. The ``arithmeticity theorem'' and the
   ``rigidity theorem'', which show how Lie groups and lattices in them
@@ -281,7 +284,7 @@
   given by the representation.
 
   \hypertarget{question-when-is-an-action-ergodic}{%
-  \subsection{question: when is an action
+  \subsection{Question: when is an action
   ergodic?}\label{question-when-is-an-action-ergodic}}
 
   Instead of verifying ergodicity for any given action, space and measure
@@ -513,7 +516,7 @@
 
 
   \hypertarget{direct-difference-notation}{%
-  \subsection{``direct difference''
+  \subsection{``Direct difference''
   notation}\label{direct-difference-notation}}
 
   Zimmer, and we, use the symbol ``$\ominus$'' to denote ``subtraction''
@@ -805,7 +808,7 @@
 
 
   \hypertarget{theorem-for-p}{%
-  \subsection{Theorem for \texorpdfstring{$P$}{P}}\label{theorem-for-p}}
+  \subsection{The Theorem for \texorpdfstring{$P$}{P}}\label{theorem-for-p}}
 
   \begin{lem}[decomposition of \sltr and $P$]
     \label{ref:lem:decomp}
@@ -1044,7 +1047,7 @@
   \end{pf}
 
   \hypertarget{theorem-for-sl2-r}{%
-  \subsection{Theorem for \texorpdfstring{$SL(2, \mathbb{R})$}{SN(2, R)})}\label{theorem-for-sl2-r}}
+  \subsection{The Theorem for \texorpdfstring{$SL(2, \mathbb{R})$}{SN(2, R)})}\label{theorem-for-sl2-r}}
 
   If $\pi$ is a unitary representation of $G = SL(2, \mathbb{R})$ with no
   invariant vectors, then all matrix coefficients of $\pi$ vanish at $\infty$.
