@@ -43,7 +43,7 @@
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% \setcounter{secnumdepth}{-\maxdimen} % remove section numbering % TODO: Corr: this is where most of the numbering fuckups come from.
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -55,11 +55,11 @@
 % \usepackage{amsthm}
 % \usepackage{thm-amsthm}
 \usepackage[standard,amsmath,thref,hyperref]{ntheorem}
-\theorempreskip{20pt} % TODO: hacky
-\theorempostskip{10pt} % TODO: hacky
-\theoremstyle{break}
-\theorembodyfont{\normalfont}
-\newtheorem{thm}{Theorem}
+% \theorempreskip{20pt} % TODO: hacky
+% \theorempostskip{10pt} % TODO: hacky
+% \theoremstyle{break}
+% \theorembodyfont{\normalfont}
+\newtheorem{thm}{Theorem}[section]
 \newtheorem{defn}{Definition}[thm]
 \newtheorem*{problem}{Problem}
 \theoremstyle{plain}
@@ -226,36 +226,23 @@
   The way this behavior is modelled is by a time evolution map $T:X \rightarrow X$ on some phase space $X$,
   and ergodicity is expressed in the following way :
 
-  % TODO: Corr: you need to say what invariant means
-
-  There is no true subset of $X$, $\emptyset \subsetneq A \subsetneq X$ that is also invariant with respect to some measure $\mu$.
-  Equivalently, if $A$ is invariant then either $\mu(A) =0$ ($A$ is a null set) or $\mu(A) = \mu(X)$ ($A$ is dense in $X$).
-
-  % TODO: Corr: densitiy doesn't exist without a topology. i.e. only a measure space is not enough.
+  There is no proper subset of $X$, $\emptyset \subsetneq A \subsetneq X$ that is also invariant with respect to some measure $\mu$,
+  meaning there is no proper subset such that $\mu(A) = \mu(TA)$.
+  Equivalently, if $A$ is invariant then either $\mu(A) =0$ ($A$ is a null set) or $\mu(A) = \mu(X)$.
 
   Mathematicians found purely mathematical interest in this behavior and began studying it on its own,\
-  dropping the phzsical notion of configuration space and time evolution and substituting the evolution map with group actions $G:X \rightarrow X$.
+  dropping the physical notion of configuration space and time evolution and substituting the evolution map with group actions $G:X \rightarrow X$.
   Notably using topological groups such as Lie groups, as we will do in this paper.
 
-  The main aim of the book by Zimmer is focused on two
-  theorems by Mostow and Margulis. The ``arithmeticity theorem'' and the
-  ``rigidity theorem'', which show how Lie groups and lattices in them
-  interact. 
+  The main aim of the book by Zimmer is focused on two theorems by Mostow and
+  Margulis. The ``arithmeticity theorem'' and the ``rigidity theorem'', which
+  show how Lie groups and their lattices interact. 
 
-  A lattice \Gamm in a locally compact topological group \G is a discrete subgroup such that the quotient $G/\Gamma$ has finite measure.
+  A lattice \Gamm in a locally compact topological group \G is a discrete subgroup such that the quotient $G/\Gamma$ has finite invariant measure.
   For example, $\mathbb{Z}^n$ in $\bbr^n$ is a lattice, as is $SL(n, \mathbb{Z})$ in $\slnr$.
   The rigidity and arithmeticity theorems state (very roughly) that lattices determine the surrounding group and groups determine lattices.
   This glosses over a tremendous amount of detail, but these theorems are not the focus of this paper, so this shall suffice.
   They serve the purpose of motivating the study of lattices in Lie groups.
-
-  % todo:  (find these: Margulis, Borel, Furstenberg, Kazhdan, Moore, Howe, and Zimmer \cite{mackey74})
-  % todo: should really cite howe 79 and read it too, lol
-  % The paper by Moore \cite{Moore66} was published in 1966. Margulis' Theorems were published in 
-  % todo:  (wtf, idk. historical research has never been my forte)
-
-  % Sources for the historical background: \cite{mackey74}(chapter 1.
-  % Introduction) \cite{Zimmer84}(chapter 1. Introduction)
-
 
 
 
@@ -270,8 +257,10 @@
 
   \begin{thm}[Howe-Moore's Ergodicity Theorem]
     \label{thm:main-thm}
-    Let $G_i$ be connected non-compact simple Lie groups, $G = \prod G_i$ and $\pi$ a unitary representation of \G .
-    Then all matrix coefficients $f(g) = \inn{\pi(g)v,w}$ vanish at infinity. I.e. $f(g) \rightarrow 0$ as $g$ leaves compact subsets of \G.
+    Let $G_i$ be connected non-compact simple Lie groups, $G = \prod G_i$ and
+    $\pi$ a unitary representation of \G. Then all matrix coefficients $f(g) =
+    \inn{\pi(g)v,w}$ vanish at infinity. I.e. $f(g) \rightarrow 0$ as $g$
+    leaves compact subsets of \G.
   \end{thm}
 
   This theorem seems, at first glance, completely unrelated to anything mentioned so far.
