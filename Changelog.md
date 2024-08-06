@@ -19,3 +19,8 @@ Correction of spelling errors and minor adjustments not mentioned.
 ## definitions
 
 - changed link style to be more visible
+- fixed broken itemize section
+- rearranged Borel sets to be defined earlier.
+- deleted 4th definition of ergodicity. reducing total number to 2
+
+## direct integral

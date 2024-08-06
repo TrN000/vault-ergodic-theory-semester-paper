@@ -423,6 +423,8 @@
   space $G/\Gamma$.
 
 
+  % TODO: something about changing the order?
+
   \hypertarget{group-actions}{
   \subsection{Group Actions}\label{group-actions}}
 
@@ -442,13 +444,12 @@
   $$
   The \emph{G-orbit} of a point $x \in X$ is the set $Gx$.
 
+
   \hypertarget{representations}{%
   \subsection{Representations}\label{representations}}
 
-  % TODO: matrix coefficients
-
-  A \emph{representation} is a group-homomorphism from a group into the general linear
-  group of a vector space, $\pi: G \rightarrow GL(V)$.
+  A \emph{representation} is a continuous group-homomorphism from a group into
+  the general linear group of a vector space, $\pi: G \rightarrow GL(V)$.
   We consistently use lowercase Greek letters to refer to representations.
   Most often $\pi$.
   The \emph{dimension} of a representation is the dimension of the vector space
@@ -468,26 +469,24 @@
   f(g) = \inn{\pi(g)v, w}
   $$
   In the case of a finite dimensional Hilbert space and, for a given choice of basis, and two basis vectors $e_i,\ e_j$,
-  the inner product $\inn{e_i\pi(g), e_j}$ works out to be the coefficient of the matrix associates to $\pi(g)$.
+  the inner product $\inn{\pi(g)e_i, e_j}$ works out to be the coefficient of the matrix associates to $\pi(g)$.
 
 
   % TODO: (all of this) repr: a map dim of a repr
   % TODO: agree with topology.
 
 
-
-
   \hypertarget{direct-difference-notation}{%
   \subsection{``Direct difference''
   notation}\label{direct-difference-notation}}
 
-  Zimmer, and we, use the symbol ``$\ominus$'' to denote ``subtraction''
-  of linear subspaces of Hilbert spaces. If $A \subset B$ are linear
-  subspaces of a Hilbert space,
+  Zimmer, and we, use the symbol ``$\ominus$'' to denote ``subtraction'' of
+  linear subspaces of Hilbert spaces with respect to the inner product. If $A
+  \subset B$ are linear subspaces of a Hilbert space,
   $B \ominus A = \{x \in B: (x,y) = 0 \text{ for all }y \in A\}$.
 
   The specifically we will use it on $L^2(\hilb) \ominus \bbc$, to denote
-  the square integrable functions on \hilb "minus" the subspace of constant functions.
+  the space of the square integrable functions on \hilb whose integral is zero.
 
 
   \hypertarget{ergodicity}{%
@@ -501,28 +500,15 @@
   We have successfully made our way back to ergodicity. We will try to
   illuminate the definition a bit by examples and non-examples.
 
-  To reiterate % TODO: have we iterated it once?
-
-  \begin{defn}{Ergodicity}
-  For a group $G$, a measurable separable space $S$, and a $G$-invariant
-  measure $\mu$. An action is called ergodic if all $G$-invariant subsets
-  $A\subset S$ are either null or conull. Which means
-  $$
-  \forall g\in G:\ gA = A \quad \Rightarrow \quad \mu(A)=0 \text{ or }
-  \mu(S\setminus A)=0
-  $$
-  \end{defn}
-
-  Let us try to build some intuition for what this means. Notice that orbits
-  are, by definition \Ginv, so one way to constructively build invariant sets
-  is to consider orbits of actions. Inversely as well, any invariant set can be
-  considered a union of orbits of all its points. Recall from basic group
-  theory that orbits partition the space, so saying that these must be either
-  null or conull means there is no straightforward ``divide and conquer''
-  strategy for understanding ergodic actions. In this regard ergodicity
+  Notice that orbits are, by definition \Ginv, so one way to constructively build
+  invariant sets is to consider orbits of actions. Inversely as well, any
+  invariant set can be considered a union of orbits of all its points. Recall
+  from basic group theory that orbits partition the space, so saying that these
+  must be either null or conull means there is no straightforward ``divide and
+  conquer'' strategy for understanding ergodic actions. In this regard ergodicity
   resembles a sort of ``irreducibility''-property. To put it in Zimmer's words
-  ``Ergodic theory is (in large part) the study of complicated orbit structure
-  in the presence of a measure.''
+  ``Ergodic theory is (in large part) the study of complicated orbit structure in
+  the presence of a measure.''
 
 
   Note, that the adjective ``ergodic'' sometimes applied to either the action, the measure or the space.
@@ -533,7 +519,7 @@
 
 
   \begin{ex}
-    Let $\mathbb{T}$ be the circle group of $\{z\ \bbc \ | \ |z| = 1 \}$ and
+    Let $\mathbb{T}$ be the circle group of $\{z\ \in \bbc \ | \ |z| = 1 \}$ and
     $A: \mathbb{T} \rightarrow \mathbb{T}$ multiplication by $e^{i\alpha}$ with
     $\alpha/2\pi$ irrational. This induces an action
     $\mathbb{Z}\curvearrowright\mathbb{T} \rightarrow \mathbb{T}$ by $ n\cdot z
@@ -560,7 +546,7 @@
 \section{The Direct Integral and Unitary Representations}\label{the-direct-integral-and-unitary-representations}}
 
 
-  Now that we've laid out the prerequisites, we can turn to what we'll actually need in terms of this specific subject.
+  Now that we have laid out the prerequisites, we can turn to what we will actually need in terms of this specific subject.
   We have to take a detour into unitary
   representations and define the direct integral to make statements about
   certain subgroups, in particular $\bbr^n$.
@@ -572,9 +558,9 @@
 
   The way there will lead us through the direct integral, unitary representations
   and in particular the representation of $\mathbb{R}^n$. To jump ahead of
-  ourselves, we'll later look at the upper diagonal group and its subgroup
+  ourselves, we will later look at the upper diagonal group and its subgroup
   \ipmatrix{1 & x \\ 0 & 1}, which is isomorphic to $\mathbb{R}$ and whose
-  representation we'll care about.
+  representation we will care about.
 
   \hypertarget{the-direct-integral}{%
   \subsection{The Direct Integral}\label{the-direct-integral}}
@@ -627,7 +613,7 @@
     already hard to read typeface in a small font size into the subscript is
     hard to read. We have introduced it as-is to conform with the notation in
     the literature, but in the next section we will encounter a number of
-    operations that manipulate these subscripts. For that reason we'll write
+    operations that manipulate these subscripts. For that reason we will write
     them also in square brackets like so:
     $$
     \pi[\mu, \hilb]
@@ -641,7 +627,7 @@
   \subsection{Representation of \texorpdfstring{$\bbr^n$}{R\^{}n}}\label{representation-of-rn}}
 
 
-  In this section we'll introduce several theorems on the representations of
+  In this section we will introduce several theorems on the representations of
   groups that contain $\bbr^n$ as a normal subgroup.
 
   We begin by discussing $\bbr^n$ and its representations, as we need this understanding to analyze the cases when $\bbr^n$ is a subgroup.
@@ -956,7 +942,7 @@
   coefficients vanish as we want, or there exist invariant vectors. Then
   we show that there are no invariant vectors, completing the statement.
 
-  Recall the polar decomposition. we'll need it for the next lemma, which will do a lot of heavy lifting.
+  Recall the polar decomposition. we will need it for the next lemma, which will do a lot of heavy lifting.
   Let $T \in \slnr$ be a matrix. We can decompose $T$ as follows:
   $T = US$ for some unitary $U$ and a symmetric positive definite $S$. $S$ can be
   diagonalized, because it has an orthonormal basis of eigenvectors, into $U_0 A U_0^{-1}$ so we can write
@@ -1024,7 +1010,7 @@
   There are two possible cases. Either $N$ has non-zero invariant vectors,
   or the matrix coefficients vanish along $A$.
 
-  Should there be no non-zero invariant vectors, as we'll show, then
+  Should there be no non-zero invariant vectors, as we will show, then
   the matrix coefficients vanish along $A$, and, by lemma \ref{lemma},
   vanishing along $A$ implies vanishing along \G.
 
@@ -1057,7 +1043,7 @@
 
   \begin{figure}
     \begin{center}
-      \includegraphics[width=0.95\textwidth]{N-orbits-in-R2-1.png}
+      % \includegraphics[width=0.95\textwidth]{N-orbits-in-R2-1.png}
     \end{center}
     \caption{The orbits of $N$ on $G/N$ correspond either to the horizontal lines parallel to the x-axis or to the individual points on the x-axis. }
     \label{fig:n-orbits-in-r2}
@@ -1065,7 +1051,7 @@
 
   But we can also identify the $x$-axis with $P/N$ by $\ipmatrix{a & b \\ 0 &
   a^{-1}}\ipmatrix{x \\ 0} = \ipmatrix{ax \\ 0}$. Therefore $f$ is also
-  constant on $P$. So it follows that $v$ is $P$-invariant. And as we've seen
+  constant on $P$. So it follows that $v$ is $P$-invariant. And as we have seen
   in the \hyperref[sec:introduction]{intoduction}, we can identify $G/P$ with
   the real projective line and $P$ has a dense orbit in $G/P$ so $f$ is
   constant on $G$ and therefore $v$ is actually \G-invariant, contradicting our
@@ -1081,7 +1067,7 @@
 
 
 
-  In this section we'll prove the statement for $G = \slnr$ and later show how
+  In this section we will prove the statement for $G = \slnr$ and later show how
   the proof is extended to a general group \G. We begin just as for \sltr, by
   applying \hyperref[lemma]{lemma} \ref{lemma}. Thus it suffices to show that
   matrix coefficients vanish on $A \subset G$ to imply that they vanish on \G.
@@ -1199,7 +1185,7 @@
 \section{Conclusion}\label{outro}}
 
 
-  Now that we've proven the theorem, it's natural to ask what we do with it now.
+  Now that we have proven the theorem, it's natural to ask what we do with it now.
   At first glance, the statement about matrix coefficients doesn't seem particularly useful,
   but recall from this \hyperref[the-connection-between-ergodicity-and-unitary-representations]{section}
   that we have a connection to invariant subsets of a possibly ergodic space.
@@ -1212,7 +1198,7 @@
     Let \G be a semisimple Lie group and $S$ an ergodic \G-space. If $H\subset G$ is a closed subgroup, when is $H$ ergodic on $S$.
   \end{problem}
 
-  We'll show how we can apply the theorem to this problem, mostly forgoing proofs.
+  we will show how we can apply the theorem to this problem, mostly forgoing proofs.
 
   \begin{thm}[Zimmer 2.2.19, originally \citeauthor{Moore66}\cite{Moore66}]
     \label{thm:2.2.19}
