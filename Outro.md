@@ -1,1 +1,0 @@
-hyperbolas! 3 cases comp eucl and non-comp. if we want to go to infinity and don't want boring examples, hyperbolic geometry is necessary. fractional linear transforms. riemann sphere model?
