@@ -55,10 +55,10 @@
 % \usepackage{amsthm}
 % \usepackage{thm-amsthm}
 \usepackage[standard,amsmath,thref,hyperref]{ntheorem}
-% \theorempreskip{20pt} % TODO: hacky
-% \theorempostskip{10pt} % TODO: hacky
-% \theoremstyle{break}
-% \theorembodyfont{\normalfont}
+\theorempreskip{20pt} % TODO: hacky
+\theorempostskip{10pt} % TODO: hacky
+\theoremstyle{break}
+\theorembodyfont{\normalfont}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{defn}{Definition}[thm]
 \newtheorem*{problem}{Problem}
@@ -80,10 +80,10 @@
 }{% else
 \usepackage[
   colorlinks,
-  citecolor=black,
-  filecolor=black,
-  linkcolor=black,
-  urlcolor=black
+  citecolor=blue,
+  filecolor=blue,
+  linkcolor=blue,
+  urlcolor=blue
 ]{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -156,7 +156,7 @@
 \hypersetup{
   pdftitle={On Theorem by Moore about Vanishing Matrix Coefficients},
   pdfauthor={Nicolas Trutmann},
-  hidelinks,
+  % hidelinks,
   pdfcreator = {Nicolas Trutmann},
   pdfkeywords = {Ergodic Theory},
 }
@@ -257,19 +257,15 @@
 
   \begin{thm}[Howe-Moore's Ergodicity Theorem]
     \label{thm:main-thm}
-    Let $G_i$ be connected non-compact simple Lie groups, $G = \prod G_i$ and
-    $\pi$ a unitary representation of \G. Then all matrix coefficients $f(g) =
-    \inn{\pi(g)v,w}$ vanish at infinity. I.e. $f(g) \rightarrow 0$ as $g$
-    leaves compact subsets of \G.
+    Let $G_i$ be connected non-compact simple Lie groups with finite center, $G = \prod G_i$ and $\pi$ a unitary representation of \G.
+    Then all matrix coefficients $f(g) = \inn{\pi(g)v,w}$ vanish at infinity.
+    I.e. $f(g) \rightarrow 0$ as $g$ leaves compact subsets of \G.
   \end{thm}
-
-  This theorem seems, at first glance, completely unrelated to anything mentioned so far.
-  That 
 
   To clarify some points, note that we have specified non-compact groups.
   This allows us to talk about ``infinity'' at all. Next, what is an
-  invariant vector? Simply, for all $g\in G$, and a vector $v$, we
-  have that $\pi(g)v = v$, or, that $v$ is preserved by any linear map
+  invariant vector? Simply, a vector $v$ is called invariant if for all $g\in G$
+  $\pi(g)v = v$, or, that $v$ is preserved by any linear map
   given by the representation.
 
   \hypertarget{question-when-is-an-action-ergodic}{%
@@ -283,8 +279,6 @@
 
   For example, consider a group \G, a lattice $\Gamma \subset G$ and a closed subgroup $H \subset G$.
   this is of course, a priori, a bit of a contrived example, but consider that lattices in Lie groups are a considerable field of study.
-  The previously mentioned Theorem by \citeauthor{margulis91}\cite{margulis91} concerns itself with lattices.
-
 
   \begin{problem}[When do closed subgroups act ergodically]
     If $H_1, H_2 \subset G$ are closed subgroups in \G, is the action $H_1\curvearrowright G/H_2$ ergodic?
@@ -296,9 +290,9 @@
 
 
   Now that we have a concrete question, let us try to get our hands dirty
-  on an example. We'll use the action of fractional linear transforms on
+  on an example. We will consider the action of fractional linear transforms on
   the upper half plane
-  It'll bring intuition about the question and why one would care to
+  It will bring intuition about the question and why one would care to
   answer the question.
 
   Let $X = \{z \in \bbc  | Im(z) >0\}$ be the upper half plane, and $G = \sltr$.
@@ -312,40 +306,30 @@
 
   We would like to understand the actions of a lattice in \G on $X$.
 
-  We introduce the following lemma first.
-
-  \begin{lem}
-    $K:= SO(2, \mathbb{R})$ is the stabilizer of $i \in \mathbb{H}$.
-\end{lem}
-
-    for a proof, see \cite{Miyake89}(Theorem 1.1.3). The idea of the proof is to use a map to the Klein disk, use Schwarz' lemma and map back.
-
-  % How does the second map work? Using the same fractional linear transform
-  % but we take a real value instead of a complex one. It is easy to
-  % visualize as a regular matrix product with
-  % $\begin{pmatrix}x \\ 1\end{pmatrix}$ and projecting it to the
-  % projective line. \[
-  % \begin{pmatrix}a & b \\ c & d\end{pmatrix}\begin{pmatrix}x \\ 1\end{pmatrix} =
-  % \begin{pmatrix}ax + b \\ cx + d\end{pmatrix} \quad \rightarrow \quad
-  % \begin{pmatrix}\frac{ax + b}{cx + d} \\ 1\end{pmatrix}
-  % \] 
-
   Suppose now $\Gamma \in G$ is a lattice. 
   If $G$ acts transitively on a space $X$, then there is an isomorphism
   of $G$-spaces $G/G_x \rightarrow X$, where $G_x = Stab_G (x)$ for
   $x \in X$, given by the map $gG_x \mapsto gx$. In the case of our
-  example $G = SL(2, \mathbb{R})$, and, as we've shown in the preceding
-  lemma, we know the stabilizer of $i$ to be $SO(2,\mathbb{R})$. \#\#
-  where we want to go We want to show that the action of $\Gamma$ on
-  $\bar{\mathbb{R}}$ is ergodic
+  example $G = SL(2, \mathbb{R})$
+
+  the stabilizer of $i$ to be $SO(2,\mathbb{R})$.
+  We want to show that the action of $\Gamma$ on
+  $\bar{\mathbb{R}} = \bbr \cup \{\infty\}$ is ergodic.
 
   \begin{defn}[Ergodicity]
-  For a group $G$, a measurable separable space $S$, and a $G$-invariant
-  measure $\mu$. An action is called ergodic if all $G$-invariant subsets
-  $A\subset S$ are either null or conull. Which means 
-  $$
-  \forall g\in G:\ gA = A \quad \Rightarrow \quad \mu(A)=0 \text{ or } \mu(S\setminus A)=0
-  $$
+    Let \G be a locally compact second countable group.
+    We consider actions of \G on a measure space $(S, \mu)$, where $\mu$ is
+    $\sigma$-finite and quasi-invariant under the action of \G.
+    \emph{Quasi-invariant} means that for all set $A \subset S$ and $g \in G$,
+    $\mu(A) = 0$ if and only if $\mu(gA) = 0$.
+
+    For such \G, $(S, \mu)$ an action $G \times S \rightarrow S$ is called
+    ergodic if all $G$-invariant subsets $A\subset S$ are either null or
+    conull.
+    Which means 
+    $$
+    \forall g\in G:\ gA = A \quad \Rightarrow \quad \mu(A)=0 \text{ or } \mu(S\setminus A)=0
+    $$
   \end{defn}
 
   % TODO: unoriginal
@@ -357,7 +341,7 @@
   $\Gamma\backslash X$ will be a manifold, in fact a finite volume
   Riemann surface.
 
-  On the other hand, via the same fractional linear
+  On the other hand, via the same fractional linear transformation
   formula, $G$ acts on
   $\bar{\mathbb{R}} = \mathbb{R} \cup \{ \infty \}$, and
   $\bar{\mathbb{R}}$ can be identified with $G/P$, where $P$ is the
@@ -374,14 +358,6 @@
   essentially unique $G$-invariant metric.
 
 
-  \begin{defn}
-    Suppose $G$ acts on a measure space $(S, \mu)$ so that the action
-    map $S \times G \rightarrow S$ is measurable and $\mu$ is
-    quasi-invariant, i.e., $\mu(A) = 0$ if and only if $\mu(Ag) = 0$.
-    The action is called ergodic if $A \subset S$ is measurable and
-    $G$-invariant implies $\mu(A) = 0$ or $\mu(S\setminus A) = 0$.
-  \end{defn}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -393,7 +369,7 @@
   detour. We will state definitions and relevant theorems (without proof)
   in compact form with ample references so that a reader can catch up if
   necessary. The advanced reader can skip this section and move straight
-  to the next topic without issue.
+  to the \hyperref[the-direct-integral-and-unitary-representations]{next topic} without issue.
 
   % TODO:  (put references for everything in each section)
   % Throughout the whole text, unless otherwise stated, G is a countable
@@ -411,16 +387,19 @@
   \emph{measurable} if $f^{-1}(A)$ is a measurable set in $X$ for all
   measurable sets $A$ of $Y$.
 
-  A \emph{measure} on a measurable space $(X, \mathscr{B})$ is a map
-  $\mu: \mathscr{B} \rightarrow [0, \infty]$ such that -
-  $\mu(\emptyset) = 0$, and -
-  $\mu(\cup_{n=1}^{\infty} A_n) = \sum_{n=1}^{\infty} \mu(A_n)$ for
-  every countable collection $\{A_n\}_{n=1}^{\infty}$ of pairwise
-  disjoint sets in $\mathscr{B}$ (countable additivity).
-
   The Borel $\sigma$-algebra of a topological space $X$ is the
   $\sigma$-algebra $\mathscr{B}$ generated by the open subsets of
   $X$ , and the members of $\mathscr{B}$ are called Borel sets. 
+
+  A \emph{measure} on a measurable space $(X, \mathscr{B})$ is a map
+  $\mu: \mathscr{B} \rightarrow [0, \infty]$ such that
+  \begin{itemize}
+    \item $\mu(\emptyset) = 0$, and
+    \item $\mu(\cup_{n=1}^{\infty} A_n) = \sum_{n=1}^{\infty} \mu(A_n)$ 
+  \end{itemize}
+  for
+  every countable collection $\{A_n\}_{n=1}^{\infty}$ of pairwise
+  disjoint sets in $\mathscr{B}$ (countable additivity).
 
   A measure $\mu$ is called \emph{finite} if the whole space has finite measure $\mu(X) < \infty $,
   and \emph{$\sigma$-finite} if $X$ is the countable union of sets with finite measure,
@@ -428,26 +407,20 @@
   $\mu(A_i) < \infty $ for all $i$.
 
 
-
-
-  % TODO: this section should be called 'groups' and include def of lattices and Lie groups
   \hypertarget{groups}{%
   \subsection{Groups}\label{groups}}
 
-  We are interested in Lie groups. Primarily for its nature as a topological group.
+  We are interested in Lie groups. Primarily for their nature as a topological group.
   A \emph{ Lie group } is a group that is also a manifold. A \emph{locally compact} group
   is locally compact as a topological space.
   We require groups to be locally compact, so that the Haar measure exists, which is, up to scaling,
   the unique measure on Borel sets which satisfies the following: For all $g\in G$
   $\mu(gS) = \mu(S)$, $\mu$ is finite on compact sets and is inner and outer
   regular.
-  Unless otherwise specified, we talk about these types of groups.
 
-  A \emph{lattice} is a discrete subgroup $\Gamma$ of a locally compact group $G$
-  such that there exists a finite measure on the quotient space $G/\Gamma$.
-
-
-  % TODO: Iwasawa decomp here? sure why not.
+  A \emph{lattice} is an invariant discrete subgroup $\Gamma$ of a locally
+  compact group $G$ such that there exists a finite measure on the quotient
+  space $G/\Gamma$.
 
 
   \hypertarget{group-actions}{
@@ -1311,4 +1284,3 @@
 \includepdf[pages={-}]{decl-of-originality-signed.pdf}
 
 \end{document}
-
