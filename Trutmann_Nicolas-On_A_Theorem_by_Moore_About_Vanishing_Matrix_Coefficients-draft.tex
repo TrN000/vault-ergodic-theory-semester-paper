@@ -51,22 +51,30 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ↓ Theorem styles
 
-\usepackage{mathrsfs}
+\usepackage{amsmath,amssymb,amsfonts,mathrsfs}
+% \usepackage[amsmath,thmmarks]{ntheorem}
+
+% \usepackage{mathrsfs}
 % \usepackage{amsthm}
 % \usepackage{thm-amsthm}
-\usepackage[standard,amsmath,thref,hyperref]{ntheorem}
-\theorempreskip{20pt} % TODO: hacky
-\theorempostskip{10pt} % TODO: hacky
-\theoremstyle{break}
-\theorembodyfont{\normalfont}
+% \usepackage[standard,amsmath,thref,hyperref]{ntheorem}
+\usepackage[amsmath,thref,thmmarks,hyperref]{ntheorem}
+\theorempreskip{10pt} % TODO: hacky
+\theorempostskip{5pt} % TODO: hacky
+% \theoremstyle{break}
+% \theorembodyfont{\normalfont}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{defn}{Definition}[thm]
 \newtheorem*{problem}{Problem}
-\theoremstyle{plain}
+% \theoremstyle{plain}
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem{cor}[thm]{Corollary}
-\newtheorem*{pf}{proof}
+
+\theoremstyle{plain}
+\theorembodyfont{\normalfont}
+\theoremsymbol{\ensuremath{\square}}
+\newtheorem*{proof}{Proof}
 \theoremindent1cm
 \newtheorem*{rk}{Remark}
 \newtheorem*{ex}{Example}
@@ -556,9 +564,10 @@
   The question about ergodicity, that hangs in the background of the theorem is:
   ``what happens at the boundary?''. Boundary means we are interested in the limit behavior of an ergodic action, which explains why our theorem makes an assertion about matrix coefficients at infinity.
 
-  The way there will lead us through the direct integral, unitary representations
-  and in particular the representation of $\mathbb{R}^n$. To jump ahead of
-  ourselves, we will later look at the upper diagonal group and its subgroup
+  The way there will lead us through the direct integral, unitary
+  representations and in particular the representation of $\mathbb{R}^n$. To
+  jump ahead of ourselves, we will later look at the 2-dimensional upper
+  diagonal group and its subgroup of matrices with $1$ on the diagonal
   \ipmatrix{1 & x \\ 0 & 1}, which is isomorphic to $\mathbb{R}$ and whose
   representation we will care about.
 
@@ -583,7 +592,7 @@
   $\mathscr{H}_i$.
 
 
-  Suppose we have a measure space $M$, and for each $x \in M$ a
+  Suppose now we have a measure space $M$, and for each $x \in M$ a
   Hilbert space $\mathscr{H}_x$ such that $x \mapsto \mathscr{H}_x$ is
   piecewise constant, that is, we have a disjoint decomposition of $M$
   into $\cup_{i=1}^{\infty} M_i$ such that for $x,y \in M_i$,
@@ -636,50 +645,48 @@
   This is a corollary of Schur's lemma, which states that every complex
   irreducible representation of an abelian group is one-dimensional.
 
-  It turns out that the group of unitary representations on $\mathbb{R}^n$
-  are isomorphic to $\mathbb{R}^n$.
-  We define a map from $\mathbb{R}^n$ to $\mathcal{U}(\mathbb{C})$ and show that it's in
-  fact bijective. Let $\theta$, $t$ be in $\mathbb{R}^n$ and let
-  $\lambda_{\theta}(t) = e^{i\langle \theta | t \rangle}$. This is in
-  fact a unitary automorphism on $\mathbb{C}$ by multiplication. To
-  clarify, for every $\theta \in \mathbb{R}^n$ we have a representation
-  given by
-  \begin{align*}
-    \lambda_{\theta}:\ & \mathbb{R}^n \rightarrow \mathcal{U}(\mathbb{C}) \\
-    & t \mapsto e^{i \langle \theta | t \rangle}
-  \end{align*}
-  We denote the group of representations by $\hat{\mathbb{R}}^n$. It
+  It turns out that the group of unitary representations of $\mathbb{R}^n$ is
+  isomorphic to $\mathbb{R}^n$. We define a map from $\mathbb{R}^n$ to
+  $\mathcal{U}(\mathbb{C})$ that is bijective. Let $\theta$, $t$ be in
+  $\mathbb{R}^n$ and let $\lambda_{\theta}(t) = e^{i\langle \theta | t
+  \rangle}$. This is in fact a unitary automorphism on $\mathbb{C}$ by
+  multiplication.
+
+  We denote the group of representations by $\hat{\mathbb{R}}^n$, which
   is in fact a group under pointwise multiplication.
 
   Now let $\mu$ be a ($\sigma$-finite) measure on $\hat{\bbr}^n$ and
   $\{\hilb_{\lambda}\}$ a piecewise constant assigment of Hilbert spaces. They
   form the Hilbert space $L^2(\hat{\bbr}^n, \mu, \{\hilb_{\lambda}\})$.
 
-  We define a unitary representation $\pi_{(\mu, \hilb_{\lambda})}$ on this space by
+  We define a unitary representation $\pi_{\mu, \hilb_{\lambda}}$
+  \footnote{
+    This definition is maybe a bit dense, so here is the assignment formatted in
+    pseudo code. This might help some reader more familiar with programming than
+    mathematics. The more mathematically inclined may ignore it. It is not
+    relevant other than to further the understanding of the above definition.
+
+    The conceptual problem here is that we have a hidden stack of expressions; we
+    give a very concrete definition, $\lambda(t)f(\lambda)$ for a very abstract
+    object $\pi_{\mu, \hat{\bbr}^n}$, with the layers in between not being
+    immediately obvious.
+    \begin{align*}
+      & \text{func }\ \pi_{\mu,\mathscr{H}_{\lambda}}(t: \mathbb{R}^n) \rightarrow \mathcal{U}(L^2(\hat{\mathbb{R}}^n)) \ \{ \\
+      & \qquad \text{return lambda}(f:\ L^2(\hat{\mathbb{R}}^n)) \rightarrow L^2(\hat{\mathbb{R}}^n) \ \{ \\
+      & \qquad \qquad \text{return lambda}(\lambda:\ \hat{\mathbb{R}}^n) \rightarrow \mathscr{H}_{\lambda} \ \{ \\
+      & \qquad \qquad \qquad \text{return }\lambda(t)f(\lambda) \\
+      & \qquad \qquad \} \\
+      & \qquad \} \\
+      & \} \\
+    \end{align*}
+
+    This shows that the objects inbetween are defined.
+  }
+  on this space by
   $$
     [\pi_{(\mu, \hilb_{\lambda})} f](\lambda) = \lambda(t)f(\lambda)
   $$
 
-  This definition is maybe a bit dense, so here is the assignment formatted in
-  pseudo code. This might help some reader more familiar with programming than
-  mathematics. The more mathematically inclined may ignore it. It is not
-  relevant other than to further the understanding of the above definition.
-
-  The conceptual problem here is that we have a hidden stack of expressions; we
-  give a very concrete definition, $\lambda(t)f(\lambda)$ for a very abstract
-  object $\pi_{\mu, \hat{\bbr}^n}$, with the layers in between not being
-  immediately obvious.
-  \begin{align*}
-  & \text{func }\ \pi_{\mu,\mathscr{H}_{\lambda}}(t: \mathbb{R}^n) \rightarrow \mathcal{U}(L^2(\hat{\mathbb{R}}^n)) \ \{ \\
-  & \qquad \text{return lambda}(f:\ L^2(\hat{\mathbb{R}}^n)) \rightarrow L^2(\hat{\mathbb{R}}^n) \ \{ \\
-  & \qquad \qquad \text{return lambda}(\lambda:\ \hat{\mathbb{R}}^n) \rightarrow \mathscr{H}_{\lambda} \ \{ \\
-  & \qquad \qquad \qquad \text{return }\lambda(t)f(\lambda) \\
-  & \qquad \qquad \} \\
-  & \qquad \} \\
-  & \} \\
-  \end{align*}
-
-  This shows that the objects inbetween are defined.
 
   The following theorem summarizes the representation theory of $\bbr^n$:
 
@@ -687,8 +694,8 @@
     \label{thm:2.3.3}
     \begin{itemize}
       \item For any unitary representation $\pi$ of
-        $\mathbb{R}^n$, there exist $\mu, \mathscr{H}_{\lambda}$, on
-        $\hat{\mathbb{R}}^n$ such that $\pi \cong \pi_{\mu, \mathscr{H}_{\lambda}}$.
+        $\mathbb{R}^n$, there exist $\mu$ on $\hat{\mathbb{R}}^n$ and $\mathscr{H}_{\lambda}$
+        such that $\pi \cong \pi_{\mu, \mathscr{H}_{\lambda}}$.
       \item $\pi_{\mu, \mathscr{H}_{\lambda}}$ and
         $\pi_{\mu', \mathscr{H}_{\lambda}'}$ are unitarily equivalent if and only if 
         \begin{itemize}
@@ -701,8 +708,10 @@
   We now turn to groups which contain $\bbr^n$ as a normal subgroup.
 
   Let $A:\bbr^n \rightarrow \bbr^n$ be a continuous group automorphism. Let
-  $\alpha$ be the adjoint automorphism $\alpha:\bbr^n \rightarrow \bbr^n$ given
-  by $\alpha(\lambda)(t) = \lambda(A^{-1}(t))$. If \mpi is any unitary representation of $\bbr^n$, we let $\alpha(\pi)$  be the unitary representation $[\alpha(\pi)](t) = \pi(A^{-1}(t))$.
+  $\alpha$ be the adjoint automorphism $\alpha:\hat{\bbr}^n \rightarrow \hat{\bbr}^n$ given
+  by $\alpha(\lambda)(t) = \lambda(A^{-1}(t))$. If \mpi is any unitary
+  representation of $\bbr^n$, we let $\alpha(\pi)$  be the unitary
+  representation $[\alpha(\pi)](t) = \pi(A^{-1}(t))$.
 
 
   \begin{thm}[Zimmer 2.3.4]
@@ -719,8 +728,8 @@
   \end{thm}
 
   This essentially states that the construction of $\pi_{\mu, \hilb}$ plays
-  nicely with automorphisms. this is of particular interest in light of the
-  next theorem, which treats groups with $\bbr^n$ as normal subgroups. Given
+  nicely with automorphisms. This is of particular interest in light of the
+  next theorem, which deals with groups with $\bbr^n$ as normal subgroups. Given
   that $\bbr^n$ is normal we get an automorphism by conjugation with \G.
 
   \begin{thm}[Zimmer 2.3.5, from \Citeauthor{mackey76} \cite{mackey76}]
@@ -739,13 +748,13 @@
   \end{thm}
 
   The following theorem will be necessary later on, when we begin the proof for
-  the central theorem. With the established information we can make a statement
+  the main theorem. With the established information we can make a statement
   about vanishing matrix coefficients for the group $P$ of upper triangular
   matrices in \sltr.
 
 
   We're going to use the following decomposition, which we take for
-  granted. (See \citeauthor{Hilgert2012}\cite{Hilgert2012} chapter 13 for a detailed treatment.)
+  granted. (See \citeauthor{Hilgert2012}\cite{Hilgert2012} chapter 13 for a detailed treatment of the general case.)
   The so called Iwasawa decomposition of $SL(2, \mathbb{R})$ into three
   matrices $K$, $A$, and $N$, defined as
   \begin{align}
@@ -771,7 +780,7 @@
      
   \end{lem}
 
-  \begin{pf}
+  \begin{proof}
     \label{ref:lem:pf:decomp}
     We look at the subgroup
     \[P \subset SL(2, \mathbb{R}) = \begin{pmatrix}a & b \\ 0 & a^{-1}\end{pmatrix}\]
@@ -807,7 +816,7 @@
     y \\ 0 & 1} \ipmatrix{ a^{-1} & -x \\ 0 & a } = \ipmatrix{1 & a^2x \\ 0 & 1}$.
     This defines a group action $P \curvearrowright N \rightarrow N$ by
     multiplication with $a^2$.
-  \end{pf}
+  \end{proof}
 
   \begin{thm}[Zimmer 2.3.6]
     \label{thm:2.3.6}
@@ -819,14 +828,16 @@
     \end{itemize}
   \end{thm}
 
-  \begin{pf}
+  \begin{proof}
      % TODO: fill in
     The subgroup $N$ is isomorphic to \bbr, so we can apply theorem \thref{thm:2.3.4}
-    to identify $N$ with $\hat{N} \cong \hat{\bbr}$ and the representation \mpi with $\pi_{\mu, \hat{\bbr}}$.
+    and identify $N$ with $\hat{N} \cong \hat{\bbr}$ and the representation \mpi with $\pi_{\mu, \hat{\bbr}}$.
     To spell it out $\pi|N \cong \pi_{\mu, \hat{\bbr}}: N \rightarrow \mathcal{U}(L^2(\hat{\bbr}, \mu, \hilb_{\lambda}))$.
 
     A section of this space can be written as $f: \lambda \mapsto v_{\lambda}$ for $v_{\lambda} \in \hilb_{\lambda}$.
-    By construction of $\pi_{\mu, \hilb_{\lambda}}$ we have an explicit formula $\lambda(t)f(\lambda)$, where $\lambda(t) \in S^1$ and $f(\lambda)$ in some complex Hilbert space.
+    By construction of $\pi_{\mu, \hilb_{\lambda}}$ we have an explicit
+    % TODO: Corr: formula stuff
+    formula $\lambda(t)f(\lambda)$, where $\lambda(t) \in S^1$ and $f(\lambda)$ in some complex Hilbert space.
     For a representation to be invariant, we need that $\lambda(t)f(\lambda) = f(\lambda)$ for all $t$ and almost all $\lambda$ ($\mu$ almost everywhere).
     The only choice for $\lambda$ is $\lambda_0(t) := e^{i \cdot 0 \cdot t} = 1$ for all $t$.
     So all of $\hilb_0$ will remain invariant.
@@ -835,7 +846,7 @@
 
     Next, we want to show that for any two unit vectors $f, g \in L^2(\hat{\bbr})$ we get $\lim_{g\to\infty} \inn{\pi(g)f,g} = 0$.
     We move the problem to compact sets in $\hat{\bbr}$.
-    Because $f,g$ are in a square integrable function space, we can find
+    Because $f,g$ are square integrable if $\mu(\{0\})=0$, we can find
     compact sets $E, F \in \hat{\bbr}\setminus \{0\}$ such that $\abs{\chi_Ef -
     f} < \varepsilon$ and $\abs{\chi_Fg -g} < \varepsilon$, $\forall
     \varepsilon > 0$.
@@ -848,15 +859,15 @@
 
     This completes the proof.
 
-  \end{pf}
+  \end{proof}
 
   \begin{cor}
     \label{cor:2.3.7}
     For \mpi a unitary representation of $P$, any $A$-invariant vector is also $P$-invariant.
   \end{cor}
 
-  \begin{pf}
-    If \mpi is a representation on \hilb, let $W=\{v \in \hilb|v \text{ is } \pi(N)\text{-invariant}\}$.
+  \begin{proof}
+    If \mpi is a representation of $P$ on \hilb, let $W=\{v \in \hilb|v \text{ is } \pi(N)\text{-invariant}\}$.
     Since $N$ is normal, $W$ is a $P$-invariant subspace, and so is $W^{\perp}$. 
     Since $W^{\perp}$ has no $N$-invariant vectors, we are in the second case
     in the above theorem for the representation on $W^{\perp}$, and in
@@ -864,7 +875,7 @@
     projection onto $W^{\perp}$ of an $A$-invariant vector in \hilb is also
     $A$-invariant, this shows that all $A$-invariant vectors are in $W$, and
     hence that all $A$-invariant vectors are $P$-invariant.
-  \end{pf}
+  \end{proof}
 
 
 
@@ -872,14 +883,16 @@
   \subsection{The Connection between Ergodicity and Unitary Representations}\label{the-connection-between-ergodicity-and-unitary-representations}}
 
   To see why we care about unitary representations at all if we really
-  want ergodicity, we need to make the folllowing connection. We use the
-  characteristic function of a set to connect the set to a vector in
-  $L^2(S)$. The characteristic function of a subset $A\subset S$, is
-  defined as $\chi_A(x) = 1$ for $x \in A$ and $0$ otherwise.
+  want ergodicity, we need to make the following connection. We use the
+  characteristic function of a set,$A\subset S$, is defined as $\chi_A(x) = 1$
+  for $x \in A$ and $0$ otherwise. To connect the set $A$ to a vector in
+  $L^2(S)$.
 
   This representation allows us to pass from talking about sets to talking
   about vectors (in function spaces), while retaining the properties we care
   about.
+
+  % TODO: Corr: big whopsie here. not sure how to tackle
 
   \begin{thm}[Zimmer 2.2.17]
     \label{thm:2.2.17}
@@ -890,7 +903,7 @@
     
   Since $S$ has finite measure, assume $\mu(S) =1$.
 
-  \begin{pf}
+  \begin{proof}
 
     "$\Leftarrow$": Proof by contrapositive:
     If $A\subset S$ is $G$-invariant
@@ -899,15 +912,15 @@
     $L^2(S)\ominus \mathbb{C}$. Therefore there exists an invariant vector in
     $L^2(S)\ominus \mathbb{C}$.
 
-    "$\Rightarrow$": \cite{Kerr16}(Prop 2.7)
+    "$\Rightarrow$": \cite[Prop 2.7]{Kerr16}
     Suppose the action is ergodic and $f\in L^2(S)\ominus \mathbb{C}$ is
     $G$-invariant. We can find a measurable set $D\subset \mathbb{C}$ such that
     $0<\mu(f^{-1}(D)) < 1$ and denote $\widetilde{A} = f^{-1}$. Now we verify
-    ergodicity. For every $g\in G$ the symmetric difference $g\widetilde{A}
-    \Delta \widetilde{A}$, for which all points are in the set $\{x \in X | \
-    |f(x)-sf(x)| > 0\}$, which has measure zero because $\|f- sf\|_2=0$.
+    ergodicity. For every $g\in G$ the symmetric difference
+    $g\widetilde{A} \Delta \widetilde{A} = \{x \in X | \ |f(x)-sf(x)| > 0\}$,
+    has measure zero because $\|f - sf\|_2=0$.
     Therefore the action fails to be ergodic.
-  \end{pf}
+  \end{proof}
 
   The adjective ``finite'' on the measure is necessary, because for a set
   $A$ of infinite measure the statement is no longer true as $\chi_A$
@@ -944,7 +957,7 @@
 
   Recall the polar decomposition. we will need it for the next lemma, which will do a lot of heavy lifting.
   Let $T \in \slnr$ be a matrix. We can decompose $T$ as follows:
-  $T = US$ for some unitary $U$ and a symmetric positive definite $S$. $S$ can be
+  $T = US$ for some unitary $U$ and a symmetric positive definite $S$. The matrix $S$ can be
   diagonalized, because it has an orthonormal basis of eigenvectors, into $U_0 A U_0^{-1}$ so we can write
   $T = U U_0 D U_0^{-1} = U_1 A U_2$ for $U_i \in SO(2, \mathbb{R})$.
   Then $SL(2, \mathbb{R}) = KAK$ for $K = SO_2$ and $A$ the diagonal
@@ -952,7 +965,7 @@
 
   The advantage this decomposition provides us is that we have neatly split the group $G$ into compact and non-compact parts.
   Additionally the non-compact part is particularly easy to handle, as diagonal matrices are easy to think about.
-  The lemma we are about to present, shows how useful this distinction is. It states that we only need to verify that matrix coefficients vanish on $A$.
+  The lemma we are about to present shows how useful this distinction is. It states that we only need to verify that matrix coefficients vanish on $A$.
   Intuitively, this tells us that the behavior of matrix coefficients at infinity has nothing to do with compact components.
 
 
@@ -963,13 +976,13 @@
     coefficients vanish on A as $g \rightarrow \infty$.
   \end{lem}
 
-  \begin{pf}
+  \begin{proof}
     \label{pf:lemma}
     We take vectors $v, w$ and write $g \in G$ as $g = k_1 a k_2$.
     Then the corresponding matrix
     coefficient can be written as $\langle \pi(g)v|w \rangle = \langle \pi(a) \pi(k_2) v | \pi(k_1)^{-1} w \rangle$.
 
-    We make a proof via contraposition.
+    We argue via contraposition.
     If there exists a matrix coefficient that fails to vanish as $g \rightarrow \infty$
     we can find a sequence $g_n = k_{1,n} g_{n} k_{2,n} \rightarrow \infty$ as
     $n \rightarrow \infty$ with
@@ -992,7 +1005,7 @@
     But since $K$ is compact and $g_n \rightarrow \infty$, we must have
     $a_n \rightarrow \infty$. This shows that the must be a matrix
     coefficient in $\pi | A$ that fails to vanish at infinity.
-  \end{pf}
+  \end{proof}
 
   \hypertarget{theorem-for-sl2-r}{%
   \subsection{The Theorem for \texorpdfstring{$SL(2, \mathbb{R})$}{SN(2, R)})}\label{theorem-for-sl2-r}}
@@ -1209,9 +1222,9 @@
      vectors then $H$ is compact.
   \end{thm}
 
-  \begin{pf}
+  \begin{proof}
     This follows immediately from then theorem because if $\pi|H$ has an invariant vector $v$, then the matrix coefficient $\inn{\pi(g)v,v}$ is identically 1 along $H$, and therefore $H$ is compact.
-  \end{pf}
+  \end{proof}
 
 
   By the theorem \thref{thm:2.2.17}, this is equivalent to the following:

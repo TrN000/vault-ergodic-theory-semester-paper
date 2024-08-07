@@ -24,3 +24,8 @@ Correction of spelling errors and minor adjustments not mentioned.
 - deleted 4th definition of ergodicity. reducing total number to 2
 
 ## direct integral
+
+- put the pseudo code part in a footnote
+- did not combine thms 3,4 into 5
+- fiddled with theorem styling. I don't think it's an improvement, but now proofs have a square at the end.
+- in proof of thm 7 (Zimmer 2.3.6), no clue what to do with comment
