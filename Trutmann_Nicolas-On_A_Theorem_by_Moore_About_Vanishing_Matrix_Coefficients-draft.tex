@@ -288,7 +288,7 @@
   answers the following questions.
 
   For example, consider a group \G, a lattice $\Gamma \subset G$ and a closed subgroup $H \subset G$.
-  this is of course, a priori, a bit of a contrived example, but consider that lattices in Lie groups are a considerable field of study.
+  This is of course, a priori, a bit of a contrived example, but consider that lattices in Lie groups are a considerable field of study.
 
   \begin{problem}[When do closed subgroups act ergodically]
     If $H_1, H_2 \subset G$ are closed subgroups in \G, is the action $H_1\curvearrowright G/H_2$ ergodic?
@@ -322,7 +322,7 @@
   $x \in X$, given by the map $gG_x \mapsto gx$. In the case of our
   example $G = SL(2, \mathbb{R})$
 
-  the stabilizer of $i$ to be $SO(2,\mathbb{R})$.
+  The stabilizer of $i$ to be $SO(2,\mathbb{R})$.
   We want to show that the action of $\Gamma$ on
   $\bar{\mathbb{R}} = \bbr \cup \{\infty\}$ is ergodic.
 
@@ -658,7 +658,7 @@
   is in fact a group under pointwise multiplication.
 
   Now let $\mu$ be a ($\sigma$-finite) measure on $\hat{\bbr}^n$ and
-  $\{\hilb_{\lambda}\}$ a piecewise constant assigment of Hilbert spaces. They
+  $\{\hilb_{\lambda}\}$ a piecewise constant assignment of Hilbert spaces. They
   form the Hilbert space $L^2(\hat{\bbr}^n, \mu, \{\hilb_{\lambda}\})$.
 
   We define a unitary representation $\pi_{\mu, \hilb_{\lambda}}$
@@ -682,7 +682,7 @@
       & \} \\
     \end{align*}
 
-    This shows that the objects inbetween are defined.
+    This shows that the objects in between are defined.
   }
   on this space by
   $$
@@ -892,15 +892,15 @@
   about vectors (in function spaces), while retaining the properties we care
   about.
 
-  % TODO: Corr: big whopsie here. not sure how to tackle
 
   \begin{thm}[Zimmer 2.2.17]
     \label{thm:2.2.17}
-    An action $G\curvearrowright S$, with \emph{ finite } invariant measure is
-    ergodic on $S$ if and only if the restriction of the above representation
+    Let $G\curvearrowright S$ be an action  with \emph{ finite } invariant measure and \G countable.
+    This induces a representation $\pi: L^2(S) \rightarrow L^2(s)$ defined by $(\pi(g)f)(s) = f(sg)$.
+    This action is ergodic on $S$ if and only if the restriction of the above representation
     to $L^2(S) \ominus \mathbb{C}$ has no invariant vectors.
   \end{thm}
-    
+
   Since $S$ has finite measure, assume $\mu(S) =1$.
 
   \begin{proof}
@@ -922,6 +922,9 @@
     Therefore the action fails to be ergodic.
   \end{proof}
 
+  A small, but significant, issue is still that we require the group \G to be countable.
+  The statement does still hold, by \cite[Lemma 2.2.16]{Zimmer84}, but requires a more involved argument.
+
   The adjective ``finite'' on the measure is necessary, because for a set
   $A$ of infinite measure the statement is no longer true as $\chi_A$
   will no longer be in $L^2$.
@@ -929,7 +932,7 @@
   % TODO:do we have the nec stuff in the intro?
   This is of course fine, because we care about the special case where the
   space $S$ in question is the quotient of a lattice $G/\Gamma$, which has
-  finite measure by definiton. So this restriction is not only acceptable but
+  finite measure by definition. So this restriction is not only acceptable but
   desired.
 
   If $A\subset S$ is $G$-invariant then $\chi_A\in L^2(S)$ will also
@@ -955,7 +958,7 @@
   coefficients vanish as we want, or there exist invariant vectors. Then
   we show that there are no invariant vectors, completing the statement.
 
-  Recall the polar decomposition. we will need it for the next lemma, which will do a lot of heavy lifting.
+  Recall the polar decomposition. We will need it for the next lemma, which will do a lot of heavy lifting.
   Let $T \in \slnr$ be a matrix. We can decompose $T$ as follows:
   $T = US$ for some unitary $U$ and a symmetric positive definite $S$. The matrix $S$ can be
   diagonalized, because it has an orthonormal basis of eigenvectors, into $U_0 A U_0^{-1}$ so we can write
@@ -976,7 +979,6 @@
     coefficients vanish in \G, it suffices to check that they vanish for $a \in A$ as $a \rightarrow \infty$.
   \end{lem}
 
-  % TODO: lots of comments on this one. 
   \begin{proof}
     \label{pf:lemma}
     We take vectors $v, w$ and write $g \in G$ as $g = k_1 a k_2$.
@@ -994,11 +996,10 @@
     We pass to such a convergent subsequence and analyze the behavior of $a_n$ and $k_{1,n}$ separately.
     Let $k$ and $k'$ denote the respective limits of $k_{1,n}$ and $k_{2,n}^{-1}$.
     Then, for $n$ sufficiently large, $|\langle \pi(a_n)\pi(k)v | \pi(k') w \rangle | \geq \varepsilon/2$.
-    This follows from the following estimation, where we ommit the representation $\pi$ for legibility:
+    This follows from the following estimation, where we omit the representation $\pi$ for legibility:
 
-    % TODO: Corr: k and k' are not defined
     \begin{align*}
-      &\ \abs{\inn{\pi(a_n)\pi(k_n)v, \pi(k_n)^{-1}w}  -  \inn{\pi(a_n)\pi(k)v, \pi(k')w}} \quad \text{(now ommiting $\pi$)} \\
+      &\ \abs{\inn{\pi(a_n)\pi(k_n)v, \pi(k_n)^{-1}w}  -  \inn{\pi(a_n)\pi(k)v, \pi(k')w}} \quad \text{(now omitting $\pi$)} \\
         &=\abs{\inn{a_n k_n v, k_n' w} - \inn{a_n k v, k' w}} \\
         &= \abs{\inn{a_nk_nv - a_nkv, k_n'w} \ + \ \inn{a_nkv, k_n'w - k'w}}  \\
         &\leq \abs{\inn{a_nk_nv - a_nkv, k_n'w}} \ + \ \abs{\inn{a_nkv, k_n'w - k'w}} \quad \text{Triangle Inequality} \\
@@ -1012,9 +1013,6 @@
     coefficient in $\pi | A$ that fails to vanish at infinity.
   \end{proof}
 
-  % \hypertarget{theorem-for-sl2-r}{%
-  % \subsection{The Theorem for \texorpdfstring{$SL(2, \mathbb{R})$}{SN(2, R)}}\label{theorem-for-sl2-r}}
-
   \begin{thm}[The Theorem for $SL(2, \mathbb{R})$]
     If $\pi$ is a unitary representation of $G = SL(2, \mathbb{R})$ with no
     invariant vectors, then all matrix coefficients of $\pi$ vanish at $\infty$.
@@ -1022,8 +1020,8 @@
 
   \begin{proof}
     We can now start on the statement for \sltr. Thanks to the work we did in the
-    preceeding chapter, the statement is actually not very difficult to prove. The
-    theorem \thref{thm:2.3.6} and the preceeding lemma \thref{lemma} does the bulk of
+    preceding chapter, the statement is actually not very difficult to prove. The
+    theorem \thref{thm:2.3.6} and the preceding lemma \thref{lemma} does the bulk of
     the heavy lifting here.
 
     By assumption, \G has no invariant vectors. By theorem \thref{thm:2.3.6},
@@ -1052,8 +1050,7 @@
     Calculating the orbits of this action we have $\ipmatrix{1 & x \\ 0 &
     1}\ipmatrix{a \\ b} = \ipmatrix{a +bx \\ b}$. So there exist two kinds of
     orbits: for $b \neq 0$ the orbit is the horizontal line at height $b$ and
-    % TODO: Corr: here is a reference to a figure that's not here anymore
-    for $b=0$ every individual point $(a\ 0)$ on the $x$-axix is an orbit. (See Figure~\ref{fig:n-orbits-in-r2}). As $f$ is \Ninv,
+    for $b=0$ every individual point $(a\ 0)$ on the $x$-axis is an orbit. (See Figure~\ref{fig:n-orbits-in-r2}). As $f$ is \Ninv,
     $f$ will be constant along these orbits. Because $f$ is continuous, $f$ will
     also be constant along the $x$-axis.
 
@@ -1119,7 +1116,6 @@
   matrix coefficients vanish on $A \subset G$ to imply that they vanish on \G.
 
   Let $A \subset G$ be the subgroup of diagonal matrices. We denote the elements
-
   $$
   A \ni a := \begin{pmatrix}
     a_1 & & \\
@@ -1127,7 +1123,6 @@
         & & a_n
   \end{pmatrix}
   $$
-
   by $(a_1, \dots, a_n)$.
 
   To get a group that plays the role of the group $N$ from the earlier proof,
@@ -1149,7 +1144,7 @@
 
   Observe $B \cong \bbr^n$.
   These one-row spaces like $B$ are actually Abelian normal subgroups.
-  % TODO: Corr. this is sort of wrong.
+  % TODO: Corr: this is sort of wrong.
   To see that they are Abelian, decompose the matrix into $(\Id + b)(\Id +b') = \Id + \Id\cdot b + \Id\cdot b' + b\cdot b'$.
   Note that $b$, $b'$ are nilpotent and by choosing the same row for our entries they
   ``miss'' each other during multiplication and so $b\cdot b' =0$. The rest then commutes
@@ -1191,7 +1186,7 @@
   consider matrices $B_{kj}$ which have 1 along the diagonal and 0 elsewhere,
   except for the coefficient $(b_{kj})$. If $k\neq j$ and $j\neq i$ or $1$ then
   $B_{kj}$ commutes with $A_i$ and therefore leaves $W$ invariant. If
-  $\{k,j\}\cap \{1,i\} \neq \emptyset$ then $A_i$ normaliyes $B_{kj}$.
+  $\{k,j\}\cap \{1,i\} \neq \emptyset$ then $A_i$ normalizes $B_{kj}$.
   Therefore $A_iB_{kj}$ is isomorphic to $P$ such that $A_i$ corresponds to the
   diagonal matrices in $P$ and $B_{kj}$ corresponds to $N$. By
   \thref{cor:2.3.7} this case as well, leaves $W$ invariant.
@@ -1203,7 +1198,7 @@
 
   For the last paragraph, note that if \G is semisimple, the fact that
   $\dim(\text{kernel}(\pi_W)) >0$ contradicts the assumption that no simple
-  factor of \G leaves bectors invariant.
+  factor of \G leaves vectors invariant.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1247,7 +1242,7 @@
     Let \G be a semisimple Lie group and $S$ an ergodic \G-space. If $H\subset G$ is a closed subgroup, when is $H$ ergodic on $S$.
   \end{problem}
 
-  we will show how we can apply the theorem to this problem, mostly forgoing proofs.
+  We will show how we can apply the theorem to this problem, mostly forgoing proofs.
 
   \begin{thm}[Zimmer 2.2.19, originally \citeauthor{Moore66}\cite{Moore66}]
     \label{thm:2.2.19}
@@ -1263,21 +1258,30 @@
   \end{proof}
 
 
-  By the theorem \thref{thm:2.2.17}, this is equivalent to the following:
+  By the theorem \thref{thm:2.2.17}, this is equivalent to the following,
+  theorem, which needs to be preceded by a definition we had no need for up
+  until now:
+
+  \begin{defn}[Irreducible G-space]
+    Let $G = \prod G_i$ be a (finite) product, where $G_i$ is a connected
+    simple non-compact Lie group with finite center.
+    Let $S$ be an ergodic \G-space with finite invariant measure.
+    Then the action is called \emph{irreducible} if for every non-central normal subgroup
+    $N \subset G$, $N$ is ergodic on $S$.
+  \end{defn}
 
 
   \begin{thm}[Zimmer 2.2.15]
     \label{thm:2.2.15}
     Let $G = \prod G_i$ be a finite product where each $G_i$ is a connected
     non-compact simple Lie group with finite center. Suppose $S$ is an
-    % TODO: Corr: haven't defined irreducible
     irreducible ergodic \G-space with finite invariant measure. If $H \subset
     G$ is a closed non-compact subgroup, then $H$ is ergodic on $S$.
   \end{thm}
 
   For the case of spaces with finite invariant measure the established condition is exactly necessary and sufficient for ergodicity.
 
-  Recall that the defition of a lattice specifies that the quotient $G/\Gamma$
+  Recall that the definition of a lattice specifies that the quotient $G/\Gamma$
   has finite measure. This means that for actions on $G/P$, searching for
   invariant vectors is exactly equivalent to establishing ergodicity.
 
