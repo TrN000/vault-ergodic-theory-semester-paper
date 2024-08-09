@@ -43,7 +43,6 @@
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-% \setcounter{secnumdepth}{-\maxdimen} % remove section numbering % TODO: Corr: this is where most of the numbering fuckups come from.
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -916,7 +915,7 @@
     "$\Rightarrow$": \cite[Prop 2.7]{Kerr16}
     Suppose the action is ergodic and $f\in L^2(S)\ominus \mathbb{C}$ is
     $G$-invariant. We can find a measurable set $D\subset \mathbb{C}$ such that
-    $0<\mu(f^{-1}(D)) < 1$ and denote $\widetilde{A} = f^{-1}$. Now we verify
+    $0<\mu(f^{-1}(D)) < 1$ and denote $\widetilde{A} = f^{-1}(D)$. Now we verify
     ergodicity. For every $g\in G$ the symmetric difference
     $g\widetilde{A} \Delta \widetilde{A} = \{x \in X | \ |f(x)-sf(x)| > 0\}$,
     has measure zero because $\|f - sf\|_2=0$.
