@@ -48,6 +48,7 @@
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 
+\usepackage{tikz}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ↓ Theorem styles
 
@@ -59,6 +60,8 @@
 % \usepackage{thm-amsthm}
 % \usepackage[standard,amsmath,thref,hyperref]{ntheorem}
 \usepackage[amsmath,thref,thmmarks,hyperref]{ntheorem}
+\numberwithin{equation}{section}
+
 \theorempreskip{10pt} % TODO: hacky
 \theorempostskip{5pt} % TODO: hacky
 % \theoremstyle{break}
@@ -75,6 +78,7 @@
 \theorembodyfont{\normalfont}
 \theoremsymbol{\ensuremath{\square}}
 \newtheorem*{proof}{Proof}
+\theoremsymbol{}
 \theoremindent1cm
 \newtheorem*{rk}{Remark}
 \newtheorem*{ex}{Example}
@@ -124,8 +128,8 @@
 % inline matrix. why was this removed??
 \newcommand{\ipmatrix}[1]{%% make inline smallmatrix with parens. suited for 2x2 matrices.
 \ensuremath{\big(\begin{smallmatrix} #1 \end{smallmatrix}\big)}\xspace}
-\newcommand{\Ginv}{{\ensuremath G}-invariant}
-\newcommand{\Ninv}{{\ensuremath N}-invariant}
+\newcommand{\Ginv}{{\ensuremath G}-invariant\xspace}
+\newcommand{\Ninv}{{\ensuremath N}-invariant\xspace}
 
 % surrounding marks
 \newcommand{\abs}[1]{| #1 |}
@@ -182,7 +186,6 @@
   In this paper we will showcase a theorem in ergodic theory by R. Howe and
   C.C. Moore \cite{howe79}, as it is presented in the book by R.J. Zimmer in his
   book "\citetitle{Zimmer84}" \cite{Zimmer84}.
-  % TODO: is this actually the right citation?
   On the way there, we will touch many different
   fields, from measure theory, over functional analysis, representation
   theory and of course ergodic theory.
@@ -431,7 +434,7 @@
   space $G/\Gamma$.
 
 
-  % TODO: something about changing the order?
+  % TODO: Corr: something about changing the order?
 
   \hypertarget{group-actions}{
   \subsection{Group Actions}\label{group-actions}}
@@ -643,7 +646,7 @@
 
   All the irreducible unitary representations of \bbr are one-dimensional.
   This is a corollary of Schur's lemma, which states that every complex
-  irreducible representation of an abelian group is one-dimensional.
+  irreducible representation of an Abelian group is one-dimensional.
 
   It turns out that the group of unitary representations of $\mathbb{R}^n$ is
   isomorphic to $\mathbb{R}^n$. We define a map from $\mathbb{R}^n$ to
@@ -829,7 +832,6 @@
   \end{thm}
 
   \begin{proof}
-     % TODO: fill in
     The subgroup $N$ is isomorphic to \bbr, so we can apply theorem \thref{thm:2.3.4}
     and identify $N$ with $\hat{N} \cong \hat{\bbr}$ and the representation \mpi with $\pi_{\mu, \hat{\bbr}}$.
     To spell it out $\pi|N \cong \pi_{\mu, \hat{\bbr}}: N \rightarrow \mathcal{U}(L^2(\hat{\bbr}, \mu, \hilb_{\lambda}))$.
@@ -858,7 +860,6 @@
     But $\pi(g)(\chi_E\cdot f) \in \hilb_{gE}$, by \thref{thm:2.3.5}, choosing $g$ outside a sufficiently large compact subset of $A$ we can ensure $\hilb_{gE}\perp \hilb_{F}$ and therefore $\abs{\inn{\pi(g)f, g}} \leq 2\varepsilon$.
 
     This completes the proof.
-
   \end{proof}
 
   \begin{cor}
@@ -972,10 +973,11 @@
   \begin{lem}
     \label{lemma}
     If $\pi$ is a unitary representation of a Group $G$ (which is assumed to be second countable) and we can write $G =
-    KAK$, with $K$ compact (and second countable), then it suffices to check that the matrix
-    coefficients vanish on A as $g \rightarrow \infty$.
+    KAK$, with $K$ compact (and second countable), then to check that all matrix
+    coefficients vanish in \G, it suffices to check that they vanish for $a \in A$ as $a \rightarrow \infty$.
   \end{lem}
 
+  % TODO: lots of comments on this one. 
   \begin{proof}
     \label{pf:lemma}
     We take vectors $v, w$ and write $g \in G$ as $g = k_1 a k_2$.
@@ -984,92 +986,124 @@
 
     We argue via contraposition.
     If there exists a matrix coefficient that fails to vanish as $g \rightarrow \infty$
-    we can find a sequence $g_n = k_{1,n} g_{n} k_{2,n} \rightarrow \infty$ as
-    $n \rightarrow \infty$ with
+    we can find a sequence $g_n = k_{1,n} g_{n} k_{2,n}$ that goes to infinity as
+    $n \rightarrow \infty$, such that there exists an $\varepsilon > 0$ for $n$ sufficiently large such that
     $|\langle \pi(g_n) v | w \rangle | \geq \varepsilon$ for some $\varepsilon > 0$.
 
-    Because $G$, and therefore $K$ is second countable and compact, it is also sequentially compact\footnote{A topological space is called \emph{sequentially compact} if every sequence of points has a convergent subsequence.}.
-    So we can suppose $k_{1,n} \rightarrow k$ and $k_{2,n}^{-1} \rightarrow k'$.
+    Because $G$, and therefore $K$, is second countable and compact, it is also
+    sequentially compact, that is every sequence has a convergent subsequence.
+    We pass to such a convergent subsequence and analyze the behavior of $a_n$ and $k_{1,n}$ separately.
+    Let $k$ and $k'$ denote the respective limits of $k_{1,n}$ and $k_{2,n}^{-1}$.
     Then, for $n$ sufficiently large, $|\langle \pi(a_n)\pi(k)v | \pi(k') w \rangle | \geq \varepsilon/2$.
     This follows from the following estimation, where we ommit the representation $\pi$ for legibility:
 
+    % TODO: Corr: k and k' are not defined
     \begin{align*}
+      &\ \abs{\inn{\pi(a_n)\pi(k_n)v, \pi(k_n)^{-1}w}  -  \inn{\pi(a_n)\pi(k)v, \pi(k')w}} \quad \text{(now ommiting $\pi$)} \\
         &=\abs{\inn{a_n k_n v, k_n' w} - \inn{a_n k v, k' w}} \\
         &= \abs{\inn{a_nk_nv - a_nkv, k_n'w} \ + \ \inn{a_nkv, k_n'w - k'w}}  \\
         &\leq \abs{\inn{a_nk_nv - a_nkv, k_n'w}} \ + \ \abs{\inn{a_nkv, k_n'w - k'w}} \quad \text{Triangle Inequality} \\
         &\leq \norm{a_nk_nv - a_nkv}\norm{k_n'v} \ + \ \norm{a_nkv}\norm{k_n'w - k'w} \quad \text{Cauchy-Schwarz} \\
      \end{align*}
 
-    From here, we can pick an $n$ large enough to assert the inequality.
+    From here, we can pick $n$ large enough to assert the inequality.
 
     But since $K$ is compact and $g_n \rightarrow \infty$, we must have
     $a_n \rightarrow \infty$. This shows that the must be a matrix
     coefficient in $\pi | A$ that fails to vanish at infinity.
   \end{proof}
 
-  \hypertarget{theorem-for-sl2-r}{%
-  \subsection{The Theorem for \texorpdfstring{$SL(2, \mathbb{R})$}{SN(2, R)})}\label{theorem-for-sl2-r}}
+  % \hypertarget{theorem-for-sl2-r}{%
+  % \subsection{The Theorem for \texorpdfstring{$SL(2, \mathbb{R})$}{SN(2, R)}}\label{theorem-for-sl2-r}}
 
-  If $\pi$ is a unitary representation of $G = SL(2, \mathbb{R})$ with no
-  invariant vectors, then all matrix coefficients of $\pi$ vanish at $\infty$.
+  \begin{thm}[The Theorem for $SL(2, \mathbb{R})$]
+    If $\pi$ is a unitary representation of $G = SL(2, \mathbb{R})$ with no
+    invariant vectors, then all matrix coefficients of $\pi$ vanish at $\infty$.
+  \end{thm}
+
+  \begin{proof}
+    We can now start on the statement for \sltr. Thanks to the work we did in the
+    preceeding chapter, the statement is actually not very difficult to prove. The
+    theorem \thref{thm:2.3.6} and the preceeding lemma \thref{lemma} does the bulk of
+    the heavy lifting here.
+
+    By assumption, \G has no invariant vectors. By theorem \thref{thm:2.3.6},
+    There are two possible cases. Either $N$ has non-zero invariant vectors,
+    or the matrix coefficients vanish along $A$.
+
+    Should there be no non-zero invariant vectors, as we will show, then
+    the matrix coefficients vanish along $A$, and, by lemma \thref{lemma},
+    vanishing along $A$ implies vanishing along \G.
+
+    To see that there are no $N$-invariant vectors, we assume towards a contradiction
+    that there are $N$-invariant vectors and show that these must be \G-invariant as well,
+    which contradicts our assumption.
+
+    Suppose there is a vector $v$ that is \Ninv, meaning $\pi(n)v = v$ for all $n \in N$.
+    As a shorthand, define the function $f(g) = \langle \pi(g)v,v\rangle$.
+    This defines a continuous bi-\Ninv function on $G$.
+    This is because $f(gn) = \langle \pi(gn)v,v,\rangle = \langle \pi(g)\pi(n)v,v\rangle = \langle \pi(g)v,v\rangle = f(g)$,
+    and $f(ng) = \langle \pi(n)\pi(g)v,v\rangle = \langle \pi(g)v, \pi(n)^{-1}v\rangle = f(g)$.
+    Thus $f$ lifts from a continuous \Ninv function on $G/N$.
+
+    \G acts transitively on $\bbr^2\setminus \{0\}$ by matrix multiplication,
+    and, using the fact that $N$ is exactly the stabilizer of $\ipmatrix{1 \\
+    0}$, we get an isomorphism $G/N \cong \bbr^2\setminus \{0\}$.
+
+    Calculating the orbits of this action we have $\ipmatrix{1 & x \\ 0 &
+    1}\ipmatrix{a \\ b} = \ipmatrix{a +bx \\ b}$. So there exist two kinds of
+    orbits: for $b \neq 0$ the orbit is the horizontal line at height $b$ and
+    % TODO: Corr: here is a reference to a figure that's not here anymore
+    for $b=0$ every individual point $(a\ 0)$ on the $x$-axix is an orbit. (See Figure~\ref{fig:n-orbits-in-r2}). As $f$ is \Ninv,
+    $f$ will be constant along these orbits. Because $f$ is continuous, $f$ will
+    also be constant along the $x$-axis.
 
 
-  We can now start on the statement for \sltr. Thanks to the work we did in the
-  preceeding chapter, the statement is actually not very difficult to prove. The
-  theorem \ref{thm:2.3.6} and the preceeding lemma \ref{lemma} does the bulk of
-  the heavy lifting here.
+    \begin{figure}
+      \begin{center}
+    \begin{tikzpicture}
+      % % Draw the grid
+      % \draw[very thin, gray] (-3.9,-3.9) grid (3.9,3.9);
+      
+      % Draw the axes
+      \draw[thick,->] (-4,0) -- (4,0) node[anchor=north west] {x};
+      \draw[thick,->] (0,-2.2) -- (0,3.2) node[anchor=south east] {y};
+      
+       % Draw the horizontal grid lines in blue
+      % \draw[very thin, blue] (-4,-0.9) grid[xstep=0, ystep=1.1] (4,3.9);
+      \draw[very thin, blue] (-3.9,2.9) --  (3.9,2.9);
+      \draw[very thin, blue] (-3.9,1.9) --  (3.9,1.9);
+      \draw[very thin, blue] (-3.9,0.9) --  (3.9,0.9);
+      \draw[very thin, blue] (-3.9,-1.1) -- (3.9,-1.1);
 
-  By assumption, \G has no invariant vectors. By theorem \ref{thm:2.3.6},
-  There are two possible cases. Either $N$ has non-zero invariant vectors,
-  or the matrix coefficients vanish along $A$.
+      % Label the axes
+      \foreach \x in {-3,-2,-1,1,2,3}
+          \draw (\x,1pt) -- (\x,-1pt) node[anchor=north] {\x};
+      \foreach \y in {-2,-1,1,2,3}
+          \draw (1pt,\y) -- (-1pt,\y) node[anchor=east] {\y};
 
-  Should there be no non-zero invariant vectors, as we will show, then
-  the matrix coefficients vanish along $A$, and, by lemma \ref{lemma},
-  vanishing along $A$ implies vanishing along \G.
+       % Draw crosses along the x-axis
+      \foreach \x in {-3,-2,-1,0,1,2,3}
+      {
+          \draw[red,thick] (\x,-0.1) -- (\x,0.1);
+          \draw[red,thick] (\x-0.1,0) -- (\x+0.1,0);
+      }
+      
+      % Draw the origin
+      \node[anchor=north east] at (0,0) {0};
+    \end{tikzpicture}
+      \end{center}
+      \caption{The orbits of $N$ on $G/N$ correspond either to the horizontal lines parallel to the x-axis (in blue) or to the individual points on the x-axis (in red). }
+      \label{fig:n-orbits-in-r2}
+    \end{figure}
 
-  To see that there are no $N$-invariant vectors, we assume towards a contradiction
-  that there are $N$-invariant vectors and show that these must be \G-invariant as well,
-  which contradicts our assumption.
-
-  Suppose there is a vector $v$ that is \Ninv, meaning $\pi(n)v = v$ for all $n \in N$.
-  As a shorthand, define the function $f(g) = \langle \pi(g)v,v\rangle$.
-  This defines a continuous bi-\Ninv function on $G$.
-
-  This is because $f(gn) = \langle \pi(gn)v,v,\rangle = \langle \pi(g)\pi(n)v,v\rangle = \langle \pi(g)v,v\rangle = f(g)$,
-  and $f(ng) = \langle \pi(n)\pi(g)v,v\rangle \xrightarrow{unitary} \langle \pi(g)v, \pi(n)^{-1}v\rangle = f(g)$.
-
-  Thus $f$ lifts from a continuous bi-\Ninv function on $G/N$.
-
-  \G acts transitively on $\bbr^2\setminus \{0\}$ by matrix multiplication,
-  and, using the fact that $N$ is exactly the stabilizer of $\ipmatrix{1 \\
-  0}$, we get an isomorphism $G/N \cong \bbr^2\setminus \{0\}$ \footnote{This
-  is due to the fact that for a transitive action $G\curvearrowright X$ there
-  is an isomorphism $G/Stab_G(x) \rightarrow X$ sending $g\cdot Stab_G(x)
-  \mapsto gx$.}.
-
-  Calculating the orbits of this action we have $\ipmatrix{1 & x \\ 0 &
-  1}\ipmatrix{a \\ b} = \ipmatrix{a +bx \\ b}$. So there exist two kinds of
-  orbits: for $b \neq 0$. the orbit is the horizontal line at height $b$ and
-  for $b=0$ every individual point $(a\ 0)$ on the $x$-axix. (See Figure~\ref{fig:n-orbits-in-r2}). As $f$ is \Ninv,
-  $f$ will be constant along these orbits. Because $f$ is continuous, $f$ will
-  also be constant along the $x$-axis.
-
-  \begin{figure}
-    \begin{center}
-      % \includegraphics[width=0.95\textwidth]{N-orbits-in-R2-1.png}
-    \end{center}
-    \caption{The orbits of $N$ on $G/N$ correspond either to the horizontal lines parallel to the x-axis or to the individual points on the x-axis. }
-    \label{fig:n-orbits-in-r2}
-  \end{figure}
-
-  But we can also identify the $x$-axis with $P/N$ by $\ipmatrix{a & b \\ 0 &
-  a^{-1}}\ipmatrix{x \\ 0} = \ipmatrix{ax \\ 0}$. Therefore $f$ is also
-  constant on $P$. So it follows that $v$ is $P$-invariant. And as we have seen
-  in the \hyperref[sec:introduction]{intoduction}, we can identify $G/P$ with
-  the real projective line and $P$ has a dense orbit in $G/P$ so $f$ is
-  constant on $G$ and therefore $v$ is actually \G-invariant, contradicting our
-  assumption.
-
+    But we can also identify the $x$-axis with $P/N$ by $\ipmatrix{a & b \\ 0 &
+    a^{-1}}\ipmatrix{x \\ 0} = \ipmatrix{ax \\ 0}$. Therefore $f$ is also
+    constant on $P$. So it follows that $v$ is $P$-invariant. Thus $f$ is is
+    bi-$P$-invariant, that is it is $P$-invariant on $G/P$. Since $P$ has a dense
+    orbit in $G/P$ so $f$ is constant on $G$ and therefore $v$ is actually
+    \G-invariant, contradicting our assumption.
+  \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1081,8 +1115,8 @@
 
 
   In this section we will prove the statement for $G = \slnr$ and later show how
-  the proof is extended to a general group \G. We begin just as for \sltr, by
-  applying \hyperref[lemma]{lemma} \ref{lemma}. Thus it suffices to show that
+  the proof can be extended to a general group \G. We begin just as for \sltr, by
+  applying \thref{lemma}. Thus it suffices to show that
   matrix coefficients vanish on $A \subset G$ to imply that they vanish on \G.
 
   Let $A \subset G$ be the subgroup of diagonal matrices. We denote the elements
@@ -1097,7 +1131,9 @@
 
   by $(a_1, \dots, a_n)$.
 
-  To get an equivalent to the group $N$ from the earlier proof, we first define the group $B$, which has $1$ on the diagonal and $0$ everywhere but the first row.
+  To get a group that plays the role of the group $N$ from the earlier proof,
+  we first define the group $B$, which has $1$ on the diagonal and $0$
+  everywhere but the first row.
 
   $$
     B \ni b := \begin{pmatrix}
@@ -1113,9 +1149,10 @@
   In the case of $n = 2$, this reduces to \sltr and the above matrix to $N$ from the previous proof.
 
   Observe $B \cong \bbr^n$.
-  These one-row spaces like $B$ are actually abelian normal subgroups.
-  To see abelianness, decompose the matrix into $(\Id + b)(\Id +b') = \Id + \Id\cdot b + \Id\cdot b' + b\cdot b'$.
-  Note that a b are nilpotent and by choosing the same row for our entries they
+  These one-row spaces like $B$ are actually Abelian normal subgroups.
+  % TODO: Corr. this is sort of wrong.
+  To see that they are Abelian, decompose the matrix into $(\Id + b)(\Id +b') = \Id + \Id\cdot b + \Id\cdot b' + b\cdot b'$.
+  Note that $b$, $b'$ are nilpotent and by choosing the same row for our entries they
   ``miss'' each other during multiplication and so $b\cdot b' =0$. The rest then commutes
   due to commutativity of matrix addition.
   Similarly, we get that $A$ normalizes $B$: $aBa^{-1} = a(\Id + b)a^{-1} = \Id + aba^{-1}$.
@@ -1146,10 +1183,12 @@
   \end{pmatrix}
   $$
 
-  From the proof for \sltr we know that $B_i$-invariant vectors imply $H_i$ invariant vectors. In particular $A_i = A \cap H_i$ has non-trivial invariant vectors.
+  From the proof for \sltr we know that the existence of $B_i$-invariant
+  vectors imply the existence of $H_i$ invariant vectors. In particular
+  $A_i = A \cap H_i$ has non-trivial invariant vectors.
 
   Let $W = \{v \in \hilb | \pi(a)v=v\}$. We show that \G leaves $W$ invariant.
-  First, since $A_i \subset A$, $A$ abelean, $A$ leaves $W$ invariant. Now
+  First, since $A_i \subset A$, $A$ Abelian, $A$ leaves $W$ invariant. Now
   consider matrices $B_{kj}$ which have 1 along the diagonal and 0 elsewhere,
   except for the coefficient $(b_{kj})$. If $k\neq j$ and $j\neq i$ or $1$ then
   $B_{kj}$ commutes with $A_i$ and therefore leaves $W$ invariant. If
@@ -1175,8 +1214,6 @@
 \subsection{Proof for a general \texorpdfstring{$G$}{G}}\label{proof-for-a-general-G}}
 
 
-
-   In concluding this section, we indicate the
    To conclude the proof, we show how to extend the argument to a general semisimple group.
 
    This follows essentially from the Iwasawa decomposition of a semisimple group.
@@ -1188,7 +1225,7 @@
    Then $G =KAN$ with $K=exp_G(\frk)$, $A=exp_G(\fra)$ and $N=exp_G(\frnn)$
    and there exists a basis of \frg such that the elements of $K$ are represented by orthogonal matrices, the elements of $A$ by diagonal matrices with positive entries, and the elements of $N$ are represented by unipotent matrices.
 
-   By the same argument we made for \thref{lemma}, we can focus on the subgroup $B=AN$ and analyze it in the same way as the case for \slnr.
+   By the same argument we used for \thref{lemma}, we can focus on the subgroup $B=AN$ and analyze it in the same way as the case for \slnr.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1198,14 +1235,14 @@
 \section{Conclusion}\label{outro}}
 
 
-  Now that we have proven the theorem, it's natural to ask what we do with it now.
+  Now that we have proven the theorem, it's natural to ask what we do with it.
   At first glance, the statement about matrix coefficients doesn't seem particularly useful,
-  but recall from this \hyperref[the-connection-between-ergodicity-and-unitary-representations]{section}
+  but recall from \hyperref[the-connection-between-ergodicity-and-unitary-representations]{this section}
   that we have a connection to invariant subsets of a possibly ergodic space.
 
   We have mentioned in the very beginning where we wanted to go with this, but let's recall it here.
 
-  The problem we posed at the beginning is the following:
+  The problem we posed at the beginning was the following:
 
   \begin{problem}[When do closed subgroups act ergodically]
     Let \G be a semisimple Lie group and $S$ an ergodic \G-space. If $H\subset G$ is a closed subgroup, when is $H$ ergodic on $S$.
@@ -1215,9 +1252,9 @@
 
   \begin{thm}[Zimmer 2.2.19, originally \citeauthor{Moore66}\cite{Moore66}]
     \label{thm:2.2.19}
-     Let $G_i$ be semisimple, non-compact Lie groups and $G = \prod G_i$ and
-     suppose \mpi is a unitary representation that has no invariant vectors of
-     \G such that \mpi has no invariant vectors for each $\pi|G_i$. If $H
+     Let $G_i$ be semisimple, non-compact Lie groups and $G = \prod G_i$ with finite center and
+     suppose \mpi is a unitary representation of
+     \G such that there are no invariant vectors for each $\pi|G_i$. If $H
      \subset G$ is a closed subgroup and $\pi|H$ has non-trivial invariant
      vectors then $H$ is compact.
   \end{thm}
@@ -1234,13 +1271,16 @@
     \label{thm:2.2.15}
     Let $G = \prod G_i$ be a finite product where each $G_i$ is a connected
     non-compact simple Lie group with finite center. Suppose $S$ is an
+    % TODO: Corr: haven't defined irreducible
     irreducible ergodic \G-space with finite invariant measure. If $H \subset
     G$ is a closed non-compact subgroup, then $H$ is ergodic on $S$.
   \end{thm}
 
   For the case of spaces with finite invariant measure the established condition is exactly necessary and sufficient for ergodicity.
 
-  Recall that the defition of a lattice specifies that the quotient $G/Gamma$ has finite measure. This means for actions on that space, searching for invariant vectors is exactly equivalent to establishing ergodicity.
+  Recall that the defition of a lattice specifies that the quotient $G/\Gamma$
+  has finite measure. This means that for actions on $G/P$, searching for
+  invariant vectors is exactly equivalent to establishing ergodicity.
 
   In conclusion we can put our results into the following statement:
 
@@ -1249,7 +1289,7 @@
     Let $G = \prod G_i$ be a finite product where each $G_i$ is a connected
     non-compact simple Lie group with finite center. Let $\Gamma \subset G$ be
     an irreducible lattice. If $H \subset G$ is a closed subgroup and $H$ is
-    not. compact, then H is ergodic on $G/\Gamma$.
+    not compact, then H is ergodic on $G/\Gamma$.
   \end{thm}
 
 
