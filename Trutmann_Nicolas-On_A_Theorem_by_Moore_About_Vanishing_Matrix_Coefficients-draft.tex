@@ -482,7 +482,7 @@
   the inner product $\inn{\pi(g)e_i, e_j}$ works out to be the coefficient of the matrix associates to $\pi(g)$.
 
 
-  % TODO: (all of this) repr: a map dim of a repr
+  % TODO: (all of this) representation: a map dim of a representation
   % TODO: agree with topology.
 
 
@@ -586,7 +586,7 @@
   by being again a Hilbert space by integration
   $\langle f, g\rangle = \int_M\langle f(x), g(x)\rangle$.
 
-  % TODO:  (doesn't mention measurablity)
+  % TODO:  (doesn't mention measurability)
 
   The next step towards locality is to use two function, by defining
   $L^2(M_1 \sqcup M_2, \mathscr{H}_1 \oplus \mathscr{H}_2)$, where every
@@ -836,9 +836,9 @@
     To spell it out $\pi|N \cong \pi_{\mu, \hat{\bbr}}: N \rightarrow \mathcal{U}(L^2(\hat{\bbr}, \mu, \hilb_{\lambda}))$.
 
     A section of this space can be written as $f: \lambda \mapsto v_{\lambda}$ for $v_{\lambda} \in \hilb_{\lambda}$.
-    By construction of $\pi_{\mu, \hilb_{\lambda}}$ we have an explicit
-    % TODO: Corr: formula stuff
-    formula $\lambda(t)f(\lambda)$, where $\lambda(t) \in S^1$ and $f(\lambda)$ in some complex Hilbert space.
+    By construction of $\pi_{\mu, \hilb_{\lambda}}$ we can write
+    % TODO: Corr: formula stuff -> maybe OK?
+    $\lambda(t)f(\lambda)$, where $\lambda(t) \in S^1$ and $f(\lambda)$ in some complex Hilbert space.
     For a representation to be invariant, we need that $\lambda(t)f(\lambda) = f(\lambda)$ for all $t$ and almost all $\lambda$ ($\mu$ almost everywhere).
     The only choice for $\lambda$ is $\lambda_0(t) := e^{i \cdot 0 \cdot t} = 1$ for all $t$.
     So all of $\hilb_0$ will remain invariant.
@@ -1128,7 +1128,6 @@
   To get a group that plays the role of the group $N$ from the earlier proof,
   we first define the group $B$, which has $1$ on the diagonal and $0$
   everywhere but the first row.
-
   $$
     B \ni b := \begin{pmatrix}
       1 & b_{1,2} & & \cdots & & b_{1,n} \\
@@ -1137,19 +1136,13 @@
       0 & & & & \\
     \end{pmatrix}
   $$
-
   and write $b = (1, b_2, \dots, b_n)$, specifying only the first row.
   We now have analogues for $A$, $N$ and we set $H:=AB$. We will replicate the proof for \sltr on this group.
   In the case of $n = 2$, this reduces to \sltr and the above matrix to $N$ from the previous proof.
 
   Observe $B \cong \bbr^n$.
   These one-row spaces like $B$ are actually Abelian normal subgroups.
-  % TODO: Corr: this is sort of wrong.
-  To see that they are Abelian, decompose the matrix into $(\Id + b)(\Id +b') = \Id + \Id\cdot b + \Id\cdot b' + b\cdot b'$.
-  Note that $b$, $b'$ are nilpotent and by choosing the same row for our entries they
-  ``miss'' each other during multiplication and so $b\cdot b' =0$. The rest then commutes
-  due to commutativity of matrix addition.
-  Similarly, we get that $A$ normalizes $B$: $aBa^{-1} = a(\Id + b)a^{-1} = \Id + aba^{-1}$.
+  We can easily see that $A$ normalizes $B$: $aBa^{-1} = a(\Id + b)a^{-1} = \Id + aba^{-1}$.
   The last term will again be entirely in the first row and therefore the entire expression will be in $B$.
   Calculation shows $aba^{-1} = (1, a_1a_2^{-1}b_2, \dots, a_1a_n^{-1}b_n)$.
 
@@ -1244,6 +1237,12 @@
 
   We will show how we can apply the theorem to this problem, mostly forgoing proofs.
 
+  The theorem gives us information about asymptotic behavior of representations
+  at infinity, which we can use in the following theorem by turning the
+  argument around.
+  If we \emph{don't} find the asymptotic behavior, then we know that there's no
+  infinity to go to asymptotically.
+
   \begin{thm}[Zimmer 2.2.19, originally \citeauthor{Moore66}\cite{Moore66}]
     \label{thm:2.2.19}
      Let $G_i$ be semisimple, non-compact Lie groups and $G = \prod G_i$ with finite center and
@@ -1258,8 +1257,15 @@
   \end{proof}
 
 
-  By the theorem \thref{thm:2.2.17}, this is equivalent to the following,
-  theorem, which needs to be preceded by a definition we had no need for up
+  We are now applying the section
+  \hyperref[the-connection-between-ergodicity-and-unitary-representations]{about ergodicity and unitary representations}
+  in reverse, and translate statements about invariant vectors back to the ergodic properties
+  By the theorem \thref{thm:2.2.17}
+  we have the equivalence: ergodic $\Leftrightarrow$ no non-trivial invariant vectors.
+  And by the statement above we have: non-trivial vectors $\Rightarrow$ compactness.
+  We turn that around to get: non-compact $\Rightarrow$ no non-trivial vectors.
+
+  We capture this idea in the following theorem, which needs to be preceded by a definition we had no need for up
   until now:
 
   \begin{defn}[Irreducible G-space]

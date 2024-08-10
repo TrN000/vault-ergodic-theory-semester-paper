@@ -43,6 +43,7 @@ Correction of spelling errors and minor adjustments not mentioned.
 ## conclusion
 
 - added definition for irreducible G-space
+- added an argument motivating the move between thm 2.2.19 to 2.2.15
 
 ## appendices
 
